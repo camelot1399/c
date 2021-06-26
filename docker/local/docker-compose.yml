@@ -8,7 +8,7 @@ services:
     ports:
       - "16377:6379"
     networks:
-      - example
+      - agile
 
   agile-mysql:
     image: mysql:5.7.22
@@ -22,7 +22,7 @@ services:
     ports:
       - "2330:3306"
     networks:
-      - example
+      - agile
 
   agile-webserver:
     image: nginx:alpine
@@ -34,7 +34,7 @@ services:
     ports:
       - "80:80"
     networks:
-      - example
+      - agile
     depends_on:
       - agile-php-fpm
 
@@ -48,13 +48,13 @@ services:
     ports:
       - "9000"
     networks:
-      - example
+      - agile
     environment:
       APP_ENV: local
       CONTAINER_ROLE: app
 
 networks:
-  example:
+  agile:
     driver: bridge
 
 volumes:
