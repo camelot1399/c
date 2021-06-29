@@ -2,22 +2,22 @@
     <div class="container-fluid">
         <div class="banner-wrapper">
             <div class="banner-header text-center">
-                <h1>Search Doctor, Make an Appointment</h1>
-                <p>Discover the best doctors, clinic &amp; hospital the city nearest to you.</p>
+                <h1>Найдите врача, запишитесь на прием</h1>
+                <p>Откройте для себя лучших врачей, клинику и больницу в ближайшем к вам городе.</p>
             </div>
-            <div class="search-box">
-                <form action="search.html">
-                    <div class="form-group search-location">
-                        <input type="text" class="form-control" placeholder="Search Location">
-                        <span class="form-text">Based on your Location</span>
-                    </div>
-                    <div class="form-group search-info">
-                        <input type="text" class="form-control" placeholder="Search Doctors, Clinics, Hospitals, Diseases Etc">
-                        <span class="form-text">Ex : Dental or Sugar Check up etc</span>
-                    </div>
-                    <button type="submit" class="btn btn-primary search-btn"><i class="fas fa-search"></i> <span>Search</span></button>
-                </form>
-            </div>
+            {{--            <div class="search-box">--}}
+            {{--                <form action="search.html">--}}
+            {{--                    <div class="form-group search-location">--}}
+            {{--                        <input type="text" class="form-control" placeholder="Район поиска">--}}
+            {{--                        <span class="form-text">Относительно вашего местоположения</span>--}}
+            {{--                    </div>--}}
+            {{--                    <div class="form-group search-info">--}}
+            {{--                        <input type="text" class="form-control" placeholder="Поиск врачей, клиник, больниц, болезней и т.д.">--}}
+            {{--                        <span class="form-text">Пример: стоматологический осмотр или осмотр на сахарный диабет и т.д.</span>--}}
+            {{--                    </div>--}}
+            {{--                    <button type="submit" class="btn btn-primary search-btn"><i class="fas fa-search"></i> <span>Search</span></button>--}}
+            {{--                </form>--}}
+            {{--            </div>--}}
         </div>
     </div>
 </section>
@@ -33,12 +33,12 @@
     }
 
     .section-search {
-            background: #f9f9f9 url(../img/search-bg.png) no-repeat bottom center;
-            min-height: 450px;
-            background-size: 100% auto;
-            position: relative;
-            background-blend-mode: Darken;
-            padding: 80px 0;
+        background: #f9f9f9 url(../img/search-bg.png) no-repeat bottom center;
+        min-height: 450px;
+        background-size: 100% auto;
+        position: relative;
+        background-blend-mode: Darken;
+        padding: 80px 0;
     }
 
     .container-fluid {
@@ -114,7 +114,7 @@
 
     .search-box .form-text {
         color: #757575;
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .search-info .form-control {
@@ -136,7 +136,7 @@
 
     .search-box .form-text {
         color: #757575;
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .search-box .search-btn {
@@ -159,3 +159,4 @@
         font-weight: 500;
     }
 </style>
+
