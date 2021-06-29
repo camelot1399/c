@@ -5,4 +5,5 @@
         <li><a href="/doctors">Доктора</a></li>
         <li><a href="/schedule">Расписание</a></li>
     </ul>
+    @include("doctors/about")
 </x-app-layout>
