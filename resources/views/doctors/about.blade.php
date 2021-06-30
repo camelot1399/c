@@ -1,3 +1,120 @@
+@push('style')
+    <style type="text/css" >
+        body {
+            background-color: #f8f9fa;
+            color: #272b41;
+            font-family: "Poppins", sans-serif;
+            font-size: 0.9375rem;
+            height: 100%;
+            overflow-x: hidden;
+            font-weight: 400;
+            line-height: 1.5; }
+        .container {
+            max-width: 960px;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        .card {
+            border: 1px solid #f0f0f0;
+            margin-bottom: 1.875rem;
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border-radius: 0.25rem; }
+        .card-body {
+            padding: 1.5rem;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            min-height: 1px;
+        }
+        .pt-0, .py-0 {
+            padding-top: 0!important;
+        }
+        .fade {
+            transition: opacity .15s linear;
+        }
+        .row {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+        .col-lg-9 {
+            -ms-flex: 0 0 75%;
+            flex: 0 0 75%;
+            max-width: 75%;
+        }
+        .widget {
+            margin-bottom: 30px;
+        }
+        .widget-title {
+            margin-bottom: 15px;
+        }
+        .experience-box {
+            position: relative;
+        }
+        .experience-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        .experience-list::before {
+            background: #ddd;
+            bottom: 0;
+            content: "";
+            left: 8px;
+            position: absolute;
+            top: 8px;
+            width: 2px;
+        }
+        .experience-list > li .experience-user {
+            background: #fff;
+            height: 10px;
+            left: 4px;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 4px;
+            width: 10px;
+        }
+        .experience-list > li .experience-content {
+            background-color: #fff;
+            margin: 0 0 20px 40px;
+            padding: 0;
+            position: relative;
+        }
+        .experience-list > li .experience-content .timeline-content {
+            color: #757575;
+        }
+        .before-circle {
+            background-color: rgb(32 87 243 / 20%);
+            border-radius: 50%;
+            height: 12px;
+            width: 12px;
+            border: 2px solid #4498dc;
+        }
+        .service-list {
+            margin-bottom: 30px;
+        }
+        .service-list ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+@endpush
 <div class="main-wrapper">
     <div class="content" style="min-height: 444px;">
         <div class="container">
