@@ -113,6 +113,26 @@
             margin: 0;
             padding: 0;
         }
+        .service-list ul li {
+            float: left;
+            margin: 6px 0;
+            padding-left: 25px;
+            position: relative;
+            width: 33%;
+        }
+        .clearfix::after {
+            display: block;
+            clear: both;
+            content: "";
+        }
+        .service-list ul li::before {
+            color: #ccc;
+            content: '\f30b';
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            left: 0;
+            position: absolute;
+        }
     </style>
 @endpush
 <div class="main-wrapper">
