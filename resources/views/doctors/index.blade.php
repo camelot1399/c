@@ -5,4 +5,11 @@
         <li><a href="/doctors">Доктора</a></li>
         <li><a href="/schedule">Расписание</a></li>
     </ul>
+
+    <x-doctors.card></x-doctors.card>
 </x-app-layout>
+
+<style>
+
+</style>
+
