@@ -9,6 +9,37 @@
             overflow-x: hidden;
             font-weight: 400;
             line-height: 1.5; }
+        .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+            margin-bottom: .5rem;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+            margin-bottom: .5rem;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #272b41;
+            font-weight: 500;
+        }
+        .h4, h4 {
+            font-size: 1.125rem;
+        }
+        p {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+        a {
+            color: #2E3842;
+            text-decoration: none;
+            background-color: transparent;
+        }
+
         .container {
             max-width: 960px;
             width: 100%;
@@ -79,6 +110,9 @@
             top: 8px;
             width: 2px;
         }
+        .experience-list > li {
+            position: relative;
+        }
         .experience-list > li .experience-user {
             background: #fff;
             height: 10px;
@@ -97,6 +131,9 @@
         }
         .experience-list > li .experience-content .timeline-content {
             color: #757575;
+        }
+        .experience-list > li .experience-content .timeline-content a.name {
+            font-weight: 500;
         }
         .before-circle {
             background-color: rgb(32 87 243 / 20%);

@@ -12,5 +12,4 @@
             </div>
         </div>
     </div>
-{{--    @include("doctors/about")--}}
 </x-app-layout>
