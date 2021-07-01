@@ -239,6 +239,7 @@ export default {
     .slickList {
         position: relative;
         overflow: hidden;
+        padding: 10px;
     }
 
     .slickSlide__header {
