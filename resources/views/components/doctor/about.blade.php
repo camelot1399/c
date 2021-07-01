@@ -625,7 +625,7 @@
 
 
                 <div class="write-review">
-                    <h4>Write a review for <strong>Д-р. Николай Чавез</strong></h4>
+                    <h4>Write a review for <strong>Dr. Kalen Chavez</strong></h4>
 
                     <form>
                         <div class="form-group">
