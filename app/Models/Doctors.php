@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Doctors extends Model
 {
     use HasFactory;
+
+    public $about = [
+        'id' => 1,
+        'name' => 'Михаил'
+    ];
 }

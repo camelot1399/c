@@ -12,12 +12,48 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            maxWidth: {
+                '1/4': '25%',
+                '1/2': '50%',
+                '3/4': '75%',
+                '540': '540px',
+                '720': '720px',
+                '960': '960px',
+                '1140': '1140px'
+            },
+            flex: {
+                '1/4': '0 0 25%',
+                '1/2': '0 0 50%',
+                '1': '0 0 100%'
+
+            },
+            spacing: {
+                '1': '1rem',
+                '5px': '5px',
+                '10px': '10px',
+                '15px': '15px',
+                '20px': '20px',
+                '30px': '30px',
+                '40px': '40px',
+                '80px': '80px'
+            },
+            colors: {
+                'nav-link': '#66c323',
+            },
+            textColor: {
+                'nav-link-color': '#66c323',
+                'link-300': '#66c323'
+            },
+            backgroundColor: {
+                'div-gray-200': '#f8f9fa'
+            }
         },
     },
 
     variants: {
         extend: {
             opacity: ['disabled'],
+            backgroundColor: ['active'],
         },
     },
 
