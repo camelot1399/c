@@ -44,6 +44,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'CardCarouselComponent',
   data: function data() {
@@ -224,7 +240,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.slickSlide {\n    display: block;\n    margin-left: 0;\n    padding: 10px;\n    min-width: 280px;\n    box-sizing: border-box;\n    box-shadow: 2px 2px 13px rgb(0 0 0 / 10%);\n    background: white;\n    margin: 0 5px;\n}\n.slickList {\n    position: relative;\n    overflow: hidden;\n}\n.slickSlide__header {\n    display: flex;\n}\n.slickTrack__visible {\n    display: flex;\n    flex-wrap: nowrap;\n}\n.slickSlide__imgBlock {\n    position: relative;\n    overflow: hidden;\n}\n.slickSlide__img {\n    transition: all 0.6s;\n}\n.slickSlide__img:hover {\n    transform: scale(1.2);\n}\n.slickSlide__btn {\n    color: #4890cb;\n    font-size: 13px;\n    border: 2px solid #4890cb;\n    text-align: center;\n    display: block;\n    font-weight: 500;\n    padding: 6px;\n    border-radius: 10px;\n    transition: all 0.6s;\n}\n.slickSlide__buttons {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    margin: 5px 0;\n}\n.slickSlide__btn:hover {\n    background: #4890cb;\n    color: white;\n}\n.slickSlide__btn_bookNow {\n    background: #4890cb;\n    color: white;\n}\n.slickSlide__btn_bookNow:hover {\n    background: #4184bb;\n}\n.slickTrack {\n    position: relative;\n    padding: 0 10px;\n    transition: all 0.6s;\n}\n.slickNavigation__left {\n    position: absolute;\n    top: calc(50% - 50px);\n    left: 0;\n    width: 50px;\n    height: 50px;\n    background: white;\n    border-radius: 50px;\n    box-shadow: 1px 6px 14px rgb(0 0 0 / 20%);\n    transition: background 0.6s;\n}\n.slickNavigation__left:hover {\n    background: #4890cb;\n    color: white;\n}\n.slickNavigation__right {\n    position: absolute;\n    top: calc(50% - 50px);\n    right: 0;\n    width: 50px;\n    height: 50px;\n    background: white;\n    border-radius: 50px;\n    box-shadow: 1px 6px 14px rgb(0 0 0 / 20%);\n    transition: background 0.6s;\n}\n.slickNavigation__right:hover {\n    background: #4890cb;\n    color: white;\n}\n.slickNavigation__hide {\n    display: none;\n}\n.slickSlide__content {\n    color: #757575;\n    font-size: 13px;\n}\n\n\n\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.slickSlide {\n    display: block;\n    margin-left: 0;\n    padding: 10px;\n    min-width: 280px;\n    box-sizing: border-box;\n    box-shadow: 2px 2px 13px rgb(0 0 0 / 10%);\n    background: white;\n    margin: 0 5px;\n}\n.slickList {\n    position: relative;\n    overflow: hidden;\n}\n.slickSlide__header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n.slickTrack__visible {\n    display: flex;\n    flex-wrap: nowrap;\n}\n.slickSlide__imgBlock {\n    position: relative;\n    overflow: hidden;\n}\n.slickSlide__img {\n    transition: all 0.6s;\n}\n.slickSlide__img:hover {\n    transform: scale(1.2);\n}\n.slickSlide__btn {\n    color: #4890cb;\n    font-size: 13px;\n    border: 2px solid #4890cb;\n    text-align: center;\n    display: block;\n    font-weight: 500;\n    padding: 6px;\n    border-radius: 10px;\n    transition: all 0.6s;\n}\n.slickSlide__buttons {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    margin: 20px;\n}\n.slickSlide__btn:hover {\n    background: #4890cb;\n    color: white;\n}\n.slickSlide__btn_bookNow {\n    background: #4890cb;\n    color: white;\n}\n.slickSlide__btn_bookNow:hover {\n    background: #4184bb;\n}\n.slickTrack {\n    position: relative;\n    padding: 0 10px;\n    transition: all 0.6s;\n}\n.slickNavigation__left {\n    position: absolute;\n    top: calc(50% - 50px);\n    left: 0;\n    width: 50px;\n    height: 50px;\n    background: white;\n    border-radius: 50px;\n    box-shadow: 1px 6px 14px rgb(0 0 0 / 20%);\n    transition: background 0.6s;\n}\n.slickNavigation__left:hover {\n    background: #4890cb;\n    color: white;\n}\n.slickNavigation__right {\n    position: absolute;\n    top: calc(50% - 50px);\n    right: 0;\n    width: 50px;\n    height: 50px;\n    background: white;\n    border-radius: 50px;\n    box-shadow: 1px 6px 14px rgb(0 0 0 / 20%);\n    transition: background 0.6s;\n}\n.slickNavigation__right:hover {\n    background: #4890cb;\n    color: white;\n}\n.slickNavigation__hide {\n    display: none;\n}\n.slickSlide__content {\n    color: #757575;\n    font-size: 13px;\n    margin-top: 10px;\n}\n.slickSlide__rating {\n    display: flex;\n    margin-top: 10px;\n}\n.slickSlide__speciality {\n    margin-top: 10px;\n}\n.slickSlide__coast {\n    margin-top: 10px;\n}\n.slickSlide__statusOk {\n    color: green;\n}\n.slickSlide__statusNotOk {\n    color: red;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -731,15 +747,42 @@ var render = function() {
                   _vm._v(_vm._s(item.name))
                 ]),
                 _vm._v(" "),
-                item.status === 1 ? _c("span", [_vm._v("да")]) : _vm._e()
+                item.status === 1
+                  ? _c("span", [
+                      _c("i", {
+                        staticClass: "fas fa-check-circle slickSlide__statusOk"
+                      })
+                    ])
+                  : _c("span", [
+                      _c("i", {
+                        staticClass:
+                          "fas fa-check-circle slickSlide__statusNotOk"
+                      })
+                    ])
               ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "slickSlide__rating" },
+                [
+                  _vm._l(5, function(start, i) {
+                    return _c("div", { key: i }, [
+                      _c("i", { staticClass: "far fa-star" })
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("(17)")])
+                ],
+                2
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "slickSlide__speciality" }, [
                 _vm._v(_vm._s(item.speciality))
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "slickSlide__coast" }, [
-                _vm._v("$" + _vm._s(item.coast))
+                _c("i", { staticClass: "far fa-money-bill-alt" }),
+                _vm._v(" $" + _vm._s(item.coast))
               ]),
               _vm._v(" "),
               _vm._m(0, true)
@@ -786,7 +829,12 @@ var staticRenderFns = [
           staticClass: "slickNavigation__left",
           attrs: { "data-control": "left" }
         },
-        [_vm._v("<")]
+        [
+          _c("i", {
+            staticClass: "fas fa-chevron-left",
+            attrs: { "data-control": "left" }
+          })
+        ]
       ),
       _vm._v(" "),
       _c(
@@ -795,7 +843,12 @@ var staticRenderFns = [
           staticClass: "slickNavigation__right",
           attrs: { "data-control": "right" }
         },
-        [_vm._v(">")]
+        [
+          _c("i", {
+            staticClass: "fas fa-chevron-right",
+            attrs: { "data-control": "right" }
+          })
+        ]
       )
     ])
   }

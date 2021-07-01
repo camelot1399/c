@@ -9,11 +9,23 @@
                     <div class="slickSlide__content">
                         <div class="slickSlide__header">
                             <h3 class="slickSlide__h3">{{item.name}}</h3>
-                            <span v-if="item.status === 1">да</span>
+                            <span v-if="item.status === 1">
+                                <i class="fas fa-check-circle slickSlide__statusOk"></i>
+                            </span>
+                            <span v-else>
+                                <i class="fas fa-check-circle slickSlide__statusNotOk"></i>
+                            </span>
+                        </div>
+
+                        <div class="slickSlide__rating">
+                            <div v-for="(start, i) in 5" :key="i">
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span>(17)</span>
                         </div>
 
                         <div class="slickSlide__speciality">{{item.speciality}}</div>
-                        <div class="slickSlide__coast">${{item.coast}}</div>
+                        <div class="slickSlide__coast"><i class="far fa-money-bill-alt"></i> ${{item.coast}}</div>
 
                         <div class="slickSlide__buttons">
                             <a href="/schedule" class="slickSlide__btn btn">Подробнее</a>
@@ -25,8 +37,12 @@
 
         </div>
         <div class="slickNavigation">
-            <button class="slickNavigation__left" data-control="left"><</button>
-            <button class="slickNavigation__right" data-control="right">></button>
+            <button class="slickNavigation__left" data-control="left">
+                <i class="fas fa-chevron-left" data-control="left"></i>
+            </button>
+            <button class="slickNavigation__right" data-control="right">
+                <i class="fas fa-chevron-right" data-control="right"></i>
+            </button>
         </div>
     </div>
 </template>
@@ -227,6 +243,8 @@ export default {
 
     .slickSlide__header {
         display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .slickTrack__visible {
@@ -244,7 +262,6 @@ export default {
 
     .slickSlide__img:hover {
         transform: scale(1.2);
-
     }
 
     .slickSlide__btn {
@@ -263,7 +280,7 @@ export default {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        margin: 5px 0;
+        margin: 20px;
     }
 
     .slickSlide__btn:hover {
@@ -327,10 +344,28 @@ export default {
     .slickSlide__content {
         color: #757575;
         font-size: 13px;
+        margin-top: 10px;
     }
 
+    .slickSlide__rating {
+        display: flex;
+        margin-top: 10px;
+    }
 
+    .slickSlide__speciality {
+        margin-top: 10px;
+    }
 
+    .slickSlide__coast {
+        margin-top: 10px;
+    }
 
+    .slickSlide__statusOk {
+        color: green;
+    }
+
+    .slickSlide__statusNotOk {
+        color: red;
+    }
 
 </style>
