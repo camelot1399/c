@@ -257,6 +257,23 @@
         </ul>
     </div>
 </div>
+@push('scripts')
+    <script>
+        const datepicker = document.querySelector('#daterangepicker')
+        datepicker.addEventListener('click', (event) => {
+            const datepickerBox = document.querySelector('#daterangepicker_box')
+            datepickerBox.style.left = datepicker.offsetLeft + 'px'
+            datepickerBox.style.top = datepicker.offsetTop + datepicker.clientHeight + 'px'
+
+            if (datepickerBox.style.display === 'none') {
+
+                datepickerBox.style.display = 'block'
+            }else{
+                datepickerBox.style.display = 'none'
+            }
+        })
+    </script>
+@endpush
 <!-- Schedule Widget -->
 <div class="card booking-schedule schedule-widget">
 
