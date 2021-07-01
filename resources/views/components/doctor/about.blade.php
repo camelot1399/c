@@ -136,7 +136,7 @@
             font-weight: 500;
         }
         .before-circle {
-            background-color: rgb(32 87 243 / 20%);
+            /*background-color: rgb(32 87 243 20%);*/
             border-radius: 50%;
             height: 12px;
             width: 12px;
@@ -172,7 +172,7 @@
         }
     </style>
 @endpush
-<div class="card">
+<div class="card p-40px">
     <div class="card-body pt-0">
         {{--        <nav class="user-tabs mb-4">
                     <ul class="nav nav-tabs nav-tabs-bottom nav-justified">

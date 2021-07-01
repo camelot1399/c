@@ -232,7 +232,7 @@
         }
     </style>
 @endpush
-<div class="row">
+<div class="row pt-40px">
     <div class="col-12 col-sm-4 col-md-6">
         <h4 class="mb-1">05 Июля 2021</h4>
         <p class="text-muted">Понедельник</p>

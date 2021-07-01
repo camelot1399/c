@@ -78,7 +78,7 @@
         }
     </style>
 @endpush
-<div class="card">
+<div class="card mt-40px">
     <div class="card-body">
         <div class="booking-doc-info">
             <a href="#" class="booking-doc-img">

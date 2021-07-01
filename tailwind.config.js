@@ -29,8 +29,9 @@ module.exports = {
                 '10px': '10px',
                 '15px': '15px',
                 '20px': '20px',
+                '30px': '30px',
                 '40px': '40px',
-                '30px': '30px'
+                '80px': '80px'
             },
             colors: {
                 'nav-link': '#66c323',
@@ -39,6 +40,9 @@ module.exports = {
                 'nav-link-color': '#66c323',
                 'link-300': '#66c323'
             },
+            backgroundColor: {
+                'div-gray-200': '#f8f9fa'
+            }
         },
     },
 
