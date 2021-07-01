@@ -11,8 +11,13 @@ class DoctorsController extends Controller
 {
     public function index()
     {
+        return view('doctors.show');
+    }
+
+    public function show()
+    {
         $about = new Doctors();
         $aboutNew = $about->about;
-        return view('doctors.index', compact('aboutNew'));
+        return view('doctors.show', compact('aboutNew'));
     }
 }

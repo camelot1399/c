@@ -22,7 +22,7 @@
                         {{ __('Главная') }}
                     </x-nav-link>
                     <x-nav-link
-                        :href="route('doctors.index')"
+                        :href="route('doctors.show')"
                         :active="request()->routeIs('doctors.*')"
                     >
                         {{ __('Доктора') }}

@@ -3,12 +3,12 @@
         <div class="doctor-widget">
             <div class="doc-info-left">
                 <div class="doctor-img">
-                    <img src="./img/doctor-thumb-02.jpg" class="img-fluid" alt="User Image">
+                    <img src="/img/doctor-thumb-02.jpg" class="img-fluid" alt="User Image">
                 </div>
                 <div class="doc-info-cont">
                     <h4 class="doc-name">Доктор Николай Чавес</h4>
                     <p class="doc-speciality">BDS, MDS - Челюстно-лицевая хирургия</p>
-                    <p class="doc-department"><img src="./img/specialities-05.png" class="img-fluid" alt="Speciality">Стоматолог</p>
+                    <p class="doc-department"><img src="/img/specialities-05.png" class="img-fluid" alt="Speciality">Стоматолог</p>
                     <div class="rating">
                         <i class="fas fa-star filled"></i>
                         <i class="fas fa-star filled"></i>
@@ -21,23 +21,23 @@
                         <p class="doc-location"><i class="fas fa-map-marker-alt"></i> Нью-Йорк, США - <a href="javascript:void(0);">Получить направление</a></p>
                         <ul class="clinic-gallery">
                             <li>
-                                <a href="./img/feature-01.jpg" data-fancybox="gallery">
-                                    <img src="./img/feature-01.jpg" alt="Feature">
+                                <a href="/img/feature-01.jpg" data-fancybox="gallery">
+                                    <img src="/img/feature-01.jpg" alt="Feature">
                                 </a>
                             </li>
                             <li>
-                                <a href="./img/feature-02.jpg" data-fancybox="gallery">
-                                    <img src="./img/feature-02.jpg" alt="Feature Image">
+                                <a href="/img/feature-02.jpg" data-fancybox="gallery">
+                                    <img src="/img/feature-02.jpg" alt="Feature Image">
                                 </a>
                             </li>
                             <li>
-                                <a href="./img/feature-03.jpg" data-fancybox="gallery">
-                                    <img src="./img/feature-03.jpg" alt="Feature">
+                                <a href="/img/feature-03.jpg" data-fancybox="gallery">
+                                    <img src="/img/feature-03.jpg" alt="Feature">
                                 </a>
                             </li>
                             <li>
-                                <a href="./img/feature-04.jpg" data-fancybox="gallery">
-                                    <img src="./img/feature-04.jpg" alt="Feature">
+                                <a href="/img/feature-04.jpg" data-fancybox="gallery">
+                                    <img src="/img/feature-04.jpg" alt="Feature">
                                 </a>
                             </li>
                         </ul>

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 Route::get('/doctors', [\App\Http\Controllers\Doctors\DoctorsController::class, 'index'])->name('doctors.index');
+Route::get('/doctors/item', [\App\Http\Controllers\Doctors\DoctorsController::class, 'show'])->name('doctors.show');
 Route::get('/schedule', [\App\Http\Controllers\Schedule\ScheduleController::class, 'index'])->name('schedule.index');
 
 Route::get('/dashboard', function () {
