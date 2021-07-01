@@ -1,11 +1,4 @@
 <x-app-layout>
-    <h1>Расписание</h1>
-    <ul>
-        <li><a href="/">Главная страничка</a></li>
-        <li><a href="/doctors">Доктора</a></li>
-        <li><a href="/schedule">Расписание</a></li>
-    </ul>
-
 <div class="main-wrapper">
     <div class="content" style="min-height: 444px;">
         <div class="container">
