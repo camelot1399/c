@@ -38,37 +38,94 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'CardCarouselComponent',
   data: function data() {
     return {
       slides: [{
         name: 'Анастасия',
-        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg'
+        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
+        speciality: 'Гинеколог',
+        rating: 3,
+        coast: 500,
+        status: 1
       }, {
         name: 'Анастасия',
-        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg'
+        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
+        speciality: 'Гинеколог',
+        rating: 3,
+        coast: 500,
+        status: 1
       }, {
         name: 'Анастасия',
-        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg'
+        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
+        speciality: 'Гинеколог',
+        rating: 3,
+        coast: 500,
+        status: 1
       }, {
         name: 'Анастасия',
-        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg'
+        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
+        speciality: 'Гинеколог',
+        rating: 3,
+        coast: 500,
+        status: 1
       }, {
         name: 'Анастасия',
-        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg'
+        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
+        speciality: 'Гинеколог',
+        rating: 3,
+        coast: 500,
+        status: 1
       }, {
         name: 'Анастасия',
-        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg'
+        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
+        speciality: 'Гинеколог',
+        rating: 3,
+        coast: 500,
+        status: 1
       }, {
         name: 'Анастасия',
-        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg'
+        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
+        speciality: 'Гинеколог',
+        rating: 3,
+        coast: 500,
+        status: 1
+      }, {
+        name: 'Анастасия',
+        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
+        speciality: 'Гинеколог',
+        rating: 3,
+        coast: 500,
+        status: 1
+      }, {
+        name: 'Анастасия',
+        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
+        speciality: 'Гинеколог',
+        rating: 3,
+        coast: 500,
+        status: 1
+      }, {
+        name: 'Анастасия',
+        img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
+        speciality: 'Гинеколог',
+        rating: 3,
+        coast: 500,
+        status: 1
       }],
       offset: 0,
       currentItem: 1,
       widthItem: 0,
       sliderWidth: 0,
-      currentOffsetBlock: 0
+      currentOffsetBlock: 0,
+      marginBlock: 10
     };
   },
   methods: {
@@ -78,7 +135,6 @@ __webpack_require__.r(__webpack_exports__);
       this.widthItem = document.querySelector('.slickSlide').offsetWidth;
       this.sliderWidth = this.slides.length * this.widthItem;
       this.currentOffsetBlock = document.querySelector('.slickList').offsetWidth;
-      console.log(this.currentOffsetBlock);
       var slickNavigation = document.querySelector('.slickNavigation');
       slickNavigation.addEventListener('click', function (e) {
         var control = e.target.dataset.control;
@@ -95,22 +151,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     slideToLeft: function slideToLeft() {
-      console.log("currentItem: ".concat(this.currentItem));
-      console.log("this.sliderWidth: ".concat(this.sliderWidth));
-      console.log("this.offset: ".concat(this.offset));
+      var slickNavigation__left = document.querySelector('.slickNavigation__left');
+      var slickNavigation__right = document.querySelector('.slickNavigation__right');
+      slickNavigation__right.classList.remove('slickNavigation__hide');
 
       if (this.currentItem === 1) {
         return null;
       }
 
       if (this.currentItem === 2) {
-        this.offset = this.widthItem + this.offset + this.offset;
+        slickNavigation__left.classList.add('slickNavigation__hide');
+        this.offset = -20;
       } else {
         this.offset = this.offset + this.widthItem;
-      }
-
-      if (this.widthItem + this.offset < -this.widthItem) {
-        console.log("\u043E\u0441\u0442\u0430\u043B\u043E\u0441\u044C: ".concat(this.widthItem + this.offset));
       }
 
       this.currentItem--;
@@ -120,26 +173,28 @@ __webpack_require__.r(__webpack_exports__);
         return null;
       }
 
-      var slickList = document.querySelector('.slickList');
       var slickTrack = document.querySelector('.slickTrack');
-      var widthViewBox = slickList.offsetWidth;
       this.currentOffsetBlock = this.currentOffsetBlock - this.widthItem;
       slickTrack.style.transform = "translateX(".concat(this.offset, "px)");
     },
     slideToRight: function slideToRight() {
       var slickList = document.querySelector('.slickList');
       var rightEl = Math.floor(slickList.offsetWidth / (this.slides.length * this.widthItem) * 10);
-      console.log(this.currentItem + Math.ceil(slickList.offsetWidth / (this.slides.length * this.widthItem) * 10));
+      var slickNavigation__left = document.querySelector('.slickNavigation__left');
+      var slickNavigation__right = document.querySelector('.slickNavigation__right');
+      slickNavigation__left.classList.remove('slickNavigation__hide');
 
-      if (this.currentItem + rightEl - 1 > this.slides.length) {
+      if (this.currentItem + rightEl - 2 > this.slides.length) {
         return null;
       }
 
       this.currentItem++;
-      console.log("currentItem: ".concat(this.currentItem));
+      console.log(this.currentItem + rightEl);
+      console.log(this.slides.length);
 
-      if (this.sliderWidth - this.currentOffsetBlock < this.widthItem) {
-        this.offset = this.offset - (this.sliderWidth - this.currentOffsetBlock);
+      if (this.currentItem + rightEl - 2 === this.slides.length) {
+        slickNavigation__right.classList.add('slickNavigation__hide');
+        this.offset = slickList.offsetWidth - this.sliderWidth - this.marginBlock * this.slides.length;
       } else {
         this.offset = this.offset - this.widthItem;
       }
@@ -148,8 +203,7 @@ __webpack_require__.r(__webpack_exports__);
       var widthViewBox = slickList.offsetWidth;
       this.currentOffsetBlock = this.currentOffsetBlock + this.widthItem;
       slickTrack.style.transform = "translateX(".concat(this.offset, "px)");
-    },
-    calculateOffset: function calculateOffset() {}
+    }
   },
   mounted: function mounted() {
     this.init();
@@ -174,7 +228,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.slickSlide {\n    display: block;\n    margin-left: 0;\n    padding: 10px;\n    min-width: 280px;\n    /* box-sizing: border-box; */\n}\n.slickList {\n    position: relative;\n    overflow: hidden;\n}\n.slickTrack__visible {\n    display: flex;\n    flex-wrap: nowrap;\n}\n.btn {\n    color: #4890cb;\n    font-size: 13px;\n    border: 2px solid #4890cb;\n    text-align: center;\n    display: block;\n    font-weight: 500;\n    padding: 6px;\n}\n.slickSlide__buttons {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n.slickTrack {\n    position: relative;\n    padding: 0 10px;\n    transition: all 0.6s;\n}\n.slickNavigation__left {\n    position: absolute;\n    top: calc(50% - 50px);\n    left: 0;\n    width: 50px;\n    height: 50px;\n    background: white;\n    border-radius: 50px;\n    box-shadow: 1px 6px 14px rgb(0 0 0 / 20%);\n    transition: background 0.6s;\n}\n.slickNavigation__left:hover {\n    background: #4890cb;\n    color: white;\n}\n.slickNavigation__right {\n    position: absolute;\n    top: calc(50% - 50px);\n    right: 0;\n    width: 50px;\n    height: 50px;\n    background: white;\n    border-radius: 50px;\n    box-shadow: 1px 6px 14px rgb(0 0 0 / 20%);\n    transition: background 0.6s;\n}\n.slickNavigation__right:hover {\n    background: #4890cb;\n    color: white;\n}\n\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.slickSlide {\n    display: block;\n    margin-left: 0;\n    padding: 10px;\n    min-width: 280px;\n    box-sizing: border-box;\n    box-shadow: 2px 2px 13px rgb(0 0 0 / 10%);\n    background: white;\n    margin: 0 5px;\n}\n.slickList {\n    position: relative;\n    overflow: hidden;\n}\n.slickSlide__header {\n    display: flex;\n}\n.slickTrack__visible {\n    display: flex;\n    flex-wrap: nowrap;\n}\n.slickSlide__imgBlock {\n    position: relative;\n    overflow: hidden;\n}\n.slickSlide__img {\n    transition: all 0.6s;\n}\n.slickSlide__img:hover {\n    transform: scale(1.2);\n}\n.slickSlide__btn {\n    color: #4890cb;\n    font-size: 13px;\n    border: 2px solid #4890cb;\n    text-align: center;\n    display: block;\n    font-weight: 500;\n    padding: 6px;\n    border-radius: 10px;\n    transition: all 0.6s;\n}\n.slickSlide__buttons {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    margin: 5px 0;\n}\n.slickSlide__btn:hover {\n    background: #4890cb;\n    color: white;\n}\n.slickSlide__btn_bookNow {\n    background: #4890cb;\n    color: white;\n}\n.slickSlide__btn_bookNow:hover {\n    background: #4184bb;\n}\n.slickTrack {\n    position: relative;\n    padding: 0 10px;\n    transition: all 0.6s;\n}\n.slickNavigation__left {\n    position: absolute;\n    top: calc(50% - 50px);\n    left: 0;\n    width: 50px;\n    height: 50px;\n    background: white;\n    border-radius: 50px;\n    box-shadow: 1px 6px 14px rgb(0 0 0 / 20%);\n    transition: background 0.6s;\n}\n.slickNavigation__left:hover {\n    background: #4890cb;\n    color: white;\n}\n.slickNavigation__right {\n    position: absolute;\n    top: calc(50% - 50px);\n    right: 0;\n    width: 50px;\n    height: 50px;\n    background: white;\n    border-radius: 50px;\n    box-shadow: 1px 6px 14px rgb(0 0 0 / 20%);\n    transition: background 0.6s;\n}\n.slickNavigation__right:hover {\n    background: #4890cb;\n    color: white;\n}\n.slickNavigation__hide {\n    display: none;\n}\n.slickSlide__content {\n    color: #757575;\n    font-size: 13px;\n}\n\n\n\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -668,13 +722,28 @@ var render = function() {
         { staticClass: "slickTrack__visible" },
         _vm._l(_vm.slides, function(item, i) {
           return _c("div", { key: i, staticClass: "slickSlide" }, [
-            _c("div", { staticClass: "slickSlide__img" }, [
-              _c("img", { attrs: { src: item.img, alt: item.name } })
+            _c("div", { staticClass: "slickSlide__imgBlock" }, [
+              _c("img", {
+                staticClass: "slickSlide__img",
+                attrs: { src: item.img, alt: item.name }
+              })
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "slickSlide__content" }, [
-              _c("h3", { staticClass: "slickSlide__h3" }, [
-                _vm._v(_vm._s(item.name))
+              _c("div", { staticClass: "slickSlide__header" }, [
+                _c("h3", { staticClass: "slickSlide__h3" }, [
+                  _vm._v(_vm._s(item.name))
+                ]),
+                _vm._v(" "),
+                item.status === 1 ? _c("span", [_vm._v("да")]) : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "slickSlide__speciality" }, [
+                _vm._v(_vm._s(item.speciality))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "slickSlide__coast" }, [
+                _vm._v("$" + _vm._s(item.coast))
               ]),
               _vm._v(" "),
               _vm._m(0, true)
@@ -698,9 +767,14 @@ var staticRenderFns = [
         _vm._v("View Profile")
       ]),
       _vm._v(" "),
-      _c("a", { staticClass: "slickSlide__btn btn", attrs: { href: "#" } }, [
-        _vm._v("Book Now")
-      ])
+      _c(
+        "a",
+        {
+          staticClass: "slickSlide__btn btn slickSlide__btn_bookNow",
+          attrs: { href: "#" }
+        },
+        [_vm._v("Book Now")]
+      )
     ])
   },
   function() {
