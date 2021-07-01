@@ -168,7 +168,7 @@
 
     </style>
 @endpush
-}<div class="card">
+<div class="card">
     <div class="card-body">
         <div class="doctor-widget">
             <div class="doc-info-left">
