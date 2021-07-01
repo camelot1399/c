@@ -1,82 +1,82 @@
 <div class="card">
-            <div class="card-body">
-                <div class="doctor-widget">
-                    <div class="doc-info-left">
-                        <div class="doctor-img">
-                            <img src="./img/doctor-thumb-02.jpg" class="img-fluid" alt="User Image">
-                        </div>
-                        <div class="doc-info-cont">
-                            <h4 class="doc-name">Доктор Николай Чавес</h4>
-                            <p class="doc-speciality">BDS, MDS - Челюстно-лицевая хирургия</p>
-                            <p class="doc-department"><img src="./img/specialities-05.png" class="img-fluid" alt="Speciality">Стоматолог</p>
-                            <div class="rating">
-                                <i class="fas fa-star filled"></i>
-                                <i class="fas fa-star filled"></i>
-                                <i class="fas fa-star filled"></i>
-                                <i class="fas fa-star filled"></i>
-                                <i class="fas fa-star"></i>
-                                <span class="d-inline-block average-rating">(35)</span>
-                            </div>
-                            <div class="clinic-details">
-                                <p class="doc-location"><i class="fas fa-map-marker-alt"></i> Нью-Йорк, США - <a href="javascript:void(0);">Получить направление</a></p>
-                                <ul class="clinic-gallery">
-                                    <li>
-                                        <a href="./img/feature-01.jpg" data-fancybox="gallery">
-                                            <img src="./img/feature-01.jpg" alt="Feature">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="./img/feature-02.jpg" data-fancybox="gallery">
-                                            <img src="./img/feature-02.jpg" alt="Feature Image">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="./img/feature-03.jpg" data-fancybox="gallery">
-                                            <img src="./img/feature-03.jpg" alt="Feature">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="./img/feature-04.jpg" data-fancybox="gallery">
-                                            <img src="./img/feature-04.jpg" alt="Feature">
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="clinic-services">
-                                <span>Пломбирование</span>
-                                <span>Отбеливание зубов</span>
-                            </div>
-                        </div>
+    <div class="card-body">
+        <div class="doctor-widget">
+            <div class="doc-info-left">
+                <div class="doctor-img">
+                    <img src="./img/doctor-thumb-02.jpg" class="img-fluid" alt="User Image">
+                </div>
+                <div class="doc-info-cont">
+                    <h4 class="doc-name">Доктор Николай Чавес</h4>
+                    <p class="doc-speciality">BDS, MDS - Челюстно-лицевая хирургия</p>
+                    <p class="doc-department"><img src="./img/specialities-05.png" class="img-fluid" alt="Speciality">Стоматолог</p>
+                    <div class="rating">
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star"></i>
+                        <span class="d-inline-block average-rating">(35)</span>
                     </div>
-                    <div class="doc-info-right">
-                        <div class="clini-infos">
-                            <ul>
-                                <li><i class="far fa-thumbs-up"></i> 99%</li>
-                                <li><i class="far fa-comment"></i> 35 Отзывов</li>
-                                <li><i class="fas fa-map-marker-alt"></i> Нью-Йорк, США</li>
-                                <li><i class="far fa-money-bill-alt"></i> $100 в час </li>
-                            </ul>
-                        </div>
-                        <div class="doctor-action">
-                            <a href="javascript:void(0)" class="btn btn-white fav-btn">
-                                <i class="far fa-bookmark"></i>
-                            </a>
-                            <a href="chat.html" class="btn btn-white msg-btn">
-                                <i class="far fa-comment-alt"></i>
-                            </a>
-                            <a href="javascript:void(0)" class="btn btn-white call-btn" data-toggle="modal" data-target="#voice_call">
-                                <i class="fas fa-phone"></i>
-                            </a>
-                            <a href="javascript:void(0)" class="btn btn-white call-btn" data-toggle="modal" data-target="#video_call">
-                                <i class="fas fa-video"></i>
-                            </a>
-                        </div>
-                        <div class="clinic-booking">
-                            <a class="apt-btn" href="{{ route('schedule.index') }}">Запись на прием</a>
-                        </div>
+                    <div class="clinic-details">
+                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i> Нью-Йорк, США - <a href="javascript:void(0);">Получить направление</a></p>
+                        <ul class="clinic-gallery">
+                            <li>
+                                <a href="./img/feature-01.jpg" data-fancybox="gallery">
+                                    <img src="./img/feature-01.jpg" alt="Feature">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./img/feature-02.jpg" data-fancybox="gallery">
+                                    <img src="./img/feature-02.jpg" alt="Feature Image">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./img/feature-03.jpg" data-fancybox="gallery">
+                                    <img src="./img/feature-03.jpg" alt="Feature">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./img/feature-04.jpg" data-fancybox="gallery">
+                                    <img src="./img/feature-04.jpg" alt="Feature">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clinic-services">
+                        <span>Пломбирование</span>
+                        <span>Отбеливание зубов</span>
                     </div>
                 </div>
             </div>
+            <div class="doc-info-right">
+                <div class="clini-infos">
+                    <ul>
+                        <li><i class="far fa-thumbs-up"></i> 99%</li>
+                        <li><i class="far fa-comment"></i> 35 Отзывов</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Нью-Йорк, США</li>
+                        <li><i class="far fa-money-bill-alt"></i> $100 в час </li>
+                    </ul>
+                </div>
+                <div class="doctor-action">
+                    <a href="javascript:void(0)" class="btn btn-white fav-btn">
+                        <i class="far fa-bookmark"></i>
+                    </a>
+                    <a href="chat.html" class="btn btn-white msg-btn">
+                        <i class="far fa-comment-alt"></i>
+                    </a>
+                    <a href="javascript:void(0)" class="btn btn-white call-btn" data-toggle="modal" data-target="#voice_call">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                    <a href="javascript:void(0)" class="btn btn-white call-btn" data-toggle="modal" data-target="#video_call">
+                        <i class="fas fa-video"></i>
+                    </a>
+                </div>
+                <div class="clinic-booking">
+                    <a class="apt-btn" href="{{ route('schedule.index') }}">Запись на прием</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @push('style')
