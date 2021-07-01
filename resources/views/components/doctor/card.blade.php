@@ -176,9 +176,9 @@
                     <img src="img/doctors/1.png" class="img-fluid" alt="User Image">
                 </div>
                 <div class="doc-info-cont">
-                    <h4 class="doc-name">Д-р. Николай Чавез</h4>
-                    <p class="doc-speciality">BDS, MDS - Челюстно-лицевая хирургия</p>
-                    <p class="doc-department"><img src="img/specialities/05.png" class="img-fluid" alt="Speciality">Дантист</p>
+                    <h4 class="doc-name">Dr. Kalen Chavez</h4>
+                    <p class="doc-speciality">BDS, MDS - Oral &amp; Maxillofacial Surgery</p>
+                    <p class="doc-department"><img src="img/specialities/05.png" class="img-fluid" alt="Speciality">Dentist</p>
                     <div class="rating">
                         <i class="fas fa-star filled"></i>
                         <i class="fas fa-star filled"></i>
@@ -188,7 +188,7 @@
                         <span class="d-inline-block average-rating">(35)</span>
                     </div>
                     <div class="clinic-details">
-                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i> Нью-Йорк, США - <a href="javascript:void(0);">?Получить указания?</a></p>
+                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i> Newyork, USA - <a href="javascript:void(0);">Get Directions</a></p>
                         {{--<ul class="clinic-gallery">
                             <li>
                                 <a href="assets/img/features/feature-01.jpg" data-fancybox="gallery">
@@ -222,9 +222,9 @@
                 <div class="clini-infos">
                     <ul>
                         <li><i class="far fa-thumbs-up"></i> 99%</li>
-                        <li><i class="far fa-comment"></i> 35 отзывов</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Нью-Йорк, США</li>
-                        <li><i class="far fa-money-bill-alt"></i> $100 за час </li>
+                        <li><i class="far fa-comment"></i> 35 Feedback</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Newyork, USA</li>
+                        <li><i class="far fa-money-bill-alt"></i> $100 per hour </li>
                     </ul>
                 </div>
                 {{--<div class="doctor-action">
@@ -242,7 +242,7 @@
                     </a>
                 </div>--}}
                 <div class="clinic-booking">
-                    <a class="apt-btn" href="{{route('schedule.index')}}">Записаться</a>
+                    <a class="apt-btn" href="{{route('schedule.index')}}">Book Appointment</a>
                 </div>
             </div>
         </div>
