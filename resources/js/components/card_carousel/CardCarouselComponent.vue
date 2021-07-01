@@ -11,14 +11,13 @@
                             <h3 class="slickSlide__h3">{{item.name}}</h3>
                             <span v-if="item.status === 1">да</span>
                         </div>
-                        
 
                         <div class="slickSlide__speciality">{{item.speciality}}</div>
                         <div class="slickSlide__coast">${{item.coast}}</div>
 
                         <div class="slickSlide__buttons">
-                            <a href="#" class="slickSlide__btn btn">View Profile</a>
-                            <a href="#" class="slickSlide__btn btn slickSlide__btn_bookNow">Book Now</a>
+                            <a href="/schedule" class="slickSlide__btn btn">Подробнее</a>
+                            <a href="/schedule" class="slickSlide__btn btn slickSlide__btn_bookNow">Записаться</a>
                         </div>
                     </div>
                 </div>
@@ -131,7 +130,7 @@ export default {
             this.widthItem = document.querySelector('.slickSlide').offsetWidth;
             this.sliderWidth = this.slides.length * this.widthItem;
             this.currentOffsetBlock = document.querySelector('.slickList').offsetWidth;
-            
+
             let slickNavigation = document.querySelector('.slickNavigation');
             slickNavigation.addEventListener('click', (e) => {
                 let control = e.target.dataset.control;
@@ -166,7 +165,6 @@ export default {
             }
 
             this.currentItem--;
-            console.log(`currentItem: ${this.currentItem}`);
             if (this.offset === 0) {
                 return null;
             }
@@ -177,7 +175,7 @@ export default {
             slickTrack.style.transform = `translateX(${this.offset}px)`;
 
         },
-        slideToRight() {     
+        slideToRight() {
             let slickList = document.querySelector('.slickList');
             let rightEl = Math.floor(slickList.offsetWidth / (this.slides.length * this.widthItem) * 10);
             let slickNavigation__left = document.querySelector('.slickNavigation__left');
@@ -191,8 +189,6 @@ export default {
 
             this.currentItem++;
 
-            console.log(this.currentItem + rightEl);
-            console.log(this.slides.length);
             if ( (this.currentItem + rightEl - 2) === (this.slides.length)) {
                 slickNavigation__right.classList.add('slickNavigation__hide');
                 this.offset = slickList.offsetWidth - this.sliderWidth - (this.marginBlock * this.slides.length);
@@ -245,10 +241,10 @@ export default {
     .slickSlide__img {
         transition: all 0.6s;
     }
-    
+
     .slickSlide__img:hover {
         transform: scale(1.2);
-        
+
     }
 
     .slickSlide__btn {
@@ -333,7 +329,7 @@ export default {
         font-size: 13px;
     }
 
-    
+
 
 
 

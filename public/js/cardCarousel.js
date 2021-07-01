@@ -44,7 +44,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'CardCarouselComponent',
   data: function data() {
@@ -167,7 +166,6 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.currentItem--;
-      console.log("currentItem: ".concat(this.currentItem));
 
       if (this.offset === 0) {
         return null;
@@ -189,8 +187,6 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.currentItem++;
-      console.log(this.currentItem + rightEl);
-      console.log(this.slides.length);
 
       if (this.currentItem + rightEl - 2 === this.slides.length) {
         slickNavigation__right.classList.add('slickNavigation__hide');
@@ -763,17 +759,19 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "slickSlide__buttons" }, [
-      _c("a", { staticClass: "slickSlide__btn btn", attrs: { href: "#" } }, [
-        _vm._v("View Profile")
-      ]),
+      _c(
+        "a",
+        { staticClass: "slickSlide__btn btn", attrs: { href: "/schedule" } },
+        [_vm._v("Подробнее")]
+      ),
       _vm._v(" "),
       _c(
         "a",
         {
           staticClass: "slickSlide__btn btn slickSlide__btn_bookNow",
-          attrs: { href: "#" }
+          attrs: { href: "/schedule" }
         },
-        [_vm._v("Book Now")]
+        [_vm._v("Записаться")]
       )
     ])
   },
