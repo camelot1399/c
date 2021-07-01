@@ -82,7 +82,7 @@
     <div class="card-body">
         <div class="booking-doc-info">
             <a href="#" class="booking-doc-img">
-                <img src="img/doctors/1.png" alt="User Image">
+                <img src="img/doctor-thumb-02.jpg" alt="User Image">
             </a>
             <div class="booking-info">
                 <h4><a href="#">Д-р. Николай Чавез</a></h4>
