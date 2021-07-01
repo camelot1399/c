@@ -28,7 +28,7 @@
                         <div class="slickSlide__coast"><i class="far fa-money-bill-alt"></i> ${{item.coast}}</div>
 
                         <div class="slickSlide__buttons">
-                            <a href="/schedule" class="slickSlide__btn btn">Подробнее</a>
+                            <a href="/doctors" class="slickSlide__btn btn">Подробнее</a>
                             <a href="/schedule" class="slickSlide__btn btn slickSlide__btn_bookNow">Записаться</a>
                         </div>
                     </div>
