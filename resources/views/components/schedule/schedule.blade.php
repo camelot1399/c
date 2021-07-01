@@ -421,6 +421,6 @@
 
 <!-- Submit Section -->
 <div class="submit-section proceed-btn text-right">
-    <a href="#" class="btn btn-primary submit-btn booking-btn">Записаться</a>
+    <a href="#" onclick="alert('Вы успешно записаны к доктору!')" class="btn btn-primary submit-btn booking-btn">Записаться</a>
 </div>
 <!-- /Submit Section -->
