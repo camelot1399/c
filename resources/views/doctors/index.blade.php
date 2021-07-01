@@ -9,7 +9,3 @@
     <x-doctors.card></x-doctors.card>
 </x-app-layout>
 
-<style>
-
-</style>
-
