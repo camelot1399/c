@@ -36,7 +36,8 @@ module.exports = {
                 'nav-link': '#66c323',
             },
             textColor: {
-                'nav-link-color': '#66c323'
+                'nav-link-color': '#66c323',
+                'link-300': '#66c323'
             },
         },
     },
