@@ -2,9 +2,9 @@
     <div class="slickList">
         <div class="slickTrack">
             <div class="slickTrack__visible">
-                <div class="slickSlide" v-for="(item, i) in slides" :key="i">
+                <div class="slickSlide" v-for="(item, i) in doctors" :key="i">
                     <div class="slickSlide__imgBlock">
-                        <img class="slickSlide__img" :src="item.img" :alt="item.name">
+                        <img class="slickSlide__img" :src="'https://dreamstechnologies.co.in/docucare/assets/img/doctors/' + item.photo" :alt="item.name">
                     </div>
                     <div class="slickSlide__content">
                         <div class="slickSlide__header">
@@ -49,6 +49,7 @@
 <script>
 export default {
     name: 'CardCarouselComponent',
+    props: ['doctors'],
     data() {
         return {
             slides: [
@@ -220,6 +221,7 @@ export default {
     },
     mounted() {
         this.init();
+        console.log(this.doctors);
     }
 
 }
