@@ -15,63 +15,72 @@ class Doctors extends Model
             'speciality' => 'MDS - Пародонтология и оральная имплантология, BDS',
             'rating' => 5,
             'location' => 'Флорида, США',
-            'photo' => 'doctor-01.jpg'
-
+            'photo' => 'doctor-01.jpg',
+            'coast' => 500,
+            'status' => 1
         ],
         [
             'name' => 'Николай Чавес',
             'speciality' => 'BDS, MDS - Челюстно-лицевая хирургия',
             'rating' => 5,
             'location' => 'Нью-Йорк, США',
-            'photo' => 'doctor-02.jpg'
-
+            'photo' => 'doctor-02.jpg',
+            'coast' => 500,
+            'status' => 1
         ],
         [
             'name' => 'Бедилия Эллиот',
             'speciality' => 'MBBS, MD - Лечебное дело, DNB - Кардиология',
             'rating' => 5,
             'location' => 'Джорджия, США',
-            'photo' => 'doctor-03.jpg'
-
+            'photo' => 'doctor-03.jpg',
+            'coast' => 500,
+            'status' => 1
         ],
         [
             'name' => 'Александра Фостер',
             'speciality' => 'MBBS, MS - Общая хирургия, MCh - Урология',
             'rating' => 5,
             'location' => 'Нью-Йорк, США',
-            'photo' => 'doctor-04.jpg'
-
+            'photo' => 'doctor-04.jpg',
+            'coast' => 500,
+            'status' => 1
         ],
         [
             'name' => 'Диедра Спанглер',
             'speciality' => 'MDS - Пародонтология и оральная имплантология, BDS',
             'rating' => 5,
             'location' => 'Флорида, США',
-            'photo' => 'doctor-01.jpg'
-
+            'photo' => 'doctor-01.jpg',
+            'coast' => 500,
+            'status' => 1
         ],
         [
             'name' => 'Николай Чавес',
             'speciality' => 'BDS, MDS - Челюстно-лицевая хирургия',
             'rating' => 5,
             'location' => 'Нью-Йорк, США',
-            'photo' => 'doctor-02.jpg'
-
+            'photo' => 'doctor-02.jpg',
+            'coast' => 500,
+            'status' => 1
         ],
         [
             'name' => 'Бедилия Эллиот',
             'speciality' => 'MBBS, MD - Лечебное дело, DNB - Кардиология',
             'rating' => 5,
             'location' => 'Джорджия, США',
-            'photo' => 'doctor-03.jpg'
-
+            'photo' => 'doctor-03.jpg',
+            'coast' => 500,
+            'status' => 1
         ],
         [
             'name' => 'Александра Фостер',
             'speciality' => 'MBBS, MS - Общая хирургия, MCh - Урология',
             'rating' => 5,
             'location' => 'Нью-Йорк, США',
-            'photo' => 'doctor-04.jpg'
+            'photo' => 'doctor-04.jpg',
+            'coast' => 500,
+            'status' => 1
 
         ],
     ];
