@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\Doctors\DoctorsController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Schedule\ScheduleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,10 +16,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
-Route::get('/doctors', [\App\Http\Controllers\Doctors\DoctorsController::class, 'index'])->name('doctors.index');
-Route::get('/doctors/item', [\App\Http\Controllers\Doctors\DoctorsController::class, 'show'])->name('doctors.show');
-Route::get('/schedule', [\App\Http\Controllers\Schedule\ScheduleController::class, 'index'])->name('schedule.index');
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/doctors', [DoctorsController::class, 'index'])->name('doctors.index');
+Route::get('/doctors/item', [DoctorsController::class, 'show'])->name('doctors.show');
+Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule.index');
+Route::resource('books', BookController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
