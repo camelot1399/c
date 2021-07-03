@@ -31,7 +31,6 @@ class BookController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -39,7 +38,7 @@ class BookController extends Controller
         $book->fill($request->all());
         $book->save();
 
-        return redirect()->route();
+        return redirect()->route('home.index');
     }
 
     /**
