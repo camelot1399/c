@@ -34,6 +34,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->first_name);
         $book = new Book();
         $book->fill($request->all());
         $book->save();

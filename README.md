@@ -13,7 +13,7 @@
 Внутри контейнера:
  1 Pапускаем: composer install
  2 Запускаем: npm install && npm run dev
- 3 Запускаем: php artisan migrate:refresh
+ 3 Запускаем: php artisan migrate:fresh --seed
 
 Проверьте наличие файла: .evn (если отсустствует, создать по подобию .env.example)
 Порт базы данных 3306, прописывается в .env и .env.example
