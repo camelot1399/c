@@ -1,7 +1,8 @@
 <template>
-    <div class="slickList">
+    <div class="slickList" :class="{slider: 'overflow'}">
+        
         <div class="slickTrack">
-            <div class="slickTrack__visible">
+            <div :class="[slider ? 'slickTrack__visible' : 'slickTrack__visibleList']">
                 <div class="slickSlide" v-for="(item, i) in doctors" :key="i">
                     <div class="slickSlide__imgBlock">
                         <img class="slickSlide__img" :src="'https://dreamstechnologies.co.in/docucare/assets/img/doctors/' + item.photo" :alt="item.name">
@@ -19,7 +20,14 @@
 
                         <div class="slickSlide__rating">
                             <div v-for="(start, i) in 5" :key="i">
-                                <i class="far fa-star"></i>
+                                <div v-if="item.rating <= i">
+                                    <i class="fas fa-star noActive_star"></i>
+                                </div>
+                                <div v-else>
+                                    <i class="fas fa-star active_star"></i>
+                                </div>
+                                
+                                
                             </div>
                             <span>(17)</span>
                         </div>
@@ -27,16 +35,17 @@
                         <div class="slickSlide__speciality">{{item.speciality}}</div>
                         <div class="slickSlide__coast"><i class="far fa-money-bill-alt"></i> ${{item.coast}}</div>
 
-                        <div class="slickSlide__buttons">
-                            <a href="/doctors" class="slickSlide__btn btn">Подробнее</a>
-                            <a href="/schedule" class="slickSlide__btn btn slickSlide__btn_bookNow">Записаться</a>
-                        </div>
+                    </div>
+
+                    <div class="slickSlide__buttons">
+                        <a href="/doctors" class="slickSlide__btn btn">Подробнее</a>
+                        <a href="/schedule" class="slickSlide__btn btn slickSlide__btn_bookNow">Записаться</a>
                     </div>
                 </div>
             </div>
 
         </div>
-        <div class="slickNavigation">
+        <div class="slickNavigation" v-if="slider">
             <button class="slickNavigation__left" data-control="left">
                 <i class="fas fa-chevron-left" data-control="left"></i>
             </button>
@@ -49,91 +58,12 @@
 <script>
 export default {
     name: 'CardCarouselComponent',
-    props: ['doctors'],
+    props: {
+        doctors: Array,
+        slider: Boolean
+    },
     data() {
         return {
-            slides: [
-                {
-                    name: 'Анастасия',
-                    img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
-                    speciality: 'Гинеколог',
-                    rating: 3,
-                    coast: 500,
-                    status: 1,
-                },
-                {
-                    name: 'Анастасия',
-                    img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
-                    speciality: 'Гинеколог',
-                    rating: 3,
-                    coast: 500,
-                    status: 1,
-                },
-                {
-                    name: 'Анастасия',
-                    img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
-                    speciality: 'Гинеколог',
-                    rating: 3,
-                    coast: 500,
-                    status: 1,
-                },
-                {
-                    name: 'Анастасия',
-                    img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
-                    speciality: 'Гинеколог',
-                    rating: 3,
-                    coast: 500,
-                    status: 1,
-                },
-                {
-                    name: 'Анастасия',
-                    img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
-                    speciality: 'Гинеколог',
-                    rating: 3,
-                    coast: 500,
-                    status: 1,
-                },
-                {
-                    name: 'Анастасия',
-                    img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
-                    speciality: 'Гинеколог',
-                    rating: 3,
-                    coast: 500,
-                    status: 1,
-                },
-                {
-                    name: 'Анастасия',
-                    img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
-                    speciality: 'Гинеколог',
-                    rating: 3,
-                    coast: 500,
-                    status: 1,
-                },
-                {
-                    name: 'Анастасия',
-                    img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
-                    speciality: 'Гинеколог',
-                    rating: 3,
-                    coast: 500,
-                    status: 1,
-                },
-                {
-                    name: 'Анастасия',
-                    img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
-                    speciality: 'Гинеколог',
-                    rating: 3,
-                    coast: 500,
-                    status: 1,
-                },
-                {
-                    name: 'Анастасия',
-                    img: 'https://dreamstechnologies.co.in/docucare/assets/img/doctors/doctor-03.jpg',
-                    speciality: 'Гинеколог',
-                    rating: 3,
-                    coast: 500,
-                    status: 1,
-                },
-            ],
             offset: 0,
             currentItem: 1,
             widthItem: 0,
@@ -145,24 +75,26 @@ export default {
     methods: {
         init() {
             this.widthItem = document.querySelector('.slickSlide').offsetWidth;
-            this.sliderWidth = this.slides.length * this.widthItem;
+            this.sliderWidth = this.doctors.length * this.widthItem;
             this.currentOffsetBlock = document.querySelector('.slickList').offsetWidth;
 
-            let slickNavigation = document.querySelector('.slickNavigation');
-            slickNavigation.addEventListener('click', (e) => {
-                let control = e.target.dataset.control;
+            if (this.slider) {
+                let slickNavigation = document.querySelector('.slickNavigation');
+                slickNavigation.addEventListener('click', (e) => {
+                    let control = e.target.dataset.control;
 
-                if (control !== 'left' && control !== 'right') {
-                    return null
-                }
+                    if (control !== 'left' && control !== 'right') {
+                        return null
+                    }
 
-                if (control === 'left') {
-                    this.slideToLeft();
-                } else {
-                    this.slideToRight();
-                }
+                    if (control === 'left') {
+                        this.slideToLeft();
+                    } else {
+                        this.slideToRight();
+                    }
 
-            })
+                })
+            }
         },
         slideToLeft() {
             let slickNavigation__left = document.querySelector('.slickNavigation__left');
@@ -194,21 +126,21 @@ export default {
         },
         slideToRight() {
             let slickList = document.querySelector('.slickList');
-            let rightEl = Math.floor(slickList.offsetWidth / (this.slides.length * this.widthItem) * 10);
+            let rightEl = Math.floor(slickList.offsetWidth / (this.doctors.length * this.widthItem) * 10);
             let slickNavigation__left = document.querySelector('.slickNavigation__left');
             let slickNavigation__right = document.querySelector('.slickNavigation__right');
 
             slickNavigation__left.classList.remove('slickNavigation__hide');
 
-            if ( (this.currentItem + rightEl - 2) > (this.slides.length)) {
+            if ( (this.currentItem + rightEl - 2) > (this.doctors.length)) {
                 return null;
             }
 
             this.currentItem++;
 
-            if ( (this.currentItem + rightEl - 2) === (this.slides.length)) {
+            if ( (this.currentItem + rightEl - 2) === (this.doctors.length)) {
                 slickNavigation__right.classList.add('slickNavigation__hide');
-                this.offset = slickList.offsetWidth - this.sliderWidth - (this.marginBlock * this.slides.length);
+                this.offset = slickList.offsetWidth - this.sliderWidth - (this.marginBlock * this.doctors.length);
             } else {
                 this.offset = this.offset - this.widthItem;
             }
@@ -221,27 +153,31 @@ export default {
     },
     mounted() {
         this.init();
-        console.log(this.doctors);
     }
 
 }
 </script>
 <style>
     .slickSlide {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         margin-left: 0;
         padding: 10px;
-        min-width: 280px;
+        width: 280px;
         box-sizing: border-box;
         box-shadow: 2px 2px 13px rgb(0 0 0 / 10%);
         background: white;
-        margin: 0 5px;
+        margin: 0 5px 10px 5px;
     }
 
     .slickList {
         position: relative;
-        overflow: hidden;
         padding: 10px;
+    }
+
+    .overflow {
+        overflow: hidden;
     }
 
     .slickSlide__header {
@@ -253,6 +189,11 @@ export default {
     .slickTrack__visible {
         display: flex;
         flex-wrap: nowrap;
+    }
+
+    .slickTrack__visibleList {
+        display: flex;
+        flex-wrap: wrap;
     }
 
     .slickSlide__imgBlock {
@@ -283,7 +224,6 @@ export default {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        margin: 20px;
     }
 
     .slickSlide__btn:hover {
@@ -294,6 +234,7 @@ export default {
     .slickSlide__btn_bookNow {
         background: #4890cb;
         color: white;
+        margin-left: 10px;
     }
 
     .slickSlide__btn_bookNow:hover {
@@ -369,6 +310,14 @@ export default {
 
     .slickSlide__statusNotOk {
         color: red;
+    }
+
+    .active_star {
+        color: #f4c150;
+    }
+
+    .noActive_star {
+        color: #dedfe0;
     }
 
 </style>
