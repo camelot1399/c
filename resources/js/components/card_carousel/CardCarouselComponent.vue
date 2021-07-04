@@ -1,6 +1,5 @@
 <template>
     <div class="slickList" :class="{slider: 'overflow'}">
-
         <div class="slickTrack">
             <div :class="[slider ? 'slickTrack__visible' : 'slickTrack__visibleList']">
                 <div class="slickSlide" v-for="(item, i) in doctors" :key="i">
@@ -17,7 +16,6 @@
                                 <i class="fas fa-check-circle slickSlide__statusNotOk"></i>
                             </span>
                         </div>
-
                         <div class="slickSlide__rating">
                             <div v-for="(start, i) in 5" :key="i">
                                 <div v-if="item.rating <= i">
@@ -26,24 +24,18 @@
                                 <div v-else>
                                     <i class="fas fa-star active_star"></i>
                                 </div>
-
-
                             </div>
                             <span>(17)</span>
                         </div>
-
                         <div class="slickSlide__speciality">{{item.speciality}}</div>
                         <div class="slickSlide__coast"><i class="far fa-money-bill-alt"></i> ${{item.coast}}</div>
-
                     </div>
-
                     <div class="slickSlide__buttons">
                         <a href="/doctors/item" class="slickSlide__btn btn">Подробнее</a>
                         <a href="/schedule" class="slickSlide__btn btn slickSlide__btn_bookNow">Записаться</a>
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="slickNavigation" v-if="slider">
             <button class="slickNavigation__left" data-control="left">
