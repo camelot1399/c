@@ -34,12 +34,18 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->first_name);
         $book = new Book();
         $book->fill($request->all());
-        $book->save();
-
-        return redirect()->route('home.index');
+        if (!is_null($book->user_id) ||
+            (!is_null($book->first_name) && !is_null($book->second_name) &&
+                !is_null($book->phone) && !is_null($book->email))) {
+            $book->save();
+            //Если все в порядке, сохраняем и идем дальше
+            return redirect()->route('home.index');
+        } else {
+            //Если нет - нас вернет обратно к форме
+            return redirect()->back();
+        }
     }
 
     /**
