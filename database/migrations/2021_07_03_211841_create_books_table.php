@@ -15,7 +15,8 @@ class CreateBooksTable extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->integer('specialist_id');
+            $table->foreignId('specialist_id')
+                ->constrained('specialists');
             $table->foreignId('user_id')->nullable()
                 ->constrained('users')
                 ->onUpdate('cascade')
