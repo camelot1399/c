@@ -84,7 +84,4 @@ class Doctors extends Model
 
         ],
     ];
-    public int $start_time = 9;
-    public int $end_time = 11;
-    public int $duration = 1;
 }

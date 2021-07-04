@@ -11,11 +11,11 @@
 6 Запускаем ./init.sh. После этого Вы должны оказаться внутри контейнера agile-php-fpm под юзером developer
 
 Внутри контейнера:
- 1 Pапускаем: composer install
+ 1 Запускаем: composer install
  2 Запускаем: npm install && npm run dev
  3 Запускаем: php artisan migrate:fresh --seed
 
-Проверьте наличие файла: .evn (если отсустствует, создать по подобию .env.example)
+Проверьте наличие файла: .evn (если отсутствует, создать по подобию .env.example)
 Порт базы данных 3306, прописывается в .env и .env.example
 Внимание, если при запуске No Application Encryption Key Has Been Specified
 
