@@ -1,6 +1,6 @@
 <template>
     <div class="slickList" :class="{slider: 'overflow'}">
-        
+
         <div class="slickTrack">
             <div :class="[slider ? 'slickTrack__visible' : 'slickTrack__visibleList']">
                 <div class="slickSlide" v-for="(item, i) in doctors" :key="i">
@@ -26,8 +26,8 @@
                                 <div v-else>
                                     <i class="fas fa-star active_star"></i>
                                 </div>
-                                
-                                
+
+
                             </div>
                             <span>(17)</span>
                         </div>
@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="slickSlide__buttons">
-                        <a href="/doctors" class="slickSlide__btn btn">Подробнее</a>
+                        <a href="/doctors/item" class="slickSlide__btn btn">Подробнее</a>
                         <a href="/schedule" class="slickSlide__btn btn slickSlide__btn_bookNow">Записаться</a>
                     </div>
                 </div>
