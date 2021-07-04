@@ -16,8 +16,6 @@ class DoctorsController extends Controller
             $doctor->load('specialist');
             $doctor->specialist->load('category');
         }
-//        dump($doctors->items[0]->specialist());
-        dump($doctors);
         return view('doctors.index', compact('doctors'));
     }
 
