@@ -25,8 +25,7 @@ class CreateSpecialistsTable extends Migration
             $table->string('photo');
             $table->decimal('price', 5, 2);
             $table->foreignId('user_id')
-                ->constrained('users')
-                ->nullable();
+                ->constrained('users');
         });
     }
 
