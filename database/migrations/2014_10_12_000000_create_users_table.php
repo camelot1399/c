@@ -21,6 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->boolean('is_doctor')->default(false);
+            $table->boolean('is_reg')->default(false);
+            $table->boolean('is_admin')->default(false);
         });
     }
 

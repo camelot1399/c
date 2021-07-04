@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Doctors;
+use App\Models\Doctor;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $doctorsObj = new Doctors();
+        $doctorsObj = new Doctor();
         $doctors = $doctorsObj->doctors;
         return view('home.index', compact('doctors'));
     }

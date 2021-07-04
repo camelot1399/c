@@ -5,7 +5,7 @@
             <div :class="[slider ? 'slickTrack__visible' : 'slickTrack__visibleList']">
                 <div class="slickSlide" v-for="(item, i) in doctors" :key="i">
                     <div class="slickSlide__imgBlock">
-                        <img class="slickSlide__img" :src="'https://dreamstechnologies.co.in/docucare/assets/img/doctors/' + item.photo" :alt="item.name">
+                        <img class="slickSlide__img" :src="'/img/' + item.specialist.photo" :alt="item.name">
                     </div>
                     <div class="slickSlide__content">
                         <div class="slickSlide__header">
@@ -32,8 +32,8 @@
                             <span>(17)</span>
                         </div>
 
-                        <div class="slickSlide__speciality">{{item.speciality}}</div>
-                        <div class="slickSlide__coast"><i class="far fa-money-bill-alt"></i> ${{item.coast}}</div>
+                        <div class="slickSlide__speciality">{{item.specialist.category.name}}</div>
+                        <div class="slickSlide__coast"><i class="far fa-money-bill-alt"></i> от {{ item.specialist.price }} руб.</div>
 
                     </div>
 

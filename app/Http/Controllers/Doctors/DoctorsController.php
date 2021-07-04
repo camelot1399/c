@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Doctors;
 
 use App\Http\Controllers\Controller;
-use App\Models\Doctors;
+use App\Models\Doctor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -11,8 +11,11 @@ class DoctorsController extends Controller
 {
     public function index()
     {
-        $doctorsObj = new Doctors();
-        $doctors = $doctorsObj->doctors;
+        $doctors = Doctor::all()->where('is_doctor', true);
+        foreach ($doctors as $doctor){
+            $doctor->load('specialist');
+            $doctor->specialist->load('category');
+        }
         return view('doctors.index', compact('doctors'));
     }
 

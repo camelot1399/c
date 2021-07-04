@@ -33,12 +33,17 @@ module.exports = {
                 '10px': '10px',
                 '15px': '15px',
                 '20px': '20px',
+                '25px': '25px',
                 '30px': '30px',
                 '40px': '40px',
+                '50px': '50px',
                 '80px': '80px'
             },
             colors: {
                 'nav-link': '#66c323',
+                '66c323': '#66c323',
+                '5cb31e': '#5cb31e',
+                '4ca30e': '#4ca30e'
             },
             textColor: {
                 'nav-link-color': '#66c323',
@@ -46,6 +51,10 @@ module.exports = {
             },
             backgroundColor: {
                 'div-gray-200': '#f8f9fa'
+            },
+            fontSize: {
+                '16px': '16px',
+                '18px': '18px'
             }
         },
     },
