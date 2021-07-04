@@ -33,8 +33,10 @@ module.exports = {
                 '10px': '10px',
                 '15px': '15px',
                 '20px': '20px',
+                '25px': '25px',
                 '30px': '30px',
                 '40px': '40px',
+                '50px': '50px',
                 '80px': '80px'
             },
             colors: {
