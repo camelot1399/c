@@ -18,6 +18,11 @@ class CreateSpecialistsTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('second_name');
+            $table->foreignId('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->foreignId('category_id')
                 ->references('id')
                 ->on('categories')

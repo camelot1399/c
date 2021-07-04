@@ -16,17 +16,17 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->integer('specialist_id');
-            $table->foreignId('user_id')
+            $table->foreignId('user_id')->nullable()
                 ->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->time('time');
-            $table->string('first_name');
-            $table->string('second_name');
-            $table->string('email');
-            $table->string('phone');
+            $table->string('first_name')->nullable();
+            $table->string('second_name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->text('description');
-            $table->integer('age');
+            $table->integer('age')->nullable();
             $table->timestamps();
         });
     }
