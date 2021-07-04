@@ -19,11 +19,14 @@ class CreateSpecialistsTable extends Migration
             $table->string('last_name');
             $table->string('second_name');
             $table->foreignId('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->constrained('categories');
             $table->timestamps();
+            $table->string('location')->nullable()->default(null);
+            $table->string('photo');
+            $table->decimal('price', 5, 2);
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->nullable();
         });
     }
 
