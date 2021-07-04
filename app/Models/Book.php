@@ -58,4 +58,11 @@ class Book extends Model
     {
         return $this->belongsTo(User::class,'user_id')->first();
     }
+
+    public function __get($key)
+    {
+        return $this->attributes[$key];
+    }
+
+
 }

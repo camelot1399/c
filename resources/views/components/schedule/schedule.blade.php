@@ -438,15 +438,15 @@
 
 <!-- Submit Section -->
 <div class="submit-section proceed-btn text-right">
-    <a href="#" id="appointment" class="btn btn-primary submit-btn booking-btn">Записаться</a>
+    <a href="{{route('schedule.info')}}" id="appointment" class="btn btn-primary submit-btn booking-btn">Записаться</a>
 </div>
 <!-- /Submit Section -->
 
-@push('scripts')
-    <script>
-        document.querySelector('#appointment').addEventListener('click', (event) => {
-            alert('Вы успешно записаны')
-            event.preventDefault()
-        })
-    </script>
-@endpush
+{{--@push('scripts')--}}
+{{--    <script>--}}
+{{--        document.querySelector('#appointment').addEventListener('click', (event) => {--}}
+{{--            alert('Вы успешно записаны')--}}
+{{--            event.preventDefault()--}}
+{{--        })--}}
+{{--    </script>--}}
+{{--@endpush--}}
