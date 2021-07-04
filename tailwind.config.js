@@ -41,6 +41,9 @@ module.exports = {
             },
             colors: {
                 'nav-link': '#66c323',
+                '66c323': '#66c323',
+                '5cb31e': '#5cb31e',
+                '4ca30e': '#4ca30e'
             },
             textColor: {
                 'nav-link-color': '#66c323',
@@ -48,6 +51,10 @@ module.exports = {
             },
             backgroundColor: {
                 'div-gray-200': '#f8f9fa'
+            },
+            fontSize: {
+                '16px': '16px',
+                '18px': '18px'
             }
         },
     },
