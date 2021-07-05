@@ -38,8 +38,9 @@ class BookController extends Controller
         $book = new Book();
         $book->fill($request->all());
         if (!is_null($book->user_id) ||
-            (!is_null($book->first_name) && !is_null($book->second_name) &&
-                !is_null($book->phone) && !is_null($book->email))) {
+            (!is_null($book->name) && !is_null($book->second_name) &&
+                !is_null($book->surname) && !is_null($book->email)) &&
+                !is_null($book->description)) {
             //Если все в порядке, сохраняем и идем дальше
             $book->save();
             return redirect()->route('home.index');

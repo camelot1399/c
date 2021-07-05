@@ -20,19 +20,19 @@
                                             <div class="col-md-6 col-sm-12">
                                                 <div class="form-group card-label">
                                                     <label>Фамилия</label>
-                                                    <input class="form-control" type="text" name="surname" >
+                                                    <input class="form-control" type="text" name="surname" value="{{$user->surname ?? ''}}">
                                                 </div>
                                             </div>{{--Фамилия--}}
                                             <div class="col-md-6 col-sm-12">
                                                 <div class="form-group card-label">
                                                     <label>Имя</label>
-                                                    <input class="form-control" type="text" name="first_name">
+                                                    <input class="form-control" type="text" name="name" value="{{$user->name ?? ''}}">
                                                 </div>
                                             </div>{{--Имя--}}
                                             <div class="col-md-6 col-sm-12">
                                                 <div class="form-group card-label">
                                                     <label>Отчество</label>
-                                                    <input class="form-control" type="text" name="second_name">
+                                                    <input class="form-control" type="text" name="second_name" value="{{$user->second_name ?? ''}}">
                                                 </div>
                                             </div>{{--Отчество--}}
                                             <div class="col-md-6 col-sm-12">
@@ -44,7 +44,7 @@
                                             <div class="col-md-6 col-sm-12">
                                                 <div class="form-group card-label">
                                                     <label>E-mail</label>
-                                                    <input class="form-control" type="email" name="email">
+                                                    <input class="form-control" type="email" name="email" value="{{$user->email ?? ''}}">
                                                 </div>
                                             </div>{{--Мэйл--}}
                                             <div class="col-md-6 col-sm-12">
@@ -133,17 +133,18 @@
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-4 theiaStickySidebar" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-                        <div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;"><div class="card booking-card">
+                        <div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
+                            <div class="card booking-card">
                                 <div class="card-header">
                                     <h4 class="card-title">Итоги бронирования</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="booking-doc-info">
                                         <a href="{{route('doctors.show')}}" class="booking-doc-img">
-                                            <img src="/img/doctor-01.jpg" alt="User Image">
+                                            <img src="/img/doctor-thumb-02.jpg" alt="User Image">
                                         </a>
                                         <div class="booking-info">
-                                            <h4><a href="doctor-profile.html">Dr. Kalen Chavez</a></h4>
+                                            <h4><a href="{{route('doctors.show')}}">{{$specialist->name ?? 'Доктор Николай Чавес'}}</a></h4>
                                             <div class="rating">
                                                 <i class="fas fa-star filled"></i>
                                                 <i class="fas fa-star filled"></i>
@@ -179,7 +180,19 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><div class="resize-sensor" style="position: absolute; inset: 0px; overflow: hidden; z-index: -1; visibility: hidden;"><div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0px; top: 0px; transition: all 0s ease 0s; width: 399px; height: 752px;"></div></div><div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div></div></div></div></div>
+                            </div>
+                            <div class="resize-sensor" style="position: absolute; inset: 0px; overflow: hidden; z-index: -1; visibility: hidden;">
+                                <div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
+                                    <div style="position: absolute; left: 0px; top: 0px; transition: all 0s ease 0s; width: 399px; height: 752px;"></div>
+                                </div>
+                                <div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
+                                    <div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

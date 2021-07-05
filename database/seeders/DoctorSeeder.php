@@ -33,9 +33,9 @@ class DoctorSeeder extends Seeder
 
         Specialist::query()
             ->firstOrCreate([
-                'first_name' => 'Иван',
-                'second_name' => 'Петрович',
-                'last_name' => 'Сидоров',
+//                'first_name' => 'Иван',
+//                'second_name' => 'Петрович',
+//                'last_name' => 'Сидоров',
                 'photo' => 'doctor-01.jpg',
                 'price' => 500,
                 'category_id' => $category->id,
@@ -61,9 +61,9 @@ class DoctorSeeder extends Seeder
 
         Specialist::query()
             ->firstOrCreate([
-                'first_name' => 'Семён',
-                'second_name' => 'Семёнович',
-                'last_name' => 'Сидоров',
+//                'first_name' => 'Семён',
+//                'second_name' => 'Семёнович',
+//                'last_name' => 'Сидоров',
                 'photo' => 'doctor-02.jpg',
                 'price' => 600,
                 'category_id' => $category->id,
@@ -90,9 +90,9 @@ class DoctorSeeder extends Seeder
 
         Specialist::query()
             ->firstOrCreate([
-                'first_name' => 'Семён',
-                'second_name' => 'Семёнович',
-                'last_name' => 'Петров',
+//                'first_name' => 'Семён',
+//                'second_name' => 'Семёнович',
+//                'last_name' => 'Петров',
                 'photo' => 'doctor-03.jpg',
                 'price' => 700,
                 'category_id' => $category->id,
@@ -119,9 +119,9 @@ class DoctorSeeder extends Seeder
 
         Specialist::query()
             ->firstOrCreate([
-                'first_name' => 'Иван',
-                'second_name' => 'Семёнович',
-                'last_name' => 'Петров',
+//                'first_name' => 'Иван',
+//                'second_name' => 'Семёнович',
+//                'last_name' => 'Петров',
                 'photo' => 'doctor-04.jpg',
                 'price' => 650,
                 'category_id' => $category->id,
@@ -147,9 +147,9 @@ class DoctorSeeder extends Seeder
 
         Specialist::query()
             ->firstOrCreate([
-                'first_name' => 'Иван',
-                'second_name' => 'Петрович',
-                'last_name' => 'Петров',
+//                'first_name' => 'Иван',
+//                'second_name' => 'Петрович',
+//                'last_name' => 'Петров',
                 'photo' => 'doctor-01.jpg',
                 'price' => 450,
                 'category_id' => $category->id,
@@ -176,9 +176,9 @@ class DoctorSeeder extends Seeder
 
         Specialist::query()
             ->firstOrCreate([
-                'first_name' => 'Иван',
-                'second_name' => 'Владимирович',
-                'last_name' => 'Петров',
+//                'first_name' => 'Иван',
+//                'second_name' => 'Владимирович',
+//                'last_name' => 'Петров',
                 'photo' => 'doctor-02.jpg',
                 'price' => 800,
                 'category_id' => $category->id,
@@ -205,9 +205,9 @@ class DoctorSeeder extends Seeder
 
         Specialist::query()
             ->firstOrCreate([
-                'first_name' => 'Иван',
-                'second_name' => 'Владимирович',
-                'last_name' => 'Иванов',
+//                'first_name' => 'Иван',
+//                'second_name' => 'Владимирович',
+//                'last_name' => 'Иванов',
                 'photo' => 'doctor-03.jpg',
                 'price' => 800,
                 'category_id' => $category->id,
@@ -233,9 +233,9 @@ class DoctorSeeder extends Seeder
 
         Specialist::query()
             ->firstOrCreate([
-                'first_name' => 'Роман',
-                'second_name' => 'Владимирович',
-                'last_name' => 'Петров',
+//                'first_name' => 'Роман',
+//                'second_name' => 'Владимирович',
+//                'last_name' => 'Петров',
                 'photo' => 'doctor-04.jpg',
                 'price' => 800,
                 'category_id' => $category->id,
