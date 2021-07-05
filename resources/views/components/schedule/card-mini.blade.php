@@ -81,11 +81,11 @@
 <div class="card mt-40px">
     <div class="card-body">
         <div class="booking-doc-info">
-            <a href="#" class="booking-doc-img">
+            <a href="{{route('doctors.show')}}" class="booking-doc-img">
                 <img src="img/doctor-thumb-02.jpg" alt="User Image">
             </a>
             <div class="booking-info">
-                <h4><a href="#">Д-р. Николай Чавез</a></h4>
+                <h4><a href="{{route('doctors.show')}}">Д-р. Николай Чавез</a></h4>
                 <div class="rating">
                     <i class="fas fa-star filled"></i>
                     <i class="fas fa-star filled"></i>

@@ -22,8 +22,9 @@ class CreateBooksTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->dateTime('datetime');
-            $table->string('first_name')->nullable();
+            $table->string('name')->nullable();
             $table->string('second_name')->nullable();
+            $table->string('surname')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->text('description');

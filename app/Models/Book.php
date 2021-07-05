@@ -15,7 +15,8 @@ use Illuminate\Support\Carbon;
  * @property int $specialist_id
  * @property int $user_id
  * @property string $time
- * @property string $first_name
+ * @property string $name
+ * @property string $surname
  * @property string $second_name
  * @property string $email
  * @property string $phone
@@ -49,7 +50,8 @@ class Book extends Model
         'specialist_id',
         'user_id',
         'datetime',
-        'first_name',
+        'name',
+        'surname',
         'second_name',
         'email',
         'phone',
@@ -62,10 +64,10 @@ class Book extends Model
         return $this->belongsTo(User::class,'user_id')->first();
     }
 
-    public function __get($key)
-    {
-        return $this->attributes[$key];
-    }
+//    public function __get($key)
+//    {
+//        return $this->attributes[$key];
+//    }
 
 
 }
