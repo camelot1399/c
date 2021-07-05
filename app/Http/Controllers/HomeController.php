@@ -8,8 +8,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $doctorsObj = new Doctor();
-        $doctors = $doctorsObj->doctors;
+
+        $doctors = Doctor::all()->where('is_doctor', true);
+        foreach ($doctors as $doctor){
+            $doctor->load('specialist');
+            $doctor->specialist->load('category');
+        }
         return view('home.index', compact('doctors'));
     }
 }

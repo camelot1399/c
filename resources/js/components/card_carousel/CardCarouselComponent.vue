@@ -1,6 +1,5 @@
 <template>
     <div class="slickList" :class="{slider: 'overflow'}">
-
         <div class="slickTrack">
             <div :class="[slider ? 'slickTrack__visible' : 'slickTrack__visibleList']">
                 <div class="slickSlide" v-for="(item, i) in doctors" :key="i">
@@ -9,7 +8,7 @@
                     </div>
                     <div class="slickSlide__content">
                         <div class="slickSlide__header">
-                            <h3 class="slickSlide__h3">{{item.name}}</h3>
+                            <h3 class="slickSlide__h3">{{item.surname+' '+item.name+' '+item.second_name}}</h3>
                             <span v-if="item.status === 1">
                                 <i class="fas fa-check-circle slickSlide__statusOk"></i>
                             </span>
@@ -17,7 +16,6 @@
                                 <i class="fas fa-check-circle slickSlide__statusNotOk"></i>
                             </span>
                         </div>
-
                         <div class="slickSlide__rating">
                             <div v-for="(start, i) in 5" :key="i">
                                 <div v-if="item.rating <= i">
@@ -26,8 +24,6 @@
                                 <div v-else>
                                     <i class="fas fa-star active_star"></i>
                                 </div>
-
-
                             </div>
                             <span>(17)</span>
                         </div>
@@ -36,14 +32,12 @@
                         <div class="slickSlide__coast"><i class="far fa-money-bill-alt"></i> от {{ item.specialist.price }} руб.</div>
 
                     </div>
-
                     <div class="slickSlide__buttons">
                         <a href="/doctors/item" class="slickSlide__btn btn">Подробнее</a>
                         <a href="/schedule" class="slickSlide__btn btn slickSlide__btn_bookNow">Записаться</a>
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="slickNavigation" v-if="slider">
             <button class="slickNavigation__left" data-control="left">
@@ -162,7 +156,6 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        margin-left: 0;
         padding: 10px;
         width: 280px;
         box-sizing: border-box;
