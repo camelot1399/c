@@ -29,8 +29,8 @@
                     </x-nav-link>
                     @if (Auth::user() && Auth::user()->is_doctor)
                         <x-nav-link
-                            :href="route('schedule.index')"
-                            :active="request()->routeIs('schedule.*')"
+                            :href="route('patient.index')"
+                            :active="request()->routeIs('patient.*')"
                         >
                             {{ __('Список пациентов') }}
                         </x-nav-link>
