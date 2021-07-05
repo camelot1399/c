@@ -23,7 +23,9 @@ class DoctorSeeder extends Seeder
 
         $doctor = Doctor::query()
             ->create([
-                'name' => 'Сидоров Иван Петрович',
+                'name' => 'Иван',
+                'second_name' => 'Петрович',
+                'surname' => 'Сидоров',
                 'email' => 'doctor1@host.ru',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'is_doctor' => true,
@@ -49,7 +51,9 @@ class DoctorSeeder extends Seeder
 
         $doctor = Doctor::query()
             ->create([
-                'name' => 'Сидоров Семён Семёнович',
+                'name' => 'Семён',
+                'second_name' => 'Семёнович',
+                'surname' => 'Сидоров',
                 'email' => 'doctor2@host.ru',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'is_doctor' => true,
@@ -76,7 +80,9 @@ class DoctorSeeder extends Seeder
 
         $doctor = Doctor::query()
             ->create([
-                'name' => 'Петров Семён Семёнович',
+                'name' => 'Семён',
+                'second_name' => 'Семёнович',
+                'surname' => 'Петров',
                 'email' => 'doctor3@host.ru',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'is_doctor' => true,
@@ -103,7 +109,9 @@ class DoctorSeeder extends Seeder
 
         $doctor = Doctor::query()
             ->create([
-                'name' => 'Петров Иван Семёнович',
+                'name' => 'Иван',
+                'second_name' => 'Семёнович',
+                'surname' => 'Петров',
                 'email' => 'doctor4@host.ru',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'is_doctor' => true,
@@ -129,7 +137,9 @@ class DoctorSeeder extends Seeder
 
         $doctor = Doctor::query()
             ->create([
-                'name' => 'Петров Иван Петрович',
+                'name' => 'Иван',
+                'second_name' => 'Петрович',
+                'surname' => 'Петров',
                 'email' => 'doctor5@host.ru',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'is_doctor' => true,
@@ -156,7 +166,9 @@ class DoctorSeeder extends Seeder
 
         $doctor = Doctor::query()
             ->create([
-                'name' => 'Петров Иван Владимирович',
+                'name' => 'Иван',
+                'second_name' => 'Владимирович',
+                'surname' => 'Петров',
                 'email' => 'doctor6@host.ru',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'is_doctor' => true,
@@ -183,7 +195,9 @@ class DoctorSeeder extends Seeder
 
         $doctor = Doctor::query()
             ->create([
-                'name' => 'Иванов Иван Владимирович',
+                'name' => 'Иван',
+                'second_name' => 'Владимирович',
+                'surname' => 'Иванов',
                 'email' => 'doctor7@host.ru',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'is_doctor' => true,
@@ -209,7 +223,9 @@ class DoctorSeeder extends Seeder
 
         $doctor = Doctor::query()
             ->create([
-                'name' => 'Петров Роман Владимирович',
+                'name' => 'Роман',
+                'second_name' => 'Владимирович',
+                'surname' => 'Петров',
                 'email' => 'doctor8@host.ru',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'is_doctor' => true,

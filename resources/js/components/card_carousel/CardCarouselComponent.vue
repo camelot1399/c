@@ -8,7 +8,7 @@
                     </div>
                     <div class="slickSlide__content">
                         <div class="slickSlide__header">
-                            <h3 class="slickSlide__h3">{{item.name}}</h3>
+                            <h3 class="slickSlide__h3">{{item.surname+' '+item.name+' '+item.second_name}}</h3>
                             <span v-if="item.status === 1">
                                 <i class="fas fa-check-circle slickSlide__statusOk"></i>
                             </span>
@@ -156,7 +156,6 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        margin-left: 0;
         padding: 10px;
         width: 280px;
         box-sizing: border-box;
