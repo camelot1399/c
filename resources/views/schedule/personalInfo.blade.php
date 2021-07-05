@@ -8,9 +8,8 @@
                             <div class="card-body">
                                 <form method="post" action="{{route('books.store')}}">
                                     @csrf
-                                    <input type="hidden" name="user_id">
-                                    <input type="hidden" name="specialist_id" value="1">
-                                    <input type="hidden" name="datetime" value="2021-07-01T10:00">
+                                    <input type="hidden" name="specialist_id" value="{{$specialist}}">
+                                    <input type="hidden" name="datetime" value="{{$datetime}}">
                                     <div class="info-widget">
                                         <h1>Вы записаны к {{$specialist ?? 'Доктор Николай Чавес'}}
                                             на {{$datetime->format('j F Y года') ?? '0 июля 2021 года'}}
@@ -68,6 +67,7 @@
                                         </div>
                                     </div>
 
+{{--                                    Payment--}}
                                     {{--<div class="payment-widget">
                                         <h4 class="card-title">Payment Method</h4>
 
