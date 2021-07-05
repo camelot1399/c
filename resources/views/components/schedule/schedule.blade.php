@@ -437,9 +437,14 @@
 <!-- /Schedule Widget -->
 
 <!-- Submit Section -->
-<div class="submit-section proceed-btn text-right">
-    <a href="{{route('schedule.info')}}" id="appointment" class="btn btn-primary submit-btn booking-btn">Записаться</a>
-</div>
+{{--<div class="submit-section proceed-btn text-right">--}}
+{{--    <a href="{{route('schedule.info')}}" id="appointment" class="btn btn-primary submit-btn booking-btn">Записаться</a>--}}
+{{--</div>--}}
+<form action="{{route('schedule.info')}}" method="get" class="submit-section proceed-btn text-right">
+    <input type="number" name="specialist_id" value="1">
+    <input type="datetime-local" name="datetime">
+    <input type="submit" class="btn btn-primary submit-btn booking-btn" value="Записаться">
+</form>
 <!-- /Submit Section -->
 
 {{--@push('scripts')--}}

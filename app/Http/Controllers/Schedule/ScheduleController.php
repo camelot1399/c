@@ -15,7 +15,9 @@ class ScheduleController extends Controller
 
     public function personalInfo(Request $request)
     {
-        $datetime = JDate::createFromTimestamp($request->datetime);
+        $str = str_replace('T',' ',$request->datetime);
+        $datetime = JDate::createFromDate($str);
+//        dd($request->datetime,$datetime->format('j F Y года'),$datetime->format('H:i'));
         $specialist = $request->specialist_id;
 //        $specialist = new Doctors(['id'=>$request->specialist_id]);
         $user = \Auth::user();
