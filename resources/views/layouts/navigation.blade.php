@@ -27,12 +27,14 @@
                     >
                         {{ __('Доктора') }}
                     </x-nav-link>
-                    <x-nav-link
-                        :href="route('schedule.index')"
-                        :active="request()->routeIs('schedule.*')"
-                    >
-                        {{ __('Расписание') }}
-                    </x-nav-link>
+                    @if (Auth::user() && Auth::user()->is_doctor)
+                        <x-nav-link
+                            :href="route('schedule.index')"
+                            :active="request()->routeIs('schedule.*')"
+                        >
+                            {{ __('Список пациентов') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
