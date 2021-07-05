@@ -11,7 +11,7 @@
                                     <input type="hidden" name="specialist_id" value="{{$specialist}}">
                                     <input type="hidden" name="datetime" value="{{$datetime}}">
                                     <div class="info-widget">
-                                        <h1>Вы записаны к {{$specialist ?? 'Доктор Николай Чавес'}}
+                                        <h1>Вы записаны к {{'Д-р. Николай Чавез'}}
                                             на {{$datetime->format('j F Y года') ?? '0 июля 2021 года'}}
                                             в {{$datetime->format('H:i') ?? '00:00'}}</h1>
                                         <h4 class="card-title">Личная информация</h4>
@@ -144,7 +144,7 @@
                                             <img src="/img/doctor-thumb-02.jpg" alt="User Image">
                                         </a>
                                         <div class="booking-info">
-                                            <h4><a href="{{route('doctors.show')}}">{{$specialist->name ?? 'Доктор Николай Чавес'}}</a></h4>
+                                            <h4><a href="{{route('doctors.show')}}">{{$specialist->name ?? 'Д-р. Николай Чавез'}}</a></h4>
                                             <div class="rating">
                                                 <i class="fas fa-star filled"></i>
                                                 <i class="fas fa-star filled"></i>
