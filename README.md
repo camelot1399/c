@@ -4,7 +4,7 @@
 3 Выполняем sudo chmod a+x init.sh
 4 Выполняем sudo chown -R www-data:www-data storage/
 5 Выполнить sudo chmod -R a+x storage/
-6 Запускаем ./init.sh. 
+6 Запускаем ./init.sh
 После этого Вы должны оказаться внутри контейнера agile-php-fpm под юзером developerт
 Внутри контейнера:
  1 Запускаем: composer install

@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Doctors;
 
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
+use App\Models\Specialist;
 
 class DoctorsController extends Controller
 {
@@ -19,7 +18,7 @@ class DoctorsController extends Controller
         return view('doctors.index', compact('doctors'));
     }
 
-    public function show()
+    public function show(Specialist $specialist)
     {
         return view('doctors.show');
     }

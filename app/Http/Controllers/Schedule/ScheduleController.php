@@ -19,7 +19,6 @@ class ScheduleController extends Controller
         $datetime = JDate::createFromDate($str);
 //        dd($request->datetime,$datetime->format('j F Y года'),$datetime->format('H:i'));
         $specialist = $request->specialist_id;
-//        $specialist = new Doctors(['id'=>$request->specialist_id]);
         $user = \Auth::user();
         return view('schedule.personalInfo')->with(compact(['datetime','user','specialist']));
     }
