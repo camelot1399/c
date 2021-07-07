@@ -44,8 +44,8 @@
                     <div class="footer-widget footer-menu mb-30px">
                         <h2 class="footer-title mb-30px  text-white">Для пациентов</h2>
                         <ul>
-                            <li class="text-sm pb-10px text-white"><a class="text-white"href="{{ route('doctors.index') }}">Найти доктора</a></li>
-                            <li class="text-sm pb-10px text-white"><a class="text-white"href="{{ route('schedule.index') }}">Расписание докторов</a></li>
+                            <li class="text-sm pb-10px text-white"><a class="text-white" href="{{ route('doctors.index') }}">Найти доктора</a></li>
+{{--                            <li class="text-sm pb-10px text-white"><a class="text-white"href="{{ route('schedule.index') }}">Расписание докторов</a></li>--}}
 {{--                            <li class="text-sm pb-10px text-white"><a class="text-white"href="register.html">Зарегистрироваться</a></li>--}}
 {{--                            <li class="text-sm pb-10px text-white"><a class="text-white"href="booking.html">Booking</a></li>--}}
 {{--                            <li class="text-sm pb-10px text-white"><a class="text-white"href="patient-dashboard.html">Patient Dashboard</a></li>--}}

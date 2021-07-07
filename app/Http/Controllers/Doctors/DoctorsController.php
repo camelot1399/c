@@ -20,6 +20,8 @@ class DoctorsController extends Controller
 
     public function show(Specialist $specialist)
     {
-        return view('doctors.show');
+//        $specialist->load('user');
+//        $specialist->load('category');
+        return view('doctors.show', compact('specialist'));
     }
 }

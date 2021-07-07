@@ -3,12 +3,12 @@
         <div class="doctor-widget">
             <div class="doc-info-left">
                 <div class="doctor-img">
-                    <img src="/img/doctor-thumb-02.jpg" class="img-fluid" alt="User Image">
+                    <img src="{{$specialist->photo}}" class="img-fluid" alt="User Image">
                 </div>
                 <div class="doc-info-cont">
-                    <h4 class="doc-name">Доктор Николай Чавес</h4>
+                    <h4 class="doc-name">Д-р {{$specialist->user->name.' '.$specialist->user->surname}}</h4>
                     <p class="doc-speciality">BDS, MDS - Челюстно-лицевая хирургия</p>
-                    <p class="doc-department"><img src="/img/specialities-05.png" class="img-fluid" alt="Speciality">Стоматолог</p>
+                    <p class="doc-department"><img src="{{$specialist->category->photo}}" class="img-fluid" alt="Speciality">{{$specialist->category->name}}</p>
                     <div class="rating">
                         <i class="fas fa-star filled"></i>
                         <i class="fas fa-star filled"></i>
@@ -18,7 +18,7 @@
                         <span class="d-inline-block average-rating">(35)</span>
                     </div>
                     <div class="clinic-details">
-                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i> Нью-Йорк, США - <a href="javascript:void(0);">Получить направление</a></p>
+                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i>{{$specialist->location}} - <a href="javascript:void(0);">Получить направление</a></p>
                         <ul class="clinic-gallery">
                             <li>
                                 <a href="/img/feature-01.jpg" data-fancybox="gallery">
@@ -53,8 +53,8 @@
                     <ul>
                         <li><i class="far fa-thumbs-up"></i> 99%</li>
                         <li><i class="far fa-comment"></i> 35 Отзывов</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Нью-Йорк, США</li>
-                        <li><i class="far fa-money-bill-alt"></i> $100 в час </li>
+                        <li><i class="fas fa-map-marker-alt"></i> {{$specialist->location}}</li>
+                        <li><i class="far fa-money-bill-alt"></i> {{$specialist->price}} руб/час </li>
                     </ul>
                 </div>
                 <div class="doctor-action">
@@ -72,7 +72,7 @@
                     </a>
                 </div>
                 <div class="clinic-booking">
-                    <a class="apt-btn" href="{{ route('schedule.index') }}">Запись на прием</a>
+                    <a class="apt-btn" href="{{ route('schedule.index',compact('specialist')) }}">Запись на прием</a>
                 </div>
             </div>
         </div>

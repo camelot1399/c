@@ -24,7 +24,7 @@ class SpecialistFactory extends Factory
         return [
             'category_id' => $this->faker->randomNumber(2),
             'user_id' => $this->faker->randomNumber(2),
-            'location' => $this->faker->sentence(10),
+            'location' => implode(' ',$this->faker->words(3)),
             'price' => $this->faker->randomNumber(3,true),
             'photo' => '/img/doctor-01.jpg',
         ];

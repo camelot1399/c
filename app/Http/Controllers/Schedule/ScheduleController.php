@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Schedule;
 
 use App\Http\Controllers\Controller;
+use App\Models\Specialist;
 use Illuminate\Http\Request;
 use Jenssegers\Date\Date as JDate;
 
 class ScheduleController extends Controller
 {
-    public function index()
+    public function index(Specialist $specialist)
     {
         return view('schedule.index');
     }

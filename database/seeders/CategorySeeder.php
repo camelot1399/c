@@ -14,8 +14,10 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::factory()
-            ->count(10)
-            ->create();
+        for ($i = 1; $i <= 5; $i++) {
+            Category::factory()
+                ->state(['photo' => '/img/specialities-0'.$i.'.png'])
+                ->create();
+        }
     }
 }

@@ -22,7 +22,8 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'cat: '.$this->faker->word,
+            'name' => 'Кат: '.$this->faker->word,
+            'photo' => '/img/specialities-01.png'
         ];
     }
 }

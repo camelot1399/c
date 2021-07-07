@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/doctors', [DoctorsController::class, 'index'])->name('doctors.index');
-Route::get('/doctors/item', [DoctorsController::class, 'show'])->name('doctors.show');
-Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule.index');
-Route::get('/schedule/info', [ScheduleController::class, 'personalInfo'])->name('schedule.info');
+Route::get('/doctors/{specialist}', [DoctorsController::class, 'show'])->name('doctors.show');
+Route::get('/doctors/{specialist}/schedule', [ScheduleController::class, 'index'])->name('schedule.index');
+Route::get('/doctors/{specialist}/book_info', [ScheduleController::class, 'personalInfo'])->name('schedule.info');
 Route::resource('books', BookController::class);
 
 Route::get('/dashboard', function () {
