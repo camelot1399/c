@@ -11,7 +11,7 @@ class ScheduleController extends Controller
 {
     public function index(Specialist $specialist)
     {
-        return view('schedule.index');
+        return view('schedule.index',compact('specialist'));
     }
 
     public function personalInfo(Request $request)
