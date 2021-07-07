@@ -81,11 +81,11 @@
 <div class="card mt-40px">
     <div class="card-body">
         <div class="booking-doc-info">
-            <a href="{{route('doctors.show')}}" class="booking-doc-img">
-                <img src="img/doctor-thumb-02.jpg" alt="User Image">
+            <a href="{{route('doctors.show',compact('specialist'))}}" class="booking-doc-img">
+                <img src="{{$specialist->photo}}" alt="User Image">
             </a>
             <div class="booking-info">
-                <h4><a href="{{route('doctors.show')}}">Д-р. Николай Чавез</a></h4>
+                <h4><a href="{{route('doctors.show',compact('specialist'))}}">Д-р. {{$specialist->user->name.' '.$specialist->user->surname ?? 'Николай Чавез'}}</a></h4>
                 <div class="rating">
                     <i class="fas fa-star filled"></i>
                     <i class="fas fa-star filled"></i>
@@ -94,7 +94,7 @@
                     <i class="fas fa-star"></i>
                     <span class="d-inline-block average-rating">35</span>
                 </div>
-                <p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> Москва, Россия</p>
+                <p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> {{$specialist->location}}</p>
             </div>
         </div>
     </div>

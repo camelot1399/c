@@ -6,32 +6,32 @@
                     <div class="col-md-7 col-lg-8">
                         <div class="card">
                             <div class="card-body">
-                                <form method="post" action="{{route('books.store')}}">
+                                <form method="post" action="{{ route('books.store') }}">
                                     @csrf
-                                    <input type="hidden" name="specialist_id" value="{{$specialist}}">
-                                    <input type="hidden" name="datetime" value="{{$datetime}}">
+                                    <input type="hidden" name="specialist_id" value="{{ $specialist->id }}">
+                                    <input type="hidden" name="datetime" value="{{ $datetime }}">
                                     <div class="info-widget">
-                                        <h1>Вы записаны к {{'Д-р. Николай Чавез'}}
-                                            на {{$datetime->format('j F Y года') ?? '0 июля 2021 года'}}
-                                            в {{$datetime->format('H:i') ?? '00:00'}}</h1>
+                                        <h1>Вы записаны к {{ 'Д-ру. '.$specialist->user->name.' '.$specialist->user->surname ?? 'Д-ру. Николай Чавез' }}
+                                            на {{ $datetime->format('j F Y года') ?? '0 июля 2021 года' }}
+                                            в {{ $datetime->format('H:i') ?? '00:00' }}</h1>
                                         <h4 class="card-title">Личная информация</h4>
                                         <div class="row">
                                             <div class="col-md-6 col-sm-12">
                                                 <div class="form-group card-label">
                                                     <label>Фамилия</label>
-                                                    <input class="form-control" type="text" name="surname" value="{{$user->surname ?? ''}}">
+                                                    <input class="form-control" type="text" name="surname" value="{{ $user->surname ?? '' }}">
                                                 </div>
                                             </div>{{--Фамилия--}}
                                             <div class="col-md-6 col-sm-12">
                                                 <div class="form-group card-label">
                                                     <label>Имя</label>
-                                                    <input class="form-control" type="text" name="name" value="{{$user->name ?? ''}}">
+                                                    <input class="form-control" type="text" name="name" value="{{ $user->name ?? '' }}">
                                                 </div>
                                             </div>{{--Имя--}}
                                             <div class="col-md-6 col-sm-12">
                                                 <div class="form-group card-label">
                                                     <label>Отчество</label>
-                                                    <input class="form-control" type="text" name="second_name" value="{{$user->second_name ?? ''}}">
+                                                    <input class="form-control" type="text" name="second_name" value="{{ $user->second_name ?? '' }}">
                                                 </div>
                                             </div>{{--Отчество--}}
                                             <div class="col-md-6 col-sm-12">
@@ -43,7 +43,7 @@
                                             <div class="col-md-6 col-sm-12">
                                                 <div class="form-group card-label">
                                                     <label>E-mail</label>
-                                                    <input class="form-control" type="email" name="email" value="{{$user->email ?? ''}}">
+                                                    <input class="form-control" type="email" name="email" value="{{ $user->email ?? '' }}">
                                                 </div>
                                             </div>{{--Мэйл--}}
                                             <div class="col-md-6 col-sm-12">
@@ -53,7 +53,7 @@
                                                 </div>
                                             </div>{{--Тел--}}
                                             @empty($user)
-                                                <div class="exist-customer">Уже зарегистрированы? <a href="#">Нажмите для входа</a></div>
+                                                <div class="exist-customer">Уже зарегистрированы? <a href="{{ route('login') }}">Нажмите для входа</a></div>
                                             @endempty
                                             <div class="col-md-6 col-sm-12">
                                                 <div class="form-group card-label">
@@ -140,11 +140,11 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="booking-doc-info">
-                                        <a href="{{route('doctors.show')}}" class="booking-doc-img">
-                                            <img src="/img/doctor-thumb-02.jpg" alt="User Image">
+                                        <a href="{{route('doctors.show',compact('specialist'))}}" class="booking-doc-img">
+                                            <img src="{{ $specialist->photo }}" alt="User Image">
                                         </a>
                                         <div class="booking-info">
-                                            <h4><a href="{{route('doctors.show')}}">{{$specialist->name ?? 'Д-р. Николай Чавез'}}</a></h4>
+                                            <h4><a href="{{ route('doctors.show',compact('specialist')) }}">{{ 'Д-р. '.$specialist->user->name.' '.$specialist->user->surname ?? 'Д-р. Николай Чавез' }}</a></h4>
                                             <div class="rating">
                                                 <i class="fas fa-star filled"></i>
                                                 <i class="fas fa-star filled"></i>
@@ -154,26 +154,26 @@
                                                 <span class="d-inline-block average-rating">35</span>
                                             </div>
                                             <div class="clinic-details">
-                                                <p class="doc-location"><i class="fas fa-map-marker-alt"></i> Newyork, USA</p>
+                                                <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{ $specialist->location ?? 'Newyork, USA' }}</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="booking-summary">
                                         <div class="booking-item-wrap">
                                             <ul class="booking-date">
-                                                <li>Дата <span>{{$datetime->format('j F Y года') ?? '0 июля 2021 года'}}</span></li>
-                                                <li>Время <span>{{$datetime->format('H:i') ?? '00:00'}}</span></li>
+                                                <li>Дата <span>{{ $datetime->format('j F Y года') ?? '0 июля 2021 года' }}</span></li>
+                                                <li>Время <span>{{ $datetime->format('H:i') ?? '00:00' }}</span></li>
                                             </ul>
                                             <ul class="booking-fee">
-                                                <li>Consulting Fee <span>$100</span></li>
-                                                <li>Booking Fee <span>$10</span></li>
-                                                <li>Video Call <span>$50</span></li>
+                                                <li>Стоимость <span>{{ $specialist->price }} руб.</span></li>
+{{--                                                <li>Booking Fee <span>$10</span></li>--}}
+{{--                                                <li>Video Call <span>$50</span></li>--}}
                                             </ul>
                                             <div class="booking-total">
                                                 <ul class="booking-total-list">
                                                     <li>
                                                         <span>Total</span>
-                                                        <span class="total-cost">$160</span>
+                                                        <span class="total-cost">{{ $specialist->price }} руб.</span>
                                                     </li>
                                                 </ul>
                                             </div>

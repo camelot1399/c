@@ -4,8 +4,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <x-schedule.card-mini></x-schedule.card-mini>
-                    <x-schedule.schedule></x-schedule.schedule>
+                    <x-schedule.card-mini :specialist="$specialist"></x-schedule.card-mini>
+                    <x-schedule.schedule :specialist="$specialist"></x-schedule.schedule>
                 </div>
             </div>
         </div>

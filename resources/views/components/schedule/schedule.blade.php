@@ -276,12 +276,10 @@
 @endpush
 <!-- Schedule Widget -->
 <div class="card booking-schedule schedule-widget">
-
     <!-- Schedule Header -->
     <div class="schedule-header">
         <div class="row">
             <div class="col-md-12">
-
                 <!-- Day Slot -->
                 <div class="day-slot">
                     <ul>
@@ -292,38 +290,31 @@
                         </li>
                         <li>
                             <span>Пнд</span>
-                            <span class="slot-date">05 Июл <small
-                                    class="slot-year">2021</small></span>
+                            <span class="slot-date">05 Июл <small class="slot-year">2021</small></span>
                         </li>
                         <li>
                             <span>Втр</span>
-                            <span class="slot-date">06 Июл <small
-                                    class="slot-year">2021</small></span>
+                            <span class="slot-date">06 Июл <small class="slot-year">2021</small></span>
                         </li>
                         <li>
                             <span>Срд</span>
-                            <span class="slot-date">07 Июл <small
-                                    class="slot-year">2021</small></span>
+                            <span class="slot-date">07 Июл <small class="slot-year">2021</small></span>
                         </li>
                         <li>
                             <span>Чтв</span>
-                            <span class="slot-date">08 Июл <small
-                                    class="slot-year">2021</small></span>
+                            <span class="slot-date">08 Июл <small class="slot-year">2021</small></span>
                         </li>
                         <li>
                             <span>Птн</span>
-                            <span class="slot-date">09 Июл <small
-                                    class="slot-year">2021</small></span>
+                            <span class="slot-date">09 Июл <small class="slot-year">2021</small></span>
                         </li>
                         <li>
                             <span>Сбт</span>
-                            <span class="slot-date">10 Июл <small
-                                    class="slot-year">2021</small></span>
+                            <span class="slot-date">10 Июл <small class="slot-year">2021</small></span>
                         </li>
                         <li>
                             <span>Вск</span>
-                            <span class="slot-date">11 Июл <small
-                                    class="slot-year">2021</small></span>
+                            <span class="slot-date">11 Июл <small class="slot-year">2021</small></span>
                         </li>
                         <li class="right-arrow">
                             <a href="#">
@@ -333,12 +324,10 @@
                     </ul>
                 </div>
                 <!-- /Day Slot -->
-
             </div>
         </div>
     </div>
     <!-- /Schedule Header -->
-
     <!-- Schedule Content -->
     <div class="schedule-cont">
         <div class="row">
@@ -427,12 +416,10 @@
                     </ul>
                 </div>
                 <!-- /Time Slot -->
-
             </div>
         </div>
     </div>
     <!-- /Schedule Content -->
-
 </div>
 <!-- /Schedule Widget -->
 
@@ -440,18 +427,17 @@
 {{--<div class="submit-section proceed-btn text-right">--}}
 {{--    <a href="{{route('schedule.info')}}" id="appointment" class="btn btn-primary submit-btn booking-btn">Записаться</a>--}}
 {{--</div>--}}
-<form action="{{route('schedule.info')}}" method="get" class="submit-section proceed-btn text-right">
-    <input type="number" name="specialist_id" value="1">
+<form action="{{route('schedule.info',compact('specialist'))}}" method="get" class="submit-section proceed-btn text-right">
     <input type="datetime-local" name="datetime">
     <input type="submit" class="btn btn-primary submit-btn booking-btn" value="Записаться">
 </form>
 <!-- /Submit Section -->
 
-{{--@push('scripts')--}}
-{{--    <script>--}}
-{{--        document.querySelector('#appointment').addEventListener('click', (event) => {--}}
-{{--            alert('Вы успешно записаны')--}}
-{{--            event.preventDefault()--}}
-{{--        })--}}
-{{--    </script>--}}
-{{--@endpush--}}
+{{--@push('scripts')
+    <script>
+        document.querySelector('#appointment').addEventListener('click', (event) => {
+            alert('Вы успешно записаны')
+            event.preventDefault()
+        })
+    </script>
+@endpush--}}
