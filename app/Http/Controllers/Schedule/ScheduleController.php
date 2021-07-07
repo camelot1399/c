@@ -14,12 +14,12 @@ class ScheduleController extends Controller
         return view('schedule.index',compact('specialist'));
     }
 
-    public function personalInfo(Request $request)
+    public function personalInfo(Specialist $specialist, Request $request)
     {
         $str = str_replace('T',' ',$request->datetime);
         $datetime = JDate::createFromDate($str);
 //        dd($request->datetime,$datetime->format('j F Y года'),$datetime->format('H:i'));
-        $specialist = $request->specialist_id;
+//        $specialist = $request->specialist_id;
         $user = \Auth::user();
         return view('schedule.personalInfo')->with(compact(['datetime','user','specialist']));
     }
