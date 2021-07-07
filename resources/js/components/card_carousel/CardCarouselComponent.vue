@@ -4,7 +4,7 @@
             <div :class="[slider ? 'slickTrack__visible' : 'slickTrack__visibleList']">
                 <div class="slickSlide" v-for="(item, i) in doctors" :key="i">
                     <div class="slickSlide__imgBlock">
-                        <img class="slickSlide__img" :src="'/img/' + item.specialist.photo" :alt="item.name">
+                        <img class="slickSlide__img" :src="item.specialist.photo" :alt="item.name">
                     </div>
                     <div class="slickSlide__content">
                         <div class="slickSlide__header">

@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 4; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             User::factory()
                 ->state([
                     'email' => 'doctor'.$i.'@host.ru',
@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
                 ])
                 ->create();
         }
-        for ($i = 1; $i <= 4; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             User::factory()
                 ->state(['email' => 'patient'.$i.'@host.ru'])
                 ->create();

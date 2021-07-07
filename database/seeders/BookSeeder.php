@@ -16,8 +16,8 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::where('id','>=',5)->get();
-        $specialists = Specialist::where('id','<=',4)->get();
+        $users = User::where('id','>=',10)->get();
+        $specialists = Specialist::where('id','<=',10)->get();
         foreach ($specialists as $specialist) {
             foreach ($users as $user) {
                 Book::factory()
