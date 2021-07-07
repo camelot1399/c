@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Book;
+use App\Models\Specialist;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class BookSeeder extends Seeder
@@ -13,6 +16,15 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $users = User::where('id','>=',10)->get();
+        $specialists = Specialist::where('id','<=',10)->get();
+        foreach ($specialists as $specialist) {
+            foreach ($users as $user) {
+                Book::factory()
+                    ->for($specialist)
+                    ->for($user)
+                    ->create();
+            }
+        }
     }
 }

@@ -64,10 +64,14 @@ class Book extends Model
         return $this->belongsTo(User::class,'user_id')->first();
     }
 
-//    public function __get($key)
-//    {
-//        return $this->attributes[$key];
-//    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
+    public function specialist()
+    {
+        return $this->belongsTo(Specialist::class);
+    }
 
 }

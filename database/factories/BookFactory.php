@@ -22,7 +22,12 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'specialist_id' => $this->faker->randomNumber(2),
+            'user_id' => $this->faker->randomNumber(2),
+            'datetime' => $this->faker->unique()->dateTimeBetween('-1 week', '+1 week')
+                ->setTime($this->faker->numberBetween(9,11),0),
+//            'datetime' => $this->faker->dateTimeBetween('-1 week', '+1 week'),
+            'description' => $this->faker->sentence(10),
         ];
     }
 }

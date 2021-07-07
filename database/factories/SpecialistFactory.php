@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
+use App\Models\Specialist;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SpecialistFactory extends Factory
@@ -12,7 +12,7 @@ class SpecialistFactory extends Factory
      *
      * @var string
      */
-    protected $model = Model::class;
+    protected $model = Specialist::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,11 @@ class SpecialistFactory extends Factory
     public function definition()
     {
         return [
-
+            'category_id' => $this->faker->randomNumber(2),
+            'user_id' => $this->faker->randomNumber(2),
+            'location' => $this->faker->sentence(10),
+            'price' => $this->faker->randomNumber(3,true),
+            'photo' => '/img/doctor-01.jpg',
         ];
     }
 }
