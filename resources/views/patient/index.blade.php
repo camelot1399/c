@@ -16,7 +16,11 @@
                     </div>
                 </div>
             </div>
-        <x-patient.list></x-patient.list>
+        <x-patient.list>
+
+        </x-patient.list>
+            <x-patient.modal></x-patient.modal>
+
         </div>
     </div>
 </x-app-layout>

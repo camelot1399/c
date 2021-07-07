@@ -1,4 +1,5 @@
-    <div class="container-fluid">
+
+<div class="container-fluid">
         <div class="row">
             <div class="row">
                 <div class="col-md-12">
@@ -31,7 +32,7 @@
                                                 <tr>
                                                     <td>
                                                         <h2 class="table-avatar">
-                                                            <a href="#">Muneer Vickery</a>
+                                                            <a href="#" data-trigger>Muneer Vickery</a>
                                                         </h2>
                                                     </td>
                                                     <td>10 Jun 2020<span class="d-block text-info">09.00 AM</span></td>
@@ -40,8 +41,36 @@
                                                     <td class="text-center">$170</td>
                                                     <td class="text-right">
                                                         <div class="table-action">
+                                                            <a href="#"
+                                                               class="btn btn-sm btn-info" data-trigger>
+                                                                <i class="far fa-eye"></i> Посмотреть
+                                                            </a>
                                                             <a href="javascript:void(0);"
-                                                               class="btn btn-sm btn-info">
+                                                               class="btn btn-sm btn-primary">
+                                                                <i class="fas fa-check"></i> Принять
+                                                            </a>
+                                                            <a href="javascript:void(0);"
+                                                               class="btn btn-sm btn-danger">
+                                                                <i class="fas fa-times"></i> Отменить
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        <h2 class="table-avatar">
+                                                            <a href="#" data-trigger>Muneer Vickery</a>
+                                                        </h2>
+                                                    </td>
+                                                    <td>10 Jun 2020<span class="d-block text-info">09.00 AM</span></td>
+                                                    <td>General</td>
+                                                    <td>New Patient</td>
+                                                    <td class="text-center">$170</td>
+                                                    <td class="text-right">
+                                                        <div class="table-action">
+                                                            <a href="#"
+                                                               class="btn btn-sm btn-info" data-trigger>
                                                                 <i class="far fa-eye"></i> Посмотреть
                                                             </a>
                                                             <a href="javascript:void(0);"
@@ -68,34 +97,7 @@
                                                     <td class="text-right">
                                                         <div class="table-action">
                                                             <a href="javascript:void(0);"
-                                                               class="btn btn-sm btn-info">
-                                                                <i class="far fa-eye"></i> Посмотреть
-                                                            </a>
-                                                            <a href="javascript:void(0);"
-                                                               class="btn btn-sm btn-primary">
-                                                                <i class="fas fa-check"></i> Принять
-                                                            </a>
-                                                            <a href="javascript:void(0);"
-                                                               class="btn btn-sm btn-danger">
-                                                                <i class="fas fa-times"></i> Отменить
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="#">Muneer Vickery</a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>10 Jun 2020<span class="d-block text-info">09.00 AM</span></td>
-                                                    <td>General</td>
-                                                    <td>New Patient</td>
-                                                    <td class="text-center">$170</td>
-                                                    <td class="text-right">
-                                                        <div class="table-action">
-                                                            <a href="javascript:void(0);"
-                                                               class="btn btn-sm btn-info">
+                                                               class="btn btn-sm btn-info" data-trigger>
                                                                 <i class="far fa-eye"></i> Посмотреть
                                                             </a>
                                                             <a href="javascript:void(0);"
