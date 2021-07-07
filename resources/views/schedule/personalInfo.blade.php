@@ -8,7 +8,7 @@
                             <div class="card-body">
                                 <form method="post" action="{{ route('books.store') }}">
                                     @csrf
-                                    <input type="hidden" name="specialist_id" value="{{ $specialist->id }}">
+                                    <input type="number" name="specialist_id" value="{{ $specialist->id }}">
                                     <input type="hidden" name="datetime" value="{{ $datetime }}">
                                     <div class="info-widget">
                                         <h1>Вы записаны к {{ 'Д-ру. '.$specialist->user->name.' '.$specialist->user->surname ?? 'Д-ру. Николай Чавез' }}
@@ -141,7 +141,7 @@
                                 <div class="card-body">
                                     <div class="booking-doc-info">
                                         <a href="{{route('doctors.show',compact('specialist'))}}" class="booking-doc-img">
-                                            <img src="/img/doctor-thumb-02.jpg" alt="User Image">
+                                            <img src="{{ $specialist->photo }}" alt="User Image">
                                         </a>
                                         <div class="booking-info">
                                             <h4><a href="{{ route('doctors.show',compact('specialist')) }}">{{ 'Д-р. '.$specialist->user->name.' '.$specialist->user->surname ?? 'Д-р. Николай Чавез' }}</a></h4>
