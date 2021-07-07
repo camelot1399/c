@@ -19,11 +19,12 @@ class DoctorsController extends Controller
         return view('doctors.index', compact('doctors'));
     }
 
-    public function show(Request $request)
+    public function show(Specialist $specialist)
     {
+        return view('doctors.show');
 //        $specialist->load('user');
 //        $specialist->load('category');
-        dd($request);
+
         return view('doctors.show', compact('specialist'));
     }
 }
