@@ -1,3 +1,5 @@
+@props(['books'])
+
 @push('scripts')
     <script>
         (function(){
@@ -18,7 +20,6 @@
                 modal.classList.remove('is-open');
                 isModalOpen = false;
             }
-
             let onScroll = function(e) {
                 if (isModalOpen) {
                     e.preventDefault();
@@ -34,13 +35,36 @@
 
             closeButton.addEventListener('click', closeModal);
         })();
+        function getId(event){
+            let id_click = event.target.id;
+            console.log(id_click);
 
+
+        }
+        // $(document).on('click', '[data-trigger]', function(){
+        //     let id_click = event.target.id;
+        //     $.ajax({
+        //         url: 'modal.blade.php',
+        //         type: 'GET',
+        //         data: id_click,
+        //         success: function(data){
+        //             console.log(data);
+        //         },
+        //         error: function(){
+        //             console.log('ERROR');
+        //         }
+        //     })
+        // })
     </script>
 @endpush
+
 <div class="profile-modal-container close">
     <div class="profile-modal-content">
         <div class="row">
             <div class="col-md-12">
+                @foreach($books as $book)
+                    @if($book->user_id === 17)
+
                 <div class="profile-header">
                     <div class="row align-items-center">
                         <div class="col-auto profile-image">
@@ -49,10 +73,10 @@
                             </a>
                         </div>
                         <div class="col ml-md-n2 profile-user-info">
-                            <h4 class="user-name mb-0">Иванов Иван</h4>
-                            <h6 class="text-muted">johndoe@example.com</h6>
+                            <h4 class="user-name mb-0">{{ $book->user->name . ' ' . $book->user->surname }}</h4>
+                            <h6 class="text-muted">{{$book->user->email}}</h6>
                             <div class="user-Location"><i class="fas fa-map-marker-alt"></i>Москва, Россия</div>
-                            <div class="about-text">Болит зуб, опухшая щека, головная боль</div>
+                            <div class="about-text">{{$book->user->book}}</div>
                         </div>
                     </div>
                 </div>
@@ -85,6 +109,7 @@
                                             <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Мобильный</p>
                                             <p class="col-sm-10">+7(999)999-99-99</p>
                                         </div>
+
 {{--                                        <div class="row">--}}
 {{--                                            <p class="col-sm-2 text-muted text-sm-right mb-0">Адрес</p>--}}
 {{--                                            <p class="col-sm-10 mb-0">4663  Agriculture Lane,<br>--}}
@@ -92,6 +117,15 @@
 {{--                                                Florida - 33165,<br>--}}
 {{--                                                United States.</p>--}}
 {{--                                        </div>--}}
+
+                                        {{--                                        <div class="row">--}}
+                                        {{--                                            <p class="col-sm-2 text-muted text-sm-right mb-0">Адрес</p>--}}
+                                        {{--                                            <p class="col-sm-10 mb-0">4663  Agriculture Lane,<br>--}}
+                                        {{--                                                Miami,<br>--}}
+                                        {{--                                                Florida - 33165,<br>--}}
+                                        {{--                                                United States.</p>--}}
+                                        {{--                                        </div>--}}
+
                                     </div>
                                 </div>
                             </div>
@@ -100,6 +134,8 @@
                     </div>
                     <!-- /Personal Details Tab -->
                 </div>
+                    @endif
+                @endforeach
             </div>
         </div>
 
@@ -107,6 +143,7 @@
 </div>
 @push('style')
     <style>
+
     .profile-modal-container {
         pointer-events: none;
         opacity: 0;
@@ -159,4 +196,3 @@
     }
     </style>
 @endpush
-
