@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Doctors;
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\Models\Specialist;
-use Illuminate\Http\Request;
 
 class DoctorsController extends Controller
 {
@@ -22,8 +21,6 @@ class DoctorsController extends Controller
     public function show(Specialist $specialist)
     {
         $specialist->load('user', 'category');
-//        $specialist->load('user');
-//        $specialist->load('category');
 
         return view('doctors.show', compact('specialist'));
     }
