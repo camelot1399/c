@@ -21,6 +21,7 @@ class DoctorsController extends Controller
 
     public function show(Specialist $specialist)
     {
+        $specialist->load('user', 'category');
 //        $specialist->load('user');
 //        $specialist->load('category');
 

@@ -3,38 +3,40 @@
         <div class="slickTrack">
             <div :class="[slider ? 'slickTrack__visible' : 'slickTrack__visibleList']">
                 <div class="slickSlide" v-for="(item, i) in doctors" :key="i">
+
                     <div class="slickSlide__imgBlock">
-                        <img class="slickSlide__img" :src="item.specialist.photo" :alt="item.name">
+                        <img class="slickSlide__img" :src="item.photo" :alt="item.user.name">
                     </div>
                     <div class="slickSlide__content">
                         <div class="slickSlide__header">
-                            <h3 class="slickSlide__h3">{{item.surname+' '+item.name+' '+item.second_name}}</h3>
-                            <span v-if="item.status === 1">
-                                <i class="fas fa-check-circle slickSlide__statusOk"></i>
-                            </span>
-                            <span v-else>
-                                <i class="fas fa-check-circle slickSlide__statusNotOk"></i>
-                            </span>
+                            <h3 class="slickSlide__h3">{{item.user.surname+' '+item.user.name+' '+item.user.second_name}}</h3>
+<!--                            <span v-if="item.status === 1">-->
+<!--                                <i class="fas fa-check-circle slickSlide__statusOk"></i>-->
+<!--                            </span>-->
+<!--                            <span v-else>-->
+<!--                                <i class="fas fa-check-circle slickSlide__statusNotOk"></i>-->
+<!--                            </span>-->
                         </div>
                         <div class="slickSlide__rating">
                             <div v-for="(start, i) in 5" :key="i">
-                                <div v-if="item.rating <= i">
-                                    <i class="fas fa-star noActive_star"></i>
-                                </div>
-                                <div v-else>
-                                    <i class="fas fa-star active_star"></i>
-                                </div>
+<!--                                <div v-if="item.rating <= i">-->
+<!--                                    <i class="fas fa-star noActive_star"></i>-->
+<!--                                </div>-->
+<!--                                <div v-else>-->
+<!--                                    <i class="fas fa-star active_star"></i>-->
+<!--                                </div>-->
+                                <i class="fas fa-star noActive_star"></i>
                             </div>
                             <span>(17)</span>
                         </div>
 
-                        <div class="slickSlide__speciality">{{item.specialist.category.name}}</div>
-                        <div class="slickSlide__coast"><i class="far fa-money-bill-alt"></i> от {{ item.specialist.price }} руб.</div>
+                        <div class="slickSlide__speciality">{{item.category.name}}</div>
+                        <div class="slickSlide__coast"><i class="far fa-money-bill-alt"></i> от {{ item.price }} руб.</div>
 
                     </div>
                     <div class="slickSlide__buttons">
-                        <a :href="routedoctor.replace('xxx', item.specialist.id)" class="slickSlide__btn btn">Подробнее</a>
-                        <a :href="routeshedule.replace('xxx', item.specialist.id)" class="slickSlide__btn btn slickSlide__btn_bookNow">Записаться</a>
+                        <a :href="routedoctor.replace('xxx', item.id)" class="slickSlide__btn btn">Подробнее</a>
+                        <a :href="routeshedule.replace('xxx', item.id)" class="slickSlide__btn btn slickSlide__btn_bookNow">Записаться</a>
                     </div>
                 </div>
             </div>
@@ -121,6 +123,7 @@ export default {
 
         },
         slideToRight() {
+            console.log(this.doctors);
             let slickList = document.querySelector('.slickList');
             let rightEl = Math.floor(slickList.offsetWidth / (this.doctors.length * this.widthItem) * 10);
             let slickNavigation__left = document.querySelector('.slickNavigation__left');
@@ -149,6 +152,7 @@ export default {
     },
     mounted() {
         this.init();
+        console.log(this.doctors);
     }
 
 }
