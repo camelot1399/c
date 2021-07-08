@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\Doctors\DoctorsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Patient\PatientController;
 use App\Http\Controllers\Schedule\ScheduleController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,9 +28,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/patient', function () {
-    return view('patient.index');
-})->middleware(['auth'])->name('patient.index');
+Route::get('/patient', [PatientController::class, 'index'])->middleware(['auth'])->name('patient.index');
 
 require __DIR__.'/auth.php';
 
