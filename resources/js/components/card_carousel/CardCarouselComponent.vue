@@ -33,8 +33,8 @@
 
                     </div>
                     <div class="slickSlide__buttons">
-                        <a href="/doctors/item" class="slickSlide__btn btn">Подробнее</a>
-                        <a href="/schedule" class="slickSlide__btn btn slickSlide__btn_bookNow">Записаться</a>
+                        <a :href="routedoctor.replace('xxx', item.specialist.id)" class="slickSlide__btn btn">Подробнее</a>
+                        <a :href="routeshedule.replace('xxx', item.specialist.id)" class="slickSlide__btn btn slickSlide__btn_bookNow">Записаться</a>
                     </div>
                 </div>
             </div>
@@ -54,7 +54,9 @@ export default {
     name: 'CardCarouselComponent',
     props: {
         doctors: Array,
-        slider: Boolean
+        slider: Boolean,
+        routedoctor: {type: String},
+        routeshedule: {type: String},
     },
     data() {
         return {
