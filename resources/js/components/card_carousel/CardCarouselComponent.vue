@@ -1,8 +1,21 @@
 <template>
     <div class="slickList" :class="{slider: 'overflow'}">
+        <div id="slickListSearchBlock" v-if="!slider">
+            <form action="#" class="slickList__form">
+                <input
+                    type="text"
+                    name="slickList__searchInput"
+                    class="slickList__searchInput"
+                    placeholder="Я ищу по фамилии"
+                    data-control="inputText"
+                    v-model="form.searchInput"
+                >
+                <button type="submit" name="slickList__searchBtn" class="slickSlide__btn">Search</button>
+            </form>
+        </div>
         <div class="slickTrack">
             <div :class="[slider ? 'slickTrack__visible' : 'slickTrack__visibleList']">
-                <div class="slickSlide" v-for="(item, i) in doctors" :key="i">
+                <div class="slickSlide" v-for="(item, i) in specialistsFilter" :key="i">
 
                     <div class="slickSlide__imgBlock">
                         <img class="slickSlide__img" :src="item.photo" :alt="item.user.name">
@@ -10,12 +23,12 @@
                     <div class="slickSlide__content">
                         <div class="slickSlide__header">
                             <h3 class="slickSlide__h3">{{item.user.surname+' '+item.user.name+' '+item.user.second_name}}</h3>
-<!--                            <span v-if="item.status === 1">-->
-<!--                                <i class="fas fa-check-circle slickSlide__statusOk"></i>-->
-<!--                            </span>-->
-<!--                            <span v-else>-->
-<!--                                <i class="fas fa-check-circle slickSlide__statusNotOk"></i>-->
-<!--                            </span>-->
+                            <span v-if="status === 1">
+                                <i class="fas fa-check-circle slickSlide__statusOk"></i>
+                            </span>
+                            <span v-else>
+                                <i class="fas fa-check-circle slickSlide__statusNotOk"></i>
+                            </span>
                         </div>
                         <div class="slickSlide__rating">
                             <div v-for="(start, i) in 5" :key="i">
@@ -25,7 +38,7 @@
 <!--                                <div v-else>-->
 <!--                                    <i class="fas fa-star active_star"></i>-->
 <!--                                </div>-->
-                                <i class="fas fa-star noActive_star"></i>
+                                <i class="fas fa-star active_star"></i>
                             </div>
                             <span>(17)</span>
                         </div>
@@ -64,16 +77,21 @@ export default {
         return {
             offset: 0,
             currentItem: 1,
-            widthItem: 0,
+            widthItem: 280,
             sliderWidth: 0,
             currentOffsetBlock: 0,
             marginBlock: 10,
+            specialists: [],
+            specialistsFilter: [],
+            status: 1,
+            form: {
+                searchInput: null
+            }
         }
     },
     methods: {
-        init() {
-            this.widthItem = document.querySelector('.slickSlide').offsetWidth;
-            this.sliderWidth = this.doctors.length * this.widthItem;
+        initSlider() {
+            this.sliderWidth = this.specialistsFilter.length * this.widthItem;
             this.currentOffsetBlock = document.querySelector('.slickList').offsetWidth;
 
             if (this.slider) {
@@ -93,6 +111,47 @@ export default {
 
                 })
             }
+        },
+        initFormSearch() {
+            console.log('init form search');
+            let input = document.querySelector('.slickList__searchInput');
+            input.addEventListener('keyup', (el) => {
+                if (this.form.searchInput.length >= 3) {
+                    this.getSpecialistsFilter(this.form.searchInput);
+                } else {
+                    this.getSpecialistsFilter();
+                }
+            });
+        },
+        getSpecialistsFilter(filter) {
+            if (!filter) {
+                return this.specialistsFilter = this.specialists;
+            }
+
+            // проверяем, если у нас есть пробелы в искомой фразе, создаем массив filterArray из слов
+            if (filter.includes(' ')) {
+                let filterArray = filter.split(' ');
+                console.log(filterArray);
+            }
+
+            let regexp = new RegExp(filter, 'i');
+            let result = [];
+
+            this.specialists.forEach(el => {
+                // console.log(`filter = ${filter}`);
+                // console.log(el.user);
+                if (regexp.exec(el.user.name) || regexp.exec(el.user.surname) || regexp.exec(el.user.second_name)) {
+                    result.push(el);
+                }
+            });
+
+            this.specialistsFilter = result;
+
+        },
+        checkAvailability(arr, val) {
+            return arr.some(function(arrVal) {
+                return val === arrVal;
+            });
         },
         slideToLeft() {
             let slickNavigation__left = document.querySelector('.slickNavigation__left');
@@ -123,23 +182,22 @@ export default {
 
         },
         slideToRight() {
-            console.log(this.doctors);
             let slickList = document.querySelector('.slickList');
-            let rightEl = Math.floor(slickList.offsetWidth / (this.doctors.length * this.widthItem) * 10);
+            let rightEl = Math.floor(slickList.offsetWidth / (this.specialistsFilter.length * this.widthItem) * 10);
             let slickNavigation__left = document.querySelector('.slickNavigation__left');
             let slickNavigation__right = document.querySelector('.slickNavigation__right');
 
             slickNavigation__left.classList.remove('slickNavigation__hide');
 
-            if ( (this.currentItem + rightEl - 2) > (this.doctors.length)) {
+            if ( (this.currentItem + rightEl - 2) > (this.specialistsFilter.length)) {
                 return null;
             }
 
             this.currentItem++;
 
-            if ( (this.currentItem + rightEl - 2) === (this.doctors.length)) {
+            if ( (this.currentItem + rightEl - 2) === (this.specialistsFilter.length)) {
                 slickNavigation__right.classList.add('slickNavigation__hide');
-                this.offset = slickList.offsetWidth - this.sliderWidth - (this.marginBlock * this.doctors.length);
+                this.offset = slickList.offsetWidth - this.sliderWidth - (this.marginBlock * this.specialistsFilter.length);
             } else {
                 this.offset = this.offset - this.widthItem;
             }
@@ -151,13 +209,35 @@ export default {
         },
     },
     mounted() {
-        this.init();
-        console.log(this.doctors);
+        this.specialists = this.doctors;
+        this.specialistsFilter = this.doctors;
+        this.initSlider();
+        this.initFormSearch();
     }
 
 }
 </script>
 <style>
+    #slickListSearchBlock {
+        margin-bottom: 10px;
+    }
+    .slickList__form {
+        display: flex;
+    }
+    button[name="slickList__searchBtn"] {
+        border-radius: 0 10px 10px 0;
+    }
+
+    input[name="slickList__searchInput"] {
+        display: flex;
+        flex: 1;
+        border-radius: 10px 0 0 10px;
+    }
+
+    .slickList__searchInput:active {
+        outline: 0;
+        outline-offset: 0;
+    }
     .slickSlide {
         display: flex;
         flex-direction: column;
