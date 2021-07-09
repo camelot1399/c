@@ -8,8 +8,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $doctors = Specialist::with(['user', 'category'])->get();
-
+        $doctors = Specialist::with(['user', 'category','scores'])->get();
+//        dd($doctors[7]->averageScore());
         return view('home.index', compact('doctors'));
     }
 }
