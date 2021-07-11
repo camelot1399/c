@@ -40,7 +40,7 @@
                                 </div>
 <!--                                <i class="fas fa-star active_star"></i>-->
                             </div>
-                            <span>(17) </span>
+                            <span>({{ item.scoresCount }}) </span>
                         </div>
 
                         <div class="slickSlide__speciality">{{ item.category.name }}</div>
