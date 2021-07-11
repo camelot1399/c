@@ -23,7 +23,7 @@ class CreateFeedbackTable extends Migration
                 ->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('surname')->nullable();
-            $table->text('body_text')->nullable();
+            $table->text('body_text');
             $table->timestamps();
         });
     }

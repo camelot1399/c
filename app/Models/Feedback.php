@@ -9,6 +9,8 @@ class Feedback extends Model
 {
     use HasFactory;
 
+    protected $table = 'feedback';
+
     protected $fillable = [
         'user_id',
         'name',
@@ -20,5 +22,10 @@ class Feedback extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function specialist()
+    {
+        return $this->belongsTo(Specialist::class);
     }
 }

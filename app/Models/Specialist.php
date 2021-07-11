@@ -29,4 +29,9 @@ class Specialist extends Model
     {
         return $this->hasMany(Book::class);
     }
+
+    public function feedback()
+    {
+        return $this->hasMany(Feedback::class);
+    }
 }
