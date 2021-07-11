@@ -32,18 +32,18 @@
                         </div>
                         <div class="slickSlide__rating">
                             <div v-for="(start, i) in 5" :key="i">
-<!--                                <div v-if="item.rating <= i">-->
-<!--                                    <i class="fas fa-star noActive_star"></i>-->
-<!--                                </div>-->
-<!--                                <div v-else>-->
-<!--                                    <i class="fas fa-star active_star"></i>-->
-<!--                                </div>-->
-                                <i class="fas fa-star active_star"></i>
+                                <div v-if="item.rating <= i">
+                                    <i class="fas fa-star noActive_star"></i>
+                                </div>
+                                <div v-else>
+                                    <i class="fas fa-star active_star"></i>
+                                </div>
+<!--                                <i class="fas fa-star active_star"></i>-->
                             </div>
-                            <span>(17)</span>
+                            <span>(17) </span>
                         </div>
 
-                        <div class="slickSlide__speciality">{{item.category.name}}</div>
+                        <div class="slickSlide__speciality">{{ item.category.name }}</div>
                         <div class="slickSlide__coast"><i class="far fa-money-bill-alt"></i> от {{ item.price }} руб.</div>
 
                     </div>

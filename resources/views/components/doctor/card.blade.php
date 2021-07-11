@@ -10,12 +10,14 @@
                     <p class="doc-speciality">BDS, MDS - Челюстно-лицевая хирургия</p>
                     <p class="doc-department"><img src="{{$specialist->category->photo}}" class="img-fluid" alt="Speciality">{{$specialist->category->name}}</p>
                     <div class="rating">
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star"></i>
-                        <span class="d-inline-block average-rating">(35)</span>
+                        @for($i = 0; $i < 5; $i++)
+                            @if($i < $specialist->averageScore())
+                                <i class="fas fa-star filled"></i>
+                            @else
+                                <i class="fas fa-star"></i>
+                            @endif
+                        @endfor
+                        <span class="d-inline-block average-rating">({{ $specialist->scores->count() }})</span>
                     </div>
                     <div class="clinic-details">
                         <p class="doc-location"><i class="fas fa-map-marker-alt"></i>{{$specialist->location}} - <a href="javascript:void(0);">Получить направление</a></p>
