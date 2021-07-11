@@ -75,4 +75,9 @@ class User extends Authenticatable
     public function specialist() {
         return $this->hasOne(Specialist::class);
     }
+
+    public function feedback()
+    {
+        return $this->hasMany(Feedback::class);
+    }
 }
