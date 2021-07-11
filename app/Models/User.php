@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -67,12 +69,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function books()
+    public function books(): HasMany
     {
         return $this->hasMany(Book::class);
     }
 
-    public function specialist() {
+    public function specialist(): HasOne
+    {
         return $this->hasOne(Specialist::class);
+    }
+
+    public function scores(): HasMany
+    {
+        return $this->hasMany(Score::class);
     }
 }

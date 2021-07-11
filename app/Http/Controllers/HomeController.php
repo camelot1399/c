@@ -8,10 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $doctors = Specialist::with(['user', 'category','scores'])->get();
-        foreach ($doctors as $doctor) {
-            $doctor->rating = $doctor->averageScore();
-        }
+        $doctors = Specialist::doctorsSliderPrepare();
         return view('home.index', compact('doctors'));
     }
 }

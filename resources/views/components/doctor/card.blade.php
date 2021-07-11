@@ -12,9 +12,13 @@
                     <div class="rating">
                         @for($i = 0; $i < 5; $i++)
                             @if($i < $specialist->averageScore())
-                                <i class="fas fa-star filled"></i>
+                                @auth <a href="{{ route('scores.create',['value'=>$i+1,'specialist_id'=>$specialist->id]) }}"> @endauth
+                                    <i class="fas fa-star filled"></i>
+                                @auth </a> @endauth
                             @else
-                                <i class="fas fa-star"></i>
+                                @auth <a href="{{ route('scores.create',['value'=>$i+1,'specialist_id'=>$specialist->id]) }}"> @endauth
+                                    <i class="fas fa-star"></i>
+                                @auth </a> @endauth
                             @endif
                         @endfor
                         <span class="d-inline-block average-rating">({{ $specialist->scores->count() }})</span>
