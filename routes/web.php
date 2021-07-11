@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\Doctors\DoctorsController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Patient\PatientController;
 use App\Http\Controllers\Schedule\ScheduleController;
@@ -31,6 +32,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/patient', [PatientController::class, 'index'])->middleware(['auth'])->name('patient.index');
+
+Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 
 require __DIR__.'/auth.php';
 

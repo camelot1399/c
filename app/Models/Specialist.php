@@ -56,4 +56,9 @@ class Specialist extends Model
         }
         return $doctors;
     }
+
+    public function feedback()
+    {
+        return $this->hasMany(Feedback::class);
+    }
 }
