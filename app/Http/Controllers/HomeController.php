@@ -8,8 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $doctors = Specialist::with(['user', 'category'])->get();
-
+        $doctors = Specialist::doctorsSliderPrepare();
         return view('home.index', compact('doctors'));
     }
 }

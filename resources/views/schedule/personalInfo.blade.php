@@ -146,12 +146,14 @@
                                         <div class="booking-info">
                                             <h4><a href="{{ route('doctors.show',compact('specialist')) }}">{{ 'Д-р. '.$specialist->user->name.' '.$specialist->user->surname ?? 'Д-р. Николай Чавез' }}</a></h4>
                                             <div class="rating">
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star"></i>
-                                                <span class="d-inline-block average-rating">35</span>
+                                                @for($i = 0; $i < 5; $i++)
+                                                    @if($i < $specialist->averageScore())
+                                                        <i class="fas fa-star filled"></i>
+                                                    @else
+                                                        <i class="fas fa-star"></i>
+                                                    @endif
+                                                @endfor
+                                                <span class="d-inline-block average-rating">({{ $specialist->scores->count() }})</span>
                                             </div>
                                             <div class="clinic-details">
                                                 <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{ $specialist->location ?? 'Newyork, USA' }}</p>

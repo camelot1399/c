@@ -1,7 +1,7 @@
 <template>
     <div class="slickList" :class="{slider: 'overflow'}">
         <div id="slickListSearchBlock" v-if="!slider">
-            <form action="#" class="slickList__form">
+            <form action="#" class="slickList__form" @click.prevent="getSpecialistsFilter">
                 <input
                     type="text"
                     name="slickList__searchInput"
@@ -14,8 +14,8 @@
             </form>
         </div>
         <div class="slickTrack">
-            <div :class="[slider ? 'slickTrack__visible' : 'slickTrack__visibleList']">
-                <div class="slickSlide" v-for="(item, i) in specialistsFilter" :key="i">
+            <div :class="[slider ? 'slickTrack__visible' : 'slickTrack__visibleList']" v-if="specialistsFilter.length !== 0">
+                <div class="slickSlide" v-for="(item, i) in specialistsFilter" :key="i" >
 
                     <div class="slickSlide__imgBlock">
                         <img class="slickSlide__img" :src="item.photo" :alt="item.user.name">
@@ -32,18 +32,18 @@
                         </div>
                         <div class="slickSlide__rating">
                             <div v-for="(start, i) in 5" :key="i">
-<!--                                <div v-if="item.rating <= i">-->
-<!--                                    <i class="fas fa-star noActive_star"></i>-->
-<!--                                </div>-->
-<!--                                <div v-else>-->
-<!--                                    <i class="fas fa-star active_star"></i>-->
-<!--                                </div>-->
-                                <i class="fas fa-star active_star"></i>
+                                <div v-if="item.rating <= i">
+                                    <i class="fas fa-star noActive_star"></i>
+                                </div>
+                                <div v-else>
+                                    <i class="fas fa-star active_star"></i>
+                                </div>
+<!--                                <i class="fas fa-star active_star"></i>-->
                             </div>
-                            <span>(17)</span>
+                            <span>({{ item.scoresCount }}) </span>
                         </div>
 
-                        <div class="slickSlide__speciality">{{item.category.name}}</div>
+                        <div class="slickSlide__speciality">{{ item.category.name }}</div>
                         <div class="slickSlide__coast"><i class="far fa-money-bill-alt"></i> от {{ item.price }} руб.</div>
 
                     </div>
@@ -53,6 +53,7 @@
                     </div>
                 </div>
             </div>
+            <div v-else>Ни одного специалиста не найдено :(</div>
         </div>
         <div class="slickNavigation" v-if="slider">
             <button class="slickNavigation__left" data-control="left">
@@ -113,7 +114,6 @@ export default {
             }
         },
         initFormSearch() {
-            console.log('init form search');
             let input = document.querySelector('.slickList__searchInput');
             input.addEventListener('keyup', (el) => {
                 if (this.form.searchInput.length >= 3) {
@@ -127,30 +127,31 @@ export default {
             if (!filter) {
                 return this.specialistsFilter = this.specialists;
             }
+            // в result заносим результаты совпадений
+            let result = [];
 
             // проверяем, если у нас есть пробелы в искомой фразе, создаем массив filterArray из слов
             if (filter.includes(' ')) {
                 let filterArray = filter.split(' ');
-                console.log(filterArray);
+
+                filterArray.forEach(el => {
+                    if (el !== "" && el.length > 3) {
+                        this.searchForMatches(el, result);
+                    }
+                })
+            } else {
+                this.searchForMatches(filter, result);
             }
 
+            this.specialistsFilter = result;
+        },
+        searchForMatches(filter, result) {
             let regexp = new RegExp(filter, 'i');
-            let result = [];
 
             this.specialists.forEach(el => {
-                // console.log(`filter = ${filter}`);
-                // console.log(el.user);
                 if (regexp.exec(el.user.name) || regexp.exec(el.user.surname) || regexp.exec(el.user.second_name)) {
-                    result.push(el);
+                    if (result.indexOf(el) === -1) result.push(el);
                 }
-            });
-
-            this.specialistsFilter = result;
-
-        },
-        checkAvailability(arr, val) {
-            return arr.some(function(arrVal) {
-                return val === arrVal;
             });
         },
         slideToLeft() {

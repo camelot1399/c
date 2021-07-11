@@ -10,7 +10,7 @@
                 <p class="text-gray-700">{{ $oneFeedback->body_text }}</p>
             @endforeach
         @else
-            <p class="mt-5 text-gray-500 text-xl-center">Здесь пока нет ни одного отзыва</p>
+            <p class="mt-5 text-gray-500 text-xl-center">Здесь пока нет ни одного отзыва, напишите свой :)</p>
         @endif
     </div>
 </div>

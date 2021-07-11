@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             SpecialistSeeder::class,
             BookSeeder::class,
+            ScoreSeeder::class,
+            FeedbackSeeder::class,
 //            DoctorSeeder::class,
         ]);
     }
