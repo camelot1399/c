@@ -19,6 +19,7 @@ class DoctorsController extends Controller
 //        $feedback = Feedback::whereSpecialistId($specialist->id)->get();
 
 //        return view('doctors.show', compact('specialist', 'feedback'));
+//        dd($specialist->goodScoresPercent());
         return view('doctors.show', compact('specialist'));
     }
 }

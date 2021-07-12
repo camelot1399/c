@@ -47,6 +47,11 @@ class Specialist extends Model
         return $sum/$this->scores->count();
     }
 
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class);
+    }
+
     public static function doctorsSliderPrepare(): Collection
     {
         $doctors = Specialist::with(['user', 'category','scores'])->get();
@@ -57,11 +62,6 @@ class Specialist extends Model
         return $doctors;
     }
 
-    public function feedbacks()
-    {
-        return $this->hasMany(Feedback::class);
-    }
-
     public function getNameAndSurname(): string
     {
         return $this->user->getNameAndSurname();
@@ -70,5 +70,12 @@ class Specialist extends Model
     public function getFullName(): string
     {
         return $this->user->getFullName();
+    }
+
+    public function goodScoresPercent(): int
+    {
+        $allCount = $this->scores()->count();
+        $goodCount = $this->scores()->where('value','>',3)->count();
+        return round($goodCount/$allCount*100);
     }
 }
