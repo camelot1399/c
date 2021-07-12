@@ -2,6 +2,9 @@
     <div class="slickList" :class="{slider: 'overflow'}">
         <div id="slickListSearchBlock" v-if="!slider">
             <form action="#" class="slickList__form" @click.prevent="getSpecialistsFilter">
+                <button class="filterBlock__btn">
+                    <i class="fas fa-brain" @click="filterBlock.status = !filterBlock.status"></i>
+                </button>
                 <input
                     type="text"
                     name="slickList__searchInput"
@@ -10,51 +13,84 @@
                     data-control="inputText"
                     v-model="form.searchInput"
                 >
-                <button type="submit" name="slickList__searchBtn" class="slickSlide__btn">Search</button>
+                <!-- <button type="submit" name="slickList__searchBtn" class="slickSlide__btn">Search</button> -->
             </form>
         </div>
-        <div class="slickTrack">
-            <div :class="[slider ? 'slickTrack__visible' : 'slickTrack__visibleList']" v-if="specialistsFilter.length !== 0">
-                <div class="slickSlide" v-for="(item, i) in specialistsFilter" :key="i" >
 
-                    <div class="slickSlide__imgBlock">
-                        <img class="slickSlide__img" :src="item.photo" :alt="item.user.name">
-                    </div>
-                    <div class="slickSlide__content">
-                        <div class="slickSlide__header">
-                            <h3 class="slickSlide__h3">{{item.user.surname+' '+item.user.name+' '+item.user.second_name}}</h3>
-                            <span v-if="status === 1">
-                                <i class="fas fa-check-circle slickSlide__statusOk"></i>
-                            </span>
-                            <span v-else>
-                                <i class="fas fa-check-circle slickSlide__statusNotOk"></i>
-                            </span>
-                        </div>
-                        <div class="slickSlide__rating">
-                            <div v-for="(start, i) in 5" :key="i">
-                                <div v-if="item.rating <= i">
-                                    <i class="fas fa-star noActive_star"></i>
-                                </div>
-                                <div v-else>
-                                    <i class="fas fa-star active_star"></i>
-                                </div>
-<!--                                <i class="fas fa-star active_star"></i>-->
+        <div class="slickList__body">
+            <div class="slickList__filterBlock" v-if="filterBlock.status">
+
+                <div class="slickList__filterBlock_item">
+                    <div class="slickList__filterBlock_header">Категория</div>
+                    <ul class="slickList__filterBlock_ul">
+                        <li v-for="category in filterBlock.categories" :key="category">
+                            <input type="checkbox" :name="'slickList__filterBlock_name_' + category.id" :id="'slickList__filterBlock_name_' + category.id" hidden="">
+                            <label :for="'slickList__filterBlock_name_' + category.id">{{ category.name }}</label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="slickList__filterBlock_item">
+                    <div class="slickList__filterBlock_header">Мужчины/Женщины</div>
+                    <ul class="slickList__filterBlock_ul">
+                        <li>
+                            <input type="checkbox" name="slickList__filterBlock_name" id="slickList__filterBlock_name3" hidden="">
+                            <label for="slickList__filterBlock_name3">Мужчина</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="slickList__filterBlock_name" id="slickList__filterBlock_name4" hidden="">
+                            <label for="slickList__filterBlock_name4">Женщина</label>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div>
+                <div class="slickTrack">
+                    <div :class="[slider ? 'slickTrack__visible' : 'slickTrack__visibleList']" v-if="specialistsFilter.length !== 0">
+                        <div class="slickSlide" v-for="(item, i) in specialistsFilter" :key="i" >
+
+                            <div class="slickSlide__imgBlock">
+                                <img class="slickSlide__img" :src="item.photo" :alt="item.user.name">
                             </div>
-                            <span>(17) </span>
+                            <div class="slickSlide__content">
+                                <div class="slickSlide__header">
+                                    <h3 class="slickSlide__h3">{{item.user.surname+' '+item.user.name+' '+item.user.second_name}}</h3>
+                                    <span v-if="status === 1">
+                                        <i class="fas fa-check-circle slickSlide__statusOk"></i>
+                                    </span>
+                                    <span v-else>
+                                        <i class="fas fa-check-circle slickSlide__statusNotOk"></i>
+                                    </span>
+                                </div>
+                                <div class="slickSlide__rating">
+                                    <div v-for="(start, i) in 5" :key="i">
+                                        <div v-if="item.rating <= i">
+                                            <i class="fas fa-star noActive_star"></i>
+                                        </div>
+                                        <div v-else>
+                                            <i class="fas fa-star active_star"></i>
+                                        </div>
+        <!--                                <i class="fas fa-star active_star"></i>-->
+                                    </div>
+                                    <span>(17) </span>
+                                </div>
+
+                                <div class="slickSlide__speciality">{{ item.category.name }}</div>
+                                <div class="slickSlide__coast"><i class="far fa-money-bill-alt"></i> от {{ item.price }} руб.</div>
+
+                            </div>
+                            <div class="slickSlide__buttons">
+                                <a :href="routedoctor.replace('xxx', item.id)" class="slickSlide__btn btn">Подробнее</a>
+                                <a :href="routeshedule.replace('xxx', item.id)" class="slickSlide__btn btn slickSlide__btn_bookNow">Записаться</a>
+                            </div>
                         </div>
-
-                        <div class="slickSlide__speciality">{{ item.category.name }}</div>
-                        <div class="slickSlide__coast"><i class="far fa-money-bill-alt"></i> от {{ item.price }} руб.</div>
-
                     </div>
-                    <div class="slickSlide__buttons">
-                        <a :href="routedoctor.replace('xxx', item.id)" class="slickSlide__btn btn">Подробнее</a>
-                        <a :href="routeshedule.replace('xxx', item.id)" class="slickSlide__btn btn slickSlide__btn_bookNow">Записаться</a>
-                    </div>
+                    <div v-else>Ни одного специалиста не найдено :(</div>
                 </div>
             </div>
-            <div v-else>Ни одного специалиста не найдено :(</div>
         </div>
+
         <div class="slickNavigation" v-if="slider">
             <button class="slickNavigation__left" data-control="left">
                 <i class="fas fa-chevron-left" data-control="left"></i>
@@ -87,6 +123,10 @@ export default {
             status: 1,
             form: {
                 searchInput: null
+            },
+            filterBlock: {
+                status: false,
+                categories: []
             }
         }
     },
@@ -208,12 +248,24 @@ export default {
             this.currentOffsetBlock = this.currentOffsetBlock + this.widthItem;
             slickTrack.style.transform = `translateX(${this.offset}px)`;
         },
+        getCategoriesList() {
+            let categories = this.specialists.map(el => el.category);
+
+            categories.forEach(el => {
+                if (!this.filterBlock.categories.includes(el)) {
+                    this.filterBlock.categories.push(el)
+                }
+
+            })
+            // this.filterBlock.categories = categories;
+        }
     },
     mounted() {
         this.specialists = this.doctors;
         this.specialistsFilter = this.doctors;
         this.initSlider();
         this.initFormSearch();
+        this.getCategoriesList();
     }
 
 }
@@ -224,6 +276,7 @@ export default {
     }
     .slickList__form {
         display: flex;
+        align-items: center;
     }
     button[name="slickList__searchBtn"] {
         border-radius: 0 10px 10px 0;
@@ -264,6 +317,15 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+
+    .slickList__body {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .slickList__filterBlock {
+        min-width: 200px;
     }
 
     .slickTrack__visible {
@@ -399,5 +461,57 @@ export default {
     .noActive_star {
         color: #dedfe0;
     }
+
+    .filterBlock__btn {
+        font-size: 30px;
+        color: #4890cb;
+        transition: opacity 0.8s;
+    }
+
+    .filterBlock__btn:hover {
+        font-size: 30px;
+        color: #4890cb;
+        opacity: 0.8;
+    }
+
+    label {
+    color: #000;
+    cursor: default;
+    font-weight: normal;
+    line-height: 20px;
+    padding: 10px 0;
+    vertical-align: middle;
+    cursor: pointer;
+    }
+
+    label:before {
+    content: " ";
+    color: #000;
+    display: inline-block;
+    /* шрифт Awesome*/
+    font: 20px/30px FontAwesome;
+    margin-right: 15px;
+    position: relative;
+    text-align: center;
+    text-indent: 0px;
+    width: 30px;
+    height: 30px;
+    background: #FFF;
+    border: 1px solid #e3e3e3;
+    border-image: initial;
+    vertical-align: middle;
+    }
+
+    input:checked + label:before {
+    /* глифон - галочка */
+    content: "\2714";
+    color: #4890cb;
+    }
+
+    input:disabled + label:before {
+    background: #eee;
+    color: #aaa;
+    }
+
 
 </style>
