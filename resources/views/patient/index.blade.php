@@ -16,8 +16,9 @@
                     </div>
                 </div>
             </div>
-        <x-patient.list :books="$books" />
-            <x-patient.modal></x-patient.modal>
+            <x-patient.list :books="$books"></x-patient.list>
+            <x-patient.modal :books="$books"></x-patient.modal>
+
         </div>
     </div>
 </x-app-layout>
