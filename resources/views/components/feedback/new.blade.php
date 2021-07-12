@@ -13,6 +13,7 @@
         <form method="post" action="{{ route('feedback.store') }}">
             @csrf
             @if(Auth::check())
+{{--                TODO: сделать красивый label как в записи на прием      --}}
                 <input name="user_id" value="{{ Auth::user()->id }}" type="hidden">
                 <p class="text-lg text-gray-700 mb-3">От: {{ Auth::user()->name . ' ' . Auth::user()->surname }}</p>
             @else

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Doctors;
 
 use App\Http\Controllers\Controller;
-use App\Models\Feedback;
 use App\Models\Specialist;
 
 class DoctorsController extends Controller
@@ -16,12 +15,10 @@ class DoctorsController extends Controller
 
     public function show(Specialist $specialist)
     {
-        $specialist->load('user', 'category','scores');
+        $specialist->load('user', 'category','scores','feedbacks');
+//        $feedback = Feedback::whereSpecialistId($specialist->id)->get();
 
-//        return view('doctors.show', compact('specialist'));
-        $feedback = Feedback::whereSpecialistId($specialist->id)->get();
-//        dd($feedback->count());
-        $specialist->load('user', 'category');
-        return view('doctors.show', compact('specialist', 'feedback'));
+//        return view('doctors.show', compact('specialist', 'feedback'));
+        return view('doctors.show', compact('specialist'));
     }
 }

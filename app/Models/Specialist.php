@@ -57,8 +57,18 @@ class Specialist extends Model
         return $doctors;
     }
 
-    public function feedback()
+    public function feedbacks()
     {
         return $this->hasMany(Feedback::class);
+    }
+
+    public function getNameAndSurname(): string
+    {
+        return $this->user->getNameAndSurname();
+    }
+
+    public function getFullName(): string
+    {
+        return $this->user->getFullName();
     }
 }

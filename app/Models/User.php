@@ -88,4 +88,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Feedback::class);
     }
+
+    public function getNameAndSurname(): string
+    {
+        return $this->name . ' ' . $this->surname;
+    }
+
+    public function getFullName(): string
+    {
+        return $this->surname . ' ' . $this->name . ' ' . $this->second_name;
+    }
 }
