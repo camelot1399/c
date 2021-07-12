@@ -57,8 +57,8 @@
             <div class="doc-info-right">
                 <div class="clini-infos">
                     <ul>
-                        <li><i class="far fa-thumbs-up"></i> 99%</li>
-                        <li><i class="far fa-comment"></i> 35 Отзывов</li>
+                        <li><i class="far fa-thumbs-up"></i> {{ $specialist->goodScoresPercent() }}%</li>
+                        <li><i class="far fa-comment"></i> {{ $specialist->feedbacks->count() }} Отзывов</li>
                         <li><i class="fas fa-map-marker-alt"></i> {{$specialist->location}}</li>
                         <li><i class="far fa-money-bill-alt"></i> {{$specialist->price}} руб/час </li>
                     </ul>
