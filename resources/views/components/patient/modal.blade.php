@@ -1,38 +1,53 @@
+{{--@props(['books'])--}}
 @push('scripts')
     <script>
         (function(){
-            let modal = document.querySelector('.profile-modal-container');
-            let closeButton = document.querySelector('.close');
-            let modalTriggers = document.querySelectorAll('[data-trigger]');
+            const notScrollBody = document.querySelector('body');
+            const modal = document.querySelector('.profile-modal-container');
+            const closeButton = document.querySelector('.close-modal');
+            const modalTriggers = document.querySelectorAll('[data-trigger]');
             let isModalOpen = false;
-            let pageYOffset = 0;
-            let openModal = function() {
-                pageYOffset = window.pageYOffset;
-                modal.classList.add('is-open');
-                isModalOpen = true;
-            }
-            let closeModal = function() {
-                modal.classList.remove('is-open');
-                isModalOpen = false;
-            }
-            let onScroll = function(e) {
-                if (isModalOpen) {
-                    e.preventDefault();
-                    window.scrollTo(0, pageYOffset);
-                }
-            }
             modalTriggers.forEach(function(item) {
-                item.addEventListener('click', openModal);
+                item.addEventListener('click', (e) => {
+                    modal.classList.add('is-open');
+                    notScrollBody.classList.add('not-scroll');
+                    const id = e.target.dataset.bookId;
+                    console.log(id);
+
+                    axios
+                        .get(`/book/${id}/patient/get`)
+                        .then(response => {
+                            isModalOpen = true;
+                            const book = response.data.book;
+                            console.dir(document.querySelector('#patient-name'));
+                            document.querySelector('#patient-name').textContent = (book.user ? book.user.name : book.name)+ ' ' + (book.user ? book.user.surname : book.surname);
+                            document.querySelector('#patient-email').textContent = book.user ? book.user.email : book.email;
+                            document.querySelector('#specialist-location').textContent = book.specialist.location;
+                            document.querySelector('#patient-description').textContent = book.description;
+                            document.querySelector('#patient-full-name').textContent = (book.user ? book.user.surname : book.surname)+ ' ' +(book.user ? book.user.name : book.name)+ ' ' +  (book.user ? book.user.second_name : book.second_name);
+                            document.querySelector('#patient-age').textContent = book.age;
+                            document.querySelector('#patient-email-double').textContent = book.user ? book.user.email : book.email;
+                            document.querySelector('#patient-phone').textContent = book.phone;
+                        })
+                });
             })
-            document.addEventListener('scroll', onScroll);
-            closeButton.addEventListener('click', closeModal);
+            closeButton.addEventListener('click', () => {
+                modal.classList.remove('is-open');
+                notScrollBody.classList.remove('not-scroll');
+
+            });
+            document.querySelector('.book-content').addEventListener('click', (e) =>{
+                e.stopPropagation();
+            })
         })();
+
     </script>
 @endpush
-<div class="profile-modal-container close">
+<div class="profile-modal-container close-modal">
     <div class="profile-modal-content">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="row book-content">
+
+            <div class="col-md-12" >
                 <div class="profile-header">
                     <div class="row align-items-center">
                         <div class="col-auto profile-image">
@@ -41,10 +56,10 @@
                             </a>
                         </div>
                         <div class="col ml-md-n2 profile-user-info">
-                            <h4 class="user-name mb-0">Иванов Иван</h4>
-                            <h6 class="text-muted">johndoe@example.com</h6>
-                            <div class="user-Location"><i class="fas fa-map-marker-alt"></i>Москва, Россия</div>
-                            <div class="about-text">Болит зуб, опухшая щека, головная боль</div>
+                            <h4 class="user-name mb-0" id="patient-name"></h4>
+                            <h6 class="text-muted" id="patient-email"></h6>
+                            <div class="user-Location"><i class="fas fa-map-marker-alt" id="specialist-location"></i></div>
+                            <div class="about-text" id="patient-description"></div>
                         </div>
                     </div>
                 </div>
@@ -63,19 +78,19 @@
                                         </h5>
                                         <div class="row">
                                             <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">ФИО</p>
-                                            <p class="col-sm-10">Иванов Иван Иванович</p>
+                                            <p class="col-sm-10" id="patient-full-name"></p>
                                         </div>
                                         <div class="row">
                                             <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Возраст</p>
-                                            <p class="col-sm-10">29</p>
+                                            <p class="col-sm-10" id="patient-age"></p>
                                         </div>
                                         <div class="row">
                                             <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Email</p>
-                                            <p class="col-sm-10">johndoe@example.com</p>
+                                            <p class="col-sm-10" id="patient-email-double"></p>
                                         </div>
                                         <div class="row">
-                                            <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Мобильный</p>
-                                            <p class="col-sm-10">+7(999)999-99-99</p>
+                                            <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3" id="patient-phone">Мобильный</p>
+                                            <p class="col-sm-10"></p>
                                         </div>
                                         {{--                                        <div class="row">--}}
                                         {{--                                            <p class="col-sm-2 text-muted text-sm-right mb-0">Адрес</p>--}}
@@ -93,6 +108,7 @@
                     <!-- /Personal Details Tab -->
                 </div>
             </div>
+
         </div>
 
     </div>
@@ -121,12 +137,16 @@
             z-index: 1;
             background-color: rgba(0, 0, 0, 0.5);
         }
+        body.not-scroll,
+        .is-open {
+            overflow: hidden;
+        }
         .profile-modal-content {
             overflow: auto;
             width: 100%;
             height: 100%;
             max-width: 790px;
-            max-height: 400px;
+            max-height: 490px;
             padding: 20px;
             background-color: #fff;
             border-radius: 3px;

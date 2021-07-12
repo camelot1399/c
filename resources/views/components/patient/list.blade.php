@@ -35,7 +35,7 @@
                                                 <tr>
                                                     <td>
                                                         <h2 class="table-avatar">
-                                                            <a href="#" data-trigger>{{ $book->user->name . ' ' . $book->user->surname }}</a>
+                                                            <a data-book-id="{{$book->id}}" href="#" data-trigger>{{ $book->user->name . ' ' . $book->user->surname }}</a>
                                                         </h2>
                                                     </td>
                                                     <td>{{  date('d M Y', strtotime($book->datetime )) }}<span
@@ -46,7 +46,7 @@
                                                     <td class="text-center">{{ $book->specialist->price }}</td>
                                                     <td class="text-right">
                                                         <div class="table-action">
-                                                            <a href="javascript:void(0); " data-trigger
+                                                            <a data-book-id="{{$book->id}}" href="#" data-trigger
                                                                class="btn btn-sm btn-info">
                                                                 <i class="far fa-eye"></i> Посмотреть
                                                             </a>
@@ -90,8 +90,8 @@
                                                 @if(date('d M Y', strtotime(today()->toDateTimeString())) == date('d M Y', strtotime($book->datetime )))
                                                     <tr>
                                                         <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="#"  data-trigger>{{ $book->user->name . ' ' . $book->user->surname }}</a>
+                                                            <h2 class="table-avatar" >
+                                                                <a data-book-id="{{$book->id}}" href="#"  data-trigger >{{ $book->user->name . ' ' . $book->user->surname }}</a>
                                                             </h2>
                                                         </td>
                                                         <td>{{  date('d M Y', strtotime($book->datetime )) }}<span
@@ -102,7 +102,7 @@
                                                         <td class="text-center">{{ $book->specialist->price }}</td>
                                                         <td class="text-right">
                                                             <div class="table-action">
-                                                                <a href="javascript:void(0);" data-trigger
+                                                                <a data-book-id="{{$book->id}}" href="javascript:void(0);" data-trigger
                                                                    class="btn btn-sm btn-info">
                                                                     <i class="far fa-eye"></i> Посмотреть
                                                                 </a>
@@ -117,6 +117,7 @@
                                                             </div>
                                                         </td>
                                                     </tr>
+
                                                 @endif
                                             @endforeach
                                             </tbody>
@@ -131,3 +132,4 @@
         </div>
     </div>
 </div>
+
