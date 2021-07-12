@@ -9,17 +9,17 @@ class DoctorsController extends Controller
 {
     public function index()
     {
-        $doctors = Specialist::with(['user', 'category','scores'])->get();
-        foreach ($doctors as $doctor) {
-            $doctor->rating = $doctor->averageScore();
-        }
+        $doctors = Specialist::doctorsSliderPrepare();
         return view('doctors.index', compact('doctors'));
     }
 
     public function show(Specialist $specialist)
     {
-        $specialist->load('user', 'category','scores');
+        $specialist->load('user', 'category','scores','feedbacks');
+//        $feedback = Feedback::whereSpecialistId($specialist->id)->get();
 
+//        return view('doctors.show', compact('specialist', 'feedback'));
+//        dd($specialist->goodScoresPercent());
         return view('doctors.show', compact('specialist'));
     }
 }

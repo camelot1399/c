@@ -90,7 +90,6 @@
                 </div>
             </div>
         </div>
-
         <div class="slickNavigation" v-if="slider">
             <button class="slickNavigation__left" data-control="left">
                 <i class="fas fa-chevron-left" data-control="left"></i>

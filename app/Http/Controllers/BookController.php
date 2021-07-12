@@ -105,4 +105,13 @@ class BookController extends Controller
     {
         //
     }
+     public function getPatient(Book $book)
+     {
+        if($book->user) {
+            $book->load('user');
+            $book->load('specialist');
+        }
+        return response()->json(['book' => $book]);
+     }
+
 }

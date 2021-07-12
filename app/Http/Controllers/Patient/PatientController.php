@@ -19,8 +19,11 @@ class PatientController extends Controller
             $currentUser = \Auth::user()->specialist->user_id;
             $books = Book::all()->where('specialist_id', '=', $currentUser)
                 ->sortBy('datetime');
+
             return view('patient.index', compact('books'));
         } else abort(404);
+
+        // TODO: отрефакторить
 
     }
 }
