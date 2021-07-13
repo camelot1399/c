@@ -21,6 +21,7 @@ class CreateFeedbackTable extends Migration
                 ->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->enum('value',[1,2,3,4,5]);
             $table->string('name')->nullable();
             $table->string('surname')->nullable();
             $table->text('body_text');
