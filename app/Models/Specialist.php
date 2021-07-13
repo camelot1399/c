@@ -46,6 +46,9 @@ class Specialist extends Model
     {
         $this->load('feedbacks');
         $sum = 0;
+        if ($this->feedbacks->count() == 0) {
+            return 0;
+        }
         foreach ($this->feedbacks as $score) {
             $sum += $score->value;
         }
@@ -54,10 +57,10 @@ class Specialist extends Model
 
     public static function doctorsSliderPrepare(): Collection
     {
-        $doctors = Specialist::with(['user', 'category','feedback'])->get();
+        $doctors = Specialist::with(['user', 'category','feedbacks'])->get();
         foreach ($doctors as $doctor) {
             $doctor->rating = $doctor->averageScore();
-            $doctor->scoresCount = $doctor->scores->count();
+            $doctor->scoresCount = $doctor->feedbacks->count();
         }
         return $doctors;
     }
@@ -75,6 +78,9 @@ class Specialist extends Model
     public function goodScoresPercent(): int
     {
         $allCount = $this->feedbacks()->count();
+        if ($allCount == 0) {
+            return 0;
+        }
         $goodCount = $this->feedbacks()->where('value','>',3)->count();
         return round($goodCount/$allCount*100);
     }
