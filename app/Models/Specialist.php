@@ -32,29 +32,29 @@ class Specialist extends Model
         return $this->hasMany(Book::class);
     }
 
-    public function scores(): HasMany
-    {
-        return $this->hasMany(Score::class);
-    }
+//    public function scores(): HasMany
+//    {
+//        return $this->hasMany(Score::class);
+//    }
 
-    public function averageScore(): float
-    {
-        $this->load('scores');
-        $sum = 0;
-        foreach ($this->scores as $score) {
-            $sum += $score->value;
-        }
-        return $sum/$this->scores->count();
-    }
-
-    public function feedbacks()
+    public function feedbacks(): HasMany
     {
         return $this->hasMany(Feedback::class);
     }
 
+    public function averageScore(): float
+    {
+        $this->load('feedbacks');
+        $sum = 0;
+        foreach ($this->feedbacks as $score) {
+            $sum += $score->value;
+        }
+        return $sum/$this->feedbacks->count();
+    }
+
     public static function doctorsSliderPrepare(): Collection
     {
-        $doctors = Specialist::with(['user', 'category','scores'])->get();
+        $doctors = Specialist::with(['user', 'category','feedback'])->get();
         foreach ($doctors as $doctor) {
             $doctor->rating = $doctor->averageScore();
             $doctor->scoresCount = $doctor->scores->count();
@@ -74,8 +74,8 @@ class Specialist extends Model
 
     public function goodScoresPercent(): int
     {
-        $allCount = $this->scores()->count();
-        $goodCount = $this->scores()->where('value','>',3)->count();
+        $allCount = $this->feedbacks()->count();
+        $goodCount = $this->feedbacks()->where('value','>',3)->count();
         return round($goodCount/$allCount*100);
     }
 }

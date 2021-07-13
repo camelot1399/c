@@ -153,7 +153,7 @@
                                                         <i class="fas fa-star"></i>
                                                     @endif
                                                 @endfor
-                                                <span class="d-inline-block average-rating">({{ $specialist->scores->count() }})</span>
+                                                <span class="d-inline-block average-rating">({{ $specialist->feedbacks->count() }})</span>
                                             </div>
                                             <div class="clinic-details">
                                                 <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{ $specialist->location ?? 'Newyork, USA' }}</p>

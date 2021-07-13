@@ -21,6 +21,14 @@
                 <input name="surname" placeholder="Ваша фимилия" type="text" class="mb-4 w-50 rounded-md shadow-sm border-gray-300 focus:border-grey-300 focus:ring focus:ring-grey-200 focus:ring-opacity-50">
             @endif
             <input name="specialist_id" value="{{ $specialist->id }}" type="hidden">
+{{--            TODO: нужны стили превращающие их в звездочки--}}
+            <div>
+                <input type="radio" name="value" value="1">
+                <input type="radio" name="value" value="2">
+                <input type="radio" name="value" value="3">
+                <input type="radio" name="value" value="4">
+                <input type="radio" name="value" value="5">
+            </div>
             <textarea name="body_text" placeholder="Напишите свой отзыв" class="w-50 rounded-md shadow-sm border-gray-300 focus:border-grey-300 focus:ring focus:ring-grey-200 focus:ring-opacity-50"></textarea>
             <input type="submit" class="apt-btn mt-8" value="Оставить отзыв">
         </form>
