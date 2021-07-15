@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Schedule;
 
 use App\Http\Controllers\Controller;
 use App\Models\Specialist;
-use DateTime;
 use Illuminate\Http\Request;
 use Jenssegers\Date\Date as JDate;
 
@@ -12,7 +11,24 @@ class ScheduleController extends Controller
 {
     public function index(Specialist $specialist)
     {
-        return view('schedule.index',compact('specialist'));
+        $day1 = new JDate('monday this week');
+        $day2 = new JDate('monday next week');
+        $books = $specialist->books()
+            ->where('datetime','>',$day1)
+            ->where('datetime','<',$day2)
+            ->get();
+        $start_time = 9;
+        $end_time = 12;
+        $duration = 1;
+        $schedules = [];
+        for ($day = 0; $day < 7; $day++) {
+            $schedules[$day] = compact('start_time','end_time','duration');
+        }
+        foreach ($schedules as $schedule) {
+            //
+        }
+//        dd($books);
+        return view('schedule.index',compact(['specialist','books']));
     }
 
     public function personalInfo(Specialist $specialist, Request $request)
