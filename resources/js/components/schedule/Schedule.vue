@@ -55,11 +55,11 @@
                                     :key="'day-' + dayIdx"
                                 >
                                     <a
-                                        class="timing"
-                                        :class="{'selected': currentTimeIdx === timeIdx && currentDayIdx === dayIdx}"
-                                        href="#"
                                         v-for="(time, timeIdx) in day"
                                         :key="'time-' + dayIdx + '-' + timeIdx"
+                                        class="timing"
+                                        :class="{'selected': currentTimeIdx === timeIdx && currentDayIdx === dayIdx,'disabled': dayIdx < nowDayIdx && currentWeekIdx === 0}"
+                                        href="#"
                                         @click.prevent="checkTime(dayIdx, timeIdx)"
                                     >
                                         <span>{{ time }}</span>
@@ -104,6 +104,7 @@ export default {
         currentDayIdx: null,
         countWeeks: 10,
         currentDateTime: null,
+        nowDayIdx: 0,
     }),
     created() {
         console.log(this.action)
@@ -133,6 +134,7 @@ export default {
                 ]
             })
         }
+        this.nowDayIdx = now.getDay();
         console.log('weeks: ', this.weeks);
     },
     methods: {
@@ -180,15 +182,6 @@ export default {
 </script>
 
 <style scoped>
-
-a.disabled {
-    pointer-events: none;
-    color: gray;
-}
-
-a.disabled:hover {
-    color: gray;
-}
 
 p {
     margin-top: 0;
@@ -381,6 +374,15 @@ p {
     position: absolute;
     right: 6px;
     top: 6px;
+}
+
+.time-slot li .disabled {
+    pointer-events: none;
+    background-color: darkgray;
+}
+
+.time-slot li .disabled:hover {
+    color: gray;
 }
 
 .submit-section.proceed-btn {
