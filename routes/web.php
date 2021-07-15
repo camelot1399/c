@@ -4,9 +4,11 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\Doctors\DoctorsController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailClientController;
 use App\Http\Controllers\Patient\PatientController;
 use App\Http\Controllers\Schedule\ScheduleController;
 use App\Http\Controllers\ScoreController;
+use App\Http\Controllers\SendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +27,7 @@ Route::get('/doctors/{specialist}', [DoctorsController::class, 'show'])->name('d
 Route::get('/doctors/{specialist}/schedule', [ScheduleController::class, 'index'])->name('schedule.index');
 Route::get('/doctors/{specialist}/book_info', [ScheduleController::class, 'personalInfo'])->name('schedule.info');
 Route::resource('books', BookController::class);
+Route::get('/book/update/{book}', [BookController::class, 'isOverUpdate'])->name('book.isOverUpdate');
 Route::resource('scores', ScoreController::class);
 
 Route::get('/dashboard', function () {
@@ -36,6 +39,8 @@ Route::get('/book/{book}/patient/get', [BookController::class, 'getPatient'])->m
 
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 
+Route::get('/send/{book}',[SendController::class, 'send'])->name('send');
+Route::get('/mailclient', [MailClientController::class, 'index'])->name('mail.index');
 require __DIR__.'/auth.php';
 
 Auth::routes();

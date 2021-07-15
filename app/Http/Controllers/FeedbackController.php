@@ -11,6 +11,7 @@ class FeedbackController extends Controller
 {
     public function index()
     {
+
     }
 
     public function store(StoreFeedbackRequest $request)

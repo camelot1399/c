@@ -28,6 +28,7 @@ class BookFactory extends Factory
                 ->setTime($this->faker->numberBetween(9,11),0),
 //            'datetime' => $this->faker->dateTimeBetween('-1 week', '+1 week'),
             'description' => $this->faker->sentence(10),
+            'is_over' => $this->faker->boolean,
         ];
     }
 }

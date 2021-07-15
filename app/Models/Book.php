@@ -57,7 +57,8 @@ class Book extends Model
         'email',
         'phone',
         'description',
-        'age',];
+        'age',
+        'is_over'];
 
     public function client()
     {

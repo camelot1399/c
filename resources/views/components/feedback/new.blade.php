@@ -9,17 +9,14 @@
 @endif
 <div class="card p-40px">
     <div class="card-body pt-0">
-        <h4 class="widget-title mb-4">Оставить отзыв о <span class="text-gray-500">{{ $specialist->user->name . ' ' . $specialist->user->surname}}</span></h4>
+        <h4 class="widget-title mb-4">Оставить отзыв о <span class="text-gray-500">{{ $specialist->user->getNameAndSurname()}}</span></h4>
         <form method="post" action="{{ route('feedback.store') }}">
             @csrf
-            @if(Auth::check())
+
 {{--                TODO: сделать красивый label как в записи на прием      --}}
-                <input name="user_id" value="{{ Auth::user()->id }}" type="hidden">
-                <p class="text-lg text-gray-700 mb-3">От: {{ Auth::user()->name . ' ' . Auth::user()->surname }}</p>
-            @else
-                <input name="name" placeholder="Ваше имя" type="text" class="mb-4 w-50 rounded-md shadow-sm border-gray-300 focus:border-grey-300 focus:ring focus:ring-grey-200 focus:ring-opacity-50">
-                <input name="surname" placeholder="Ваша фимилия" type="text" class="mb-4 w-50 rounded-md shadow-sm border-gray-300 focus:border-grey-300 focus:ring focus:ring-grey-200 focus:ring-opacity-50">
-            @endif
+                <input name="user_id" value="{{ $feedbackUser->id }}" type="hidden">
+                <p class="text-lg text-gray-700 mb-3">От: {{ $feedbackUser->getNameAndSurname() }}</p>
+
             <input name="specialist_id" value="{{ $specialist->id }}" type="hidden">
 {{--            TODO: Заменить на Font Awesome 5, пока блок ниже работает на 4--}}
             <div class="form-group mb-4 w-50 rounded-md shadow-sm border-gray-300 focus:border-grey-300 focus:ring focus:ring-grey-200 focus:ring-opacity-50">

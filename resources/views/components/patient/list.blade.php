@@ -1,5 +1,4 @@
 @props(['books'])
-
 <div class="container-fluid">
     <div class="row">
         <div class="row">
@@ -31,7 +30,6 @@
                                             </thead>
                                             <tbody class="align-middle">
                                             @foreach($books as $book)
-
                                                 <tr>
                                                     <td>
                                                         <h2 class="table-avatar">
@@ -46,14 +44,18 @@
                                                     <td class="text-center">{{ $book->specialist->price }}</td>
                                                     <td class="text-right">
                                                         <div class="table-action">
+                                                            @if(!$book->is_over)
+
+                                                                <a href="{{ route('book.isOverUpdate', compact('book')) }}"
+                                                                   class="btn btn-sm btn-primary">
+                                                                    <i class="fas fa-check"></i> Завершить прием
+                                                                </a>
+                                                            @endif
                                                             <a data-book-id="{{$book->id}}" href="#" data-trigger
                                                                class="btn btn-sm btn-info">
                                                                 <i class="far fa-eye"></i> Посмотреть
                                                             </a>
-{{--                                                            <a href="javascript:void(0);"--}}
-{{--                                                               class="btn btn-sm btn-primary">--}}
-{{--                                                                <i class="fas fa-check"></i> Принять--}}
-{{--                                                            </a>--}}
+
 {{--                                                            <a href="javascript:void(0);"--}}
 {{--                                                               class="btn btn-sm btn-danger">--}}
 {{--                                                                <i class="fas fa-times"></i> Отменить--}}
@@ -102,14 +104,17 @@
                                                         <td class="text-center">{{ $book->specialist->price }}</td>
                                                         <td class="text-right">
                                                             <div class="table-action">
+                                                                @if($book->is_over)
+                                                                    <a href="{{ route('books.update', compact('book')) }}"
+                                                                       class="btn btn-sm btn-primary">
+                                                                        <i class="fas fa-check"></i> Завершить прием
+                                                                    </a>
+                                                                @endif
                                                                 <a data-book-id="{{$book->id}}" href="javascript:void(0);" data-trigger
                                                                    class="btn btn-sm btn-info">
                                                                     <i class="far fa-eye"></i> Посмотреть
                                                                 </a>
-{{--                                                                <a href="javascript:void(0);"--}}
-{{--                                                                   class="btn btn-sm btn-primary">--}}
-{{--                                                                    <i class="fas fa-check"></i> Принять--}}
-{{--                                                                </a>--}}
+
 {{--                                                                <a href="javascript:void(0);"--}}
 {{--                                                                   class="btn btn-sm btn-danger">--}}
 {{--                                                                    <i class="fas fa-times"></i> Отменить--}}
