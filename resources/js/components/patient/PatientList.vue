@@ -49,7 +49,9 @@
                                                 >
                                                     <td>
                                                         <h2 class="table-avatar">
-                                                            <a data-book-id="$book->id" href="#" data-trigger>{{ book.user.name + ' ' + book.user.surname }}</a>
+                                                            <a href="#" v-if="book.user" data-trigger>{{ book.user.name + ' ' + book.user.surname }}</a>
+                                                            <a href="#" v-else data-trigger>{{ book.name + ' ' + book.surname }}</a>
+
                                                         </h2>
                                                     </td>
                                                     <td> {{ book.datetime }} <span
