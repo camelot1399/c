@@ -126,7 +126,7 @@ export default {
                 searchInput: null
             },
             filterBlock: {
-                status: true,
+                status: false,
                 searchInput: "",
                 categories: [],
                 checkedCategories: []
