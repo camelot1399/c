@@ -1,5 +1,5 @@
 <template>
-    <div class="slickList" :class="{slider: 'overflow'}">
+    <div class="slickList" :class="{'overflow' : slider}">
         <div id="slickListSearchBlock" v-if="!slider">
             <form action="#" class="slickList__form" @click.prevent="getSpecialistsFilter">
                 <button class="filterBlock__btn">
@@ -9,9 +9,9 @@
                     type="text"
                     name="slickList__searchInput"
                     class="slickList__searchInput"
-                    placeholder="Я ищу по фамилии"
+                    placeholder="Фамилия, имя, отчество"
                     data-control="inputText"
-                    v-model="form.searchInput"
+                    v-model="filterBlock.searchInput"
                 >
                 <!-- <button type="submit" name="slickList__searchBtn" class="slickSlide__btn">Search</button> -->
             </form>
@@ -23,23 +23,15 @@
                 <div class="slickList__filterBlock_item">
                     <div class="slickList__filterBlock_header">Категория</div>
                     <ul class="slickList__filterBlock_ul">
-                        <li v-for="category in filterBlock.categories" :key="category">
-                            <input type="checkbox" :name="'slickList__filterBlock_name_' + category.id" :id="'slickList__filterBlock_name_' + category.id" hidden="">
+                        <li v-for="category in filterBlock.categories" :key="category.id" >
+                            <input
+                                type="checkbox"
+                                :name="'slickList__filterBlock_name_' + category.id"
+                                :id="'slickList__filterBlock_name_' + category.id"
+                                hidden=""
+                                @click="checkedcategories(category)"
+                            >
                             <label :for="'slickList__filterBlock_name_' + category.id">{{ category.name }}</label>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="slickList__filterBlock_item">
-                    <div class="slickList__filterBlock_header">Мужчины/Женщины</div>
-                    <ul class="slickList__filterBlock_ul">
-                        <li>
-                            <input type="checkbox" name="slickList__filterBlock_name" id="slickList__filterBlock_name3" hidden="">
-                            <label for="slickList__filterBlock_name3">Мужчина</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" name="slickList__filterBlock_name" id="slickList__filterBlock_name4" hidden="">
-                            <label for="slickList__filterBlock_name4">Женщина</label>
                         </li>
                     </ul>
                 </div>
@@ -47,8 +39,8 @@
             </div>
             <div>
                 <div class="slickTrack">
-                    <div :class="[slider ? 'slickTrack__visible' : 'slickTrack__visibleList']" v-if="specialistsFilter.length !== 0">
-                        <div class="slickSlide" v-for="(item, i) in specialistsFilter" :key="i" >
+                    <div :class="[slider ? 'slickTrack__visible' : 'slickTrack__visibleList']">
+                        <div class="slickSlide" v-for="(item, i) in filteredSpecialists" :key="i" >
 
                             <div class="slickSlide__imgBlock">
                                 <img class="slickSlide__img" :src="item.photo" :alt="item.user.name">
@@ -77,7 +69,7 @@
                                 </div>
 
                                 <div class="slickSlide__speciality">{{ item.category.name }}</div>
-                                <div class="slickSlide__coast"><i class="far fa-money-bill-alt"></i> от {{ item.price }} руб.</div>
+                                <div class="slickSlide__coast"><i class="far fa-money-bill-alt"></i> {{ item.price | toFix }}</div>
 
                             </div>
                             <div class="slickSlide__buttons">
@@ -86,7 +78,7 @@
                             </div>
                         </div>
                     </div>
-                    <div v-else>Ни одного специалиста не найдено :(</div>
+                    <!-- <div v-else>Ни одного специалиста не найдено :(</div> -->
                 </div>
             </div>
         </div>
@@ -101,6 +93,8 @@
     </div>
 </template>
 <script>
+import toFix from '../../filters/toFix';
+
 export default {
     name: 'CardCarouselComponent',
     props: {
@@ -119,14 +113,25 @@ export default {
             marginBlock: 10,
             specialists: [],
             specialistsFilter: [],
+            sortedSpecialists: [],
             status: 1,
             form: {
                 searchInput: null
             },
             filterBlock: {
                 status: false,
-                categories: []
+                searchInput: null,
+                categories: [],
+                checkedCategories: []
             }
+        }
+    },
+    filters: {
+        toFix
+    },
+    watch: {
+        'filterBlock.searchInput': function() {
+            this.filtered();
         }
     },
     methods: {
@@ -152,26 +157,25 @@ export default {
                 })
             }
         },
-        initFormSearch() {
-            let input = document.querySelector('.slickList__searchInput');
-            input.addEventListener('keyup', (el) => {
-                if (this.form.searchInput.length >= 3) {
-                    this.getSpecialistsFilter(this.form.searchInput);
-                } else {
-                    this.getSpecialistsFilter();
-                }
-            });
-        },
-        getSpecialistsFilter(filter) {
-            if (!filter) {
-                return this.specialistsFilter = this.specialists;
-            }
-            // в result заносим результаты совпадений
-            let result = [];
+        filtered() {
+            this.sortedSpecialists = [];
 
+            if (this.filterBlock.checkedCategories.length) {
+                this.filterBlock.checkedCategories.forEach(el => {
+                    this.addToSortedSpecialists(el);
+                })
+            }
+
+            if (this.filterBlock.searchInput.length && this.filterBlock.searchInput.length >= 3) {
+                this.filterSortedSpecialistsBySearchInput();
+            }
+        },
+        filterSortedSpecialistsBySearchInput() {
+            let input = this.filterBlock.searchInput;
+            let result = this.sortedSpecialists;
             // проверяем, если у нас есть пробелы в искомой фразе, создаем массив filterArray из слов
-            if (filter.includes(' ')) {
-                let filterArray = filter.split(' ');
+            if (input.includes(" ")) {
+                let filterArray = input.split(' ');
 
                 filterArray.forEach(el => {
                     if (el !== "" && el.length > 3) {
@@ -179,10 +183,8 @@ export default {
                     }
                 })
             } else {
-                this.searchForMatches(filter, result);
+                this.searchForMatches(input, result);
             }
-
-            this.specialistsFilter = result;
         },
         searchForMatches(filter, result) {
             let regexp = new RegExp(filter, 'i');
@@ -190,6 +192,15 @@ export default {
             this.specialists.forEach(el => {
                 if (regexp.exec(el.user.name) || regexp.exec(el.user.surname) || regexp.exec(el.user.second_name)) {
                     if (result.indexOf(el) === -1) result.push(el);
+                }
+            });
+
+            return result;
+        },
+        addToSortedSpecialists(filter) {
+            this.specialists.map(el => {
+                if (filter.id === el.category.id) {
+                    this.sortedSpecialists.push(el);
                 }
             });
         },
@@ -250,20 +261,42 @@ export default {
         getCategoriesList() {
             let categories = this.specialists.map(el => el.category);
 
+            let list = [];
             categories.forEach(el => {
-                if (!this.filterBlock.categories.includes(el)) {
-                    this.filterBlock.categories.push(el)
+                if (!list.some(e => e.name === el.name)) {
+                    list.push({
+                        id: el.id,
+                        name: el.name
+                    })
                 }
-
             })
-            // this.filterBlock.categories = categories;
+
+            this.filterBlock.categories = list;
+        },
+        checkedcategories(category) {
+            console.log('start checkedcategories');
+            if (!this.filterBlock.checkedCategories.some(el => el.id === category.id)) {
+                this.filterBlock.checkedCategories.push(category);
+            } else {
+                this.filterBlock.checkedCategories.splice(this.filterBlock.checkedCategories.indexOf(category), 1);
+            }
+
+            this.filtered();
+        }
+    },
+    computed: {
+        filteredSpecialists() {
+            if (this.sortedSpecialists.length) {
+                return this.sortedSpecialists;
+            }
+
+            return this.specialists;
         }
     },
     mounted() {
         this.specialists = this.doctors;
         this.specialistsFilter = this.doctors;
         this.initSlider();
-        this.initFormSearch();
         this.getCategoriesList();
     }
 
