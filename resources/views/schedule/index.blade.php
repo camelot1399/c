@@ -5,7 +5,13 @@
             <div class="row">
                 <div class="col-12">
                     <x-schedule.card-mini :specialist="$specialist"></x-schedule.card-mini>
-                    <x-schedule.schedule :specialist="$specialist"></x-schedule.schedule>
+                    <schedule
+                        :action="'{{route('schedule.info',compact('specialist'))}}'"
+                    ></schedule>
+                    @push('scripts')
+                        <script src="{{ mix('js/schedule.js') }}" defer></script>
+                    @endpush
+{{--                    <x-schedule.schedule :specialist="$specialist"></x-schedule.schedule>--}}
                 </div>
             </div>
         </div>

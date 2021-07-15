@@ -19,3 +19,5 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
 
 mix.js('resources/js/cardCarousel.js', 'public/js').vue({ version: 2 }).version();
 mix.js('resources/js/patientList.js', 'public/js').vue({ version: 2 }).version();
+
+mix.js('resources/js/schedule.js', 'public/js').vue({ version: 2 }).version();
