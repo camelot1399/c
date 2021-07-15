@@ -183,6 +183,15 @@ export default {
 
 <style scoped>
 
+a.disabled {
+    pointer-events: none;
+    color: gray;
+}
+
+a.disabled:hover {
+    color: gray;
+}
+
 p {
     margin-top: 0;
     margin-bottom: 1rem;
