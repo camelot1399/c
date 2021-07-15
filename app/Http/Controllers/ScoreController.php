@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Score;
+use Auth as Auth;
 use Illuminate\Http\Request;
 
 class ScoreController extends Controller
@@ -24,22 +25,18 @@ class ScoreController extends Controller
      */
     public function create(Request $request)
     {
-//        if (\Auth::check()) {
-        if (\Auth::check() && \Auth::user()->specialist->id != $request->specialist_id) {
+        if (Auth::check() && Auth::user()->specialist->id != $request->specialist_id) {
             /** @var Score $score */
             $score = Score::all()
-                ->where('user_id',\Auth::id())
+                ->where('user_id', Auth::id())
                 ->where('specialist_id',$request->specialist_id)
                 ->first();
             if (isset($score)) {
-//                TODO: задействовать метод update (возможно)
-//                $score->value = $request->value;
-//                $score->save();
                 $this->update($request,$score->id);
             } else {
                 $score = new Score();
                 $score->fill($request->all());
-                $score->fill(['user_id'=>\Auth::id()]);
+                $score->fill(['user_id'=> Auth::id()]);
                 $score->save();
             }
         }
@@ -91,6 +88,7 @@ class ScoreController extends Controller
         /** @var Score $score */
         $score = Score::find($id);
         $score->value = $request->value;
+//        TODO: Вернуть правильный реквест. Пока что на выходе bool
         return $score->save();
     }
 
