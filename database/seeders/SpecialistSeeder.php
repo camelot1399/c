@@ -107,13 +107,13 @@ class SpecialistSeeder extends Seeder
 //            ]);
 //        }
 
-        $users = User::where('id','<=',10)->get();
-        $category = Category::first();
+        $users = User::where('id','<=',20)->get();
+        $categories = Category::all();
         foreach ($users as $key => $user) {
             Specialist::factory()
                 ->state(['photo'=>'/img/doctor-0'.(($key%4)+1).'.jpg'])
                 ->for($user)
-                ->for($category)
+                ->for($categories[($key%4)+1])
                 ->create();
         }
     }
