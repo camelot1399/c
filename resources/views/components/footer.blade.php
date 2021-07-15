@@ -1,8 +1,10 @@
 <div
      style="background-color: #203a74;
         font-size: 20px;
+        bottom: 0
+        ;
 "
-     class="text-white"
+     class="text-white align-self-end w-full"
 >
 
     <div class="py-40px">

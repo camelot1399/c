@@ -12,16 +12,12 @@
                     <div class="rating">
                         @for($i = 0; $i < 5; $i++)
                             @if($i < $specialist->averageScore())
-                                @auth <a href="{{ route('scores.create',['value'=>$i+1,'specialist_id'=>$specialist->id]) }}"> @endauth
-                                    <i class="fas fa-star filled"></i>
-                                @auth </a> @endauth
+                                <i class="fas fa-star filled"></i>
                             @else
-                                @auth <a href="{{ route('scores.create',['value'=>$i+1,'specialist_id'=>$specialist->id]) }}"> @endauth
-                                    <i class="fas fa-star"></i>
-                                @auth </a> @endauth
+                                <i class="fas fa-star"></i>
                             @endif
                         @endfor
-                        <span class="d-inline-block average-rating">({{ $specialist->scores->count() }})</span>
+                        <span class="d-inline-block average-rating">({{ $specialist->feedbacks->count() }})</span>
                     </div>
                     <div class="clinic-details">
                         <p class="doc-location"><i class="fas fa-map-marker-alt"></i>{{$specialist->location}} - <a href="javascript:void(0);">Получить направление</a></p>

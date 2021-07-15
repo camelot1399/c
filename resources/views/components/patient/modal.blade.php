@@ -44,15 +44,15 @@
     </script>
 @endpush
 <div class="profile-modal-container close-modal">
-    <div class="profile-modal-content">
-        <div class="row book-content">
+    <div class="profile-modal-content book-content">
+        <div class="row">
 
             <div class="col-md-12" >
                 <div class="profile-header">
                     <div class="row align-items-center">
                         <div class="col-auto profile-image">
-                            <a href="javascript:void(0)">
-                                <img class="rounded-circle" alt="User Image" src="">
+                            <a href="#">
+                                <img class="rounded-circle" alt="User Image" src="img/patient.jpg">
                             </a>
                         </div>
                         <div class="col ml-md-n2 profile-user-info">
@@ -116,7 +116,6 @@
 @push('style')
     <style>
         .profile-modal-container {
-            pointer-events: none;
             opacity: 0;
             position: fixed;
             z-index: -1;

@@ -25,7 +25,7 @@
         @stack('style')
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div class="bg-gray-100 min-h-screen flex flex-column">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -36,7 +36,7 @@
 {{--            </header>--}}
 
             <!-- Page Content -->
-            <main id="app">
+            <main id="app" style="flex:auto">
                 {{ $slot }}
             </main>
             <x-footer></x-footer>

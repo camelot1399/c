@@ -94,7 +94,7 @@
                             <i class="fas fa-star"></i>
                         @endif
                     @endfor
-                    <span class="d-inline-block average-rating">({{ $specialist->scores->count() }})</span>
+                    <span class="d-inline-block average-rating">({{ $specialist->feedbacks->count() }})</span>
                 </div>
                 <p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> {{$specialist->location}}</p>
             </div>
