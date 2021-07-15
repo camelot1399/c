@@ -29,7 +29,7 @@
                                 </li>
                                 <li class="right-arrow">
                                     <a href="#"
-                                       :class="{ 'disabled': currentWeekIdx === maxCurrentWeekInx }"
+                                       :class="{ 'disabled': currentWeekIdx + 1 === countWeeks }"
                                        @click.prevent="nextWeek"
                                     >
                                         <i class="fa fa-chevron-right"></i>
@@ -102,7 +102,7 @@ export default {
         currentWeekIdx: 0,
         currentTimeIdx: null,
         currentDayIdx: null,
-        maxCurrentWeekInx: 10,
+        countWeeks: 10,
         currentDateTime: null,
     }),
     created() {
@@ -114,7 +114,7 @@ export default {
         }
         this.currentMonday = monday;
         console.log(monday)
-        for (let i = 0; i < this.maxCurrentWeekInx; i++) {
+        for (let i = 0; i < this.countWeeks; i++) {
             let date = new Date()
             date.setDate(monday.getDate() + i * 7)
             date.setHours(0)
@@ -151,6 +151,7 @@ export default {
             this.currentTimeIdx = null
             this.currentDayIdx = null
             this.currentWeekIdx++
+            console.log(this.currentWeekIdx)
         },
         backWeek() {
             this.currentTimeIdx = null
