@@ -18,7 +18,7 @@
         </div>
 
         <div class="slickList__body">
-            <div class="slickList__filterBlock" v-if="filterBlock.status">
+            <div class="slickList__filterBlock" v-if="filterBlock.status && !slider">
 
                 <div class="slickList__filterBlock_body">
                     <div class="slickList__filterBlock_title">
@@ -126,7 +126,7 @@ export default {
                 searchInput: null
             },
             filterBlock: {
-                status: false,
+                status: true,
                 searchInput: "",
                 categories: [],
                 checkedCategories: []
