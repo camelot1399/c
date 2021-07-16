@@ -100,8 +100,8 @@ export default {
             type: String,
             required: true
         },
-        weeks: {
-            type: Array,
+        inputWeek: {
+            type: Object,
             default: {},
         },
     },
@@ -117,7 +117,7 @@ export default {
     }),
     created() {
         console.log(this.action)
-        console.log(this.weeks)
+        console.log(this.inputWeek)
 
         const now = new Date()
         const monday = new Date()

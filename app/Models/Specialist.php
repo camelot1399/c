@@ -98,4 +98,10 @@ class Specialist extends Model
             ->whereDatetime($datetime->format('Y-m-d H:i:s'))
             ->doesntExist();
     }
+
+    public function getLastScheduleDate(): JDate
+    {
+        $date = new JDate($this->schedules->last()->day);
+        return $date->clone()->modify('+1 day');
+    }
 }

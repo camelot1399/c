@@ -12,11 +12,11 @@ class ScheduleController extends Controller
 {
     public function index(Specialist $specialist)
     {
-        $date = new JDate('monday this week');
+        $date = new JDate();
         $week = Week::create($specialist,$date);
-        $weeks = [$week];
+        $week = json_encode($week);
 //        dd($weeks);
-        return view('schedule.index',compact(['specialist','weeks']));
+        return view('schedule.index',compact(['specialist','week']));
     }
 
     public function personalInfo(Specialist $specialist, Request $request)
