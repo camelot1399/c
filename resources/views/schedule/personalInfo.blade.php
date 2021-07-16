@@ -9,6 +9,7 @@
                                 <form method="post" action="{{ route('books.store') }}">
                                     @csrf
                                     <input type="hidden" name="specialist_id" value="{{ $specialist->id }}">
+                                    <input type="hidden" name="schedule_id" value="{{ $schedule }}">
                                     <input type="hidden" name="datetime" value="{{ $datetime }}">
                                     <div class="info-widget">
                                         <h1>Вы записаны к {{ 'Д-ру. '.$specialist->user->name.' '.$specialist->user->surname ?? 'Д-ру. Николай Чавез' }}

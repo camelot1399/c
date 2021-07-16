@@ -44,6 +44,7 @@ class BookController extends Controller
                 $book->fill([
                     'user_id' => \Auth::user()->id,
                     'specialist_id' => $request->specialist_id,
+                    'schedule_id' => $request->schedule_id,
                     'description' => $request->description,
                     'datetime' => $request->datetime,
                 ]);

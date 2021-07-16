@@ -49,6 +49,7 @@ class Book extends Model
     protected $attributes = [];
     protected $fillable = [
         'specialist_id',
+        'schedule_id',
         'user_id',
         'datetime',
         'name',
