@@ -38,10 +38,10 @@ class Specialist extends Model
         return $this->hasMany(Schedule::class);
     }
 
-//    public function scores(): HasMany
-//    {
-//        return $this->hasMany(Score::class);
-//    }
+    public function days(): HasMany
+    {
+        return $this->hasMany(Day::class,'specialist_id');
+    }
 
     public function feedbacks(): HasMany
     {
@@ -93,18 +93,9 @@ class Specialist extends Model
 
     public function isTimeFree(JDate $datetime): bool
     {
-        $count = $this
+        return $this
             ->books()
             ->whereDatetime($datetime->format('Y-m-d H:i:s'))
-            ->count();
-        switch ($count) {
-            case 0:
-                return true;
-            case 1:
-                return false;
-            default:
-//                TODO: заготовка для отлова ошибок наслоения приемов
-                return false;
-        }
+            ->doesntExist();
     }
 }

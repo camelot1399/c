@@ -16,11 +16,14 @@ class CreateFeedbacksTable extends Migration
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('specialist_id')
-                ->constrained('specialists');
+                ->constrained('specialists')
+                ->onUpdate('cascade');
             $table->foreignId('user_id')->nullable()
                 ->constrained('users')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->onUpdate('cascade');
+            $table->foreignId('book_id')->nullable()
+                ->constrained('books')
+                ->onUpdate('cascade');
             $table->enum('value',[1,2,3,4,5]);
             $table->string('name')->nullable();
             $table->string('surname')->nullable();

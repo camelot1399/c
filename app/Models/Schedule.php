@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Schedule extends Model
 {
     use HasFactory;
+    protected $fillable = ['day','start_time','end_time','duration'];
 
     public function specialist(): BelongsTo
     {
