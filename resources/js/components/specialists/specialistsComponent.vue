@@ -64,9 +64,7 @@ export default {
     },
     data() {
         return {
-            categories: [
-
-            ],
+            categories: [],
             filters: {
                 categories: []
             },
@@ -75,14 +73,6 @@ export default {
     },
     components: {
         cardComponent
-    },
-    methods: {
-        categoryToFilter(idx){
-            console.log(this.filters);
-        },
-        test(idx){
-            console.log(this.filters, idx);
-        }
     },
     computed: {
         filteredSpecialists() {
@@ -97,7 +87,6 @@ export default {
                 //Поиск
                 if (this.searchString && flag){
                     const arrSearchWords = this.searchString.trim().split(' ');
-                    console.log(arrSearchWords);
 
                     for (let word of arrSearchWords) {
                         if (
@@ -126,9 +115,6 @@ export default {
                 this.categories.push(el);
             }
         )
-
-        console.log(this.categories);
-        console.log(this.doctors);
     }
 }
 </script>
