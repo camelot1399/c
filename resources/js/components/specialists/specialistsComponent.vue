@@ -3,7 +3,7 @@
         <div id="slickListSearchBlock">
             <form action="#" class="slickList__form" @click.prevent="">
                 <button class="filterBlock__btn">
-                    <i class="fas fa-brain" @click="filterBlock.status = !filterBlock.status"></i>
+                    <i class="fas fa-brain" ></i>
                 </button>
                 <input
                     type="text"
@@ -11,13 +11,13 @@
                     class="slickList__searchInput"
                     placeholder="Фамилия, имя, отчество"
                     data-control="inputText"
-                    v-model="filterBlock.searchInput"
+                    v-model="searchString"
                 >
             </form>
         </div>
 
         <div class="slickList__body">
-            <div class="slickList__filterBlock" v-if="filterBlock.status">
+            <div class="slickList__filterBlock">
                 <div class="slickList__filterBlock_body">
                     <div class="slickList__filterBlock_title">
                         <h4>Filter search</h4>
@@ -26,15 +26,15 @@
                     <div class="slickList__filterBlock_item">
                         <div class="slickList__filterBlock_header">Категория</div>
                         <ul class="slickList__filterBlock_ul">
-                            <li v-for="category in filterBlock.categories" :key="category.id" >
+                            <li v-for="category in categories" :key="'category-' + category.id" >
                                 <input
                                     type="checkbox"
-                                    :name="'slickList__filterBlock_name_' + category.id"
-                                    :id="'slickList__filterBlock_name_' + category.id"
-                                    hidden=""
-                                    @click="checkedcategories(category)"
+                                    :value="category.id"
+                                    :id="'category-' + category.id"
+                                    :hidden="true"
+                                    v-model="filters.categories"
                                 >
-                                <label :for="'slickList__filterBlock_name_' + category.id">{{ category.name }}</label>
+                                <label :for="'category-' + category.id">{{ category.name }}</label>
                             </li>
                         </ul>
                     </div>
@@ -64,117 +64,71 @@ export default {
     },
     data() {
         return {
-            offset: 0,
-            currentItem: 1,
-            widthItem: 280,
-            sliderWidth: 0,
-            currentOffsetBlock: 0,
-            marginBlock: 10,
-            specialists: [],
-            specialistsFilter: [],
-            sortedSpecialists: [],
-            filterBlock: {
-                status: true,
-                searchInput: "",
-                categories: [],
-                checkedCategories: []
-            }
+            categories: [
+
+            ],
+            filters: {
+                categories: []
+            },
+            searchString: ''
         }
     },
     components: {
         cardComponent
     },
-    watch: {
-        'filterBlock.searchInput': function() {
-            this.filtered();
-        }
-    },
     methods: {
-        filtered() {
-            this.sortedSpecialists = [];
-
-            if (this.filterBlock.checkedCategories.length) {
-                this.filterBlock.checkedCategories.forEach(el => {
-                    this.addToSortedSpecialists(el);
-                })
-            }
-
-            if (this.filterBlock.searchInput.length >= 3) {
-                this.filterSortedSpecialistsBySearchInput();
-            }
+        categoryToFilter(idx){
+            console.log(this.filters);
         },
-        filterSortedSpecialistsBySearchInput() {
-            let input = this.filterBlock.searchInput;
-            let result = this.sortedSpecialists;
-            // проверяем, если у нас есть пробелы в искомой фразе, создаем массив filterArray из слов
-            if (input.includes(" ")) {
-                let filterArray = input.split(' ');
-
-                filterArray.forEach(el => {
-                    if (el !== "" && el.length > 3) {
-                        this.searchForMatches(el, result);
-                    }
-                })
-            } else {
-                this.searchForMatches(input, result);
-            }
-        },
-        searchForMatches(filter, result) {
-            let regexp = new RegExp(filter, 'i');
-
-            this.specialists.forEach(el => {
-                if (regexp.exec(el.user.name) || regexp.exec(el.user.surname) || regexp.exec(el.user.second_name)) {
-                    if (result.indexOf(el) === -1) result.push(el);
-                }
-            });
-
-            return result;
-        },
-        addToSortedSpecialists(filter) {
-            this.specialists.map(el => {
-                if (filter.id === el.category.id) {
-                    this.sortedSpecialists.push(el);
-                }
-            });
-        },
-        getCategoriesList() {
-            let categories = this.specialists.map(el => el.category);
-
-            let list = [];
-            categories.forEach(el => {
-                if (!list.some(e => e.name === el.name)) {
-                    list.push({
-                        id: el.id,
-                        name: el.name
-                    })
-                }
-            })
-
-            this.filterBlock.categories = list;
-        },
-        checkedcategories(category) {
-            if (!this.filterBlock.checkedCategories.some(el => el.id === category.id)) {
-                this.filterBlock.checkedCategories.push(category);
-            } else {
-                this.filterBlock.checkedCategories.splice(this.filterBlock.checkedCategories.indexOf(category), 1);
-            }
-
-            this.filtered();
+        test(idx){
+            console.log(this.filters, idx);
         }
     },
     computed: {
         filteredSpecialists() {
-            if (this.sortedSpecialists.length) {
-                return this.sortedSpecialists;
-            }
+            return this.doctors.filter(doctor => {
+                let flag = true;
 
-            return this.specialists;
+                //Фильтр по категориям
+                if (this.filters.categories.length > 0) {
+                    flag = this.filters.categories.some(el => el === doctor.category_id);
+                }
+
+                //Поиск
+                if (this.searchString && flag){
+                    const arrSearchWords = this.searchString.trim().split(' ');
+                    console.log(arrSearchWords);
+
+                    for (let word of arrSearchWords) {
+                        if (
+                            doctor.user.name.search(word) >= 0 ||
+                            doctor.user.second_name.search(word) >= 0 ||
+                            doctor.user.surname.search(word) >= 0
+                        ){
+                            return true
+                        } else {
+                            return false
+                        }
+                    }
+                }
+                return flag;
+            });
         }
     },
     mounted() {
-        this.specialists = this.doctors;
-        this.specialistsFilter = this.doctors;
-        this.getCategoriesList();
+        const categories = this.doctors.map(doctor => ({
+            id: doctor.category.id,
+            name: doctor.category.name
+        }));
+
+        categories.forEach(el => {
+            if (!this.categories.some((category) => el.id === category.id))
+                this.categories.push(el);
+            }
+        )
+
+        console.log(this.categories);
+        console.log(this.doctors);
     }
 }
 </script>
