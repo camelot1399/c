@@ -18,7 +18,8 @@ class ScheduleSeeder extends Seeder
     {
         $specialists = Specialist::where('id','<=',10)->get();
         $day1 = new JDate('monday this week');
-        $day2 = new JDate('monday next week');
+        $day2 = $day1->clone()->modify('+3 weeks');
+//        $day2 = new JDate('monday next week');
         foreach ($specialists as $specialist) {
             for ($day = $day1;$day<$day2;$day->modify('+1 day')) {
                 Schedule::factory()

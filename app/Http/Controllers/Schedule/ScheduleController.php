@@ -11,24 +11,28 @@ class ScheduleController extends Controller
 {
     public function index(Specialist $specialist)
     {
-        $day1 = new JDate('monday this week');
-        $day2 = new JDate('monday next week');
-        $books = $specialist->books()
-            ->where('datetime','>',$day1)
-            ->where('datetime','<',$day2)
-            ->get();
-        $start_time = 9;
-        $end_time = 12;
-        $duration = 1;
-        $schedules = [];
-        for ($day = 0; $day < 7; $day++) {
-            $schedules[$day] = compact('start_time','end_time','duration');
-        }
-        foreach ($schedules as $schedule) {
-            //
-        }
+//        $day1 = new JDate('monday this week');
+//        $lastSchedule = $specialist->schedules()->get()->last();
+//        $day2 = new JDate($lastSchedule->day);
+//        $schedules = $specialist->schedules()
+//            ->where('day','>',$day1)
+//            ->get();
+//        $books = $specialist->books()
+//            ->where('datetime','>',$day1)
+//            ->where('datetime','<',$day2)
+//            ->get();
+//        $start_time = 9;
+//        $end_time = 12;
+//        $duration = 1;
+//        $schedules = [];
+//        for ($day = 0; $day < 7; $day++) {
+//            $schedules[$day] = compact('start_time','end_time','duration');
+//        }
+//        foreach ($schedules as $schedule) {
+//            //
+//        }
 //        dd($books);
-        return view('schedule.index',compact(['specialist','books']));
+        return view('schedule.index',compact(['specialist']));
     }
 
     public function personalInfo(Specialist $specialist, Request $request)

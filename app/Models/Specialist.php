@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Jenssegers\Date\Date as JDate;
 
 class Specialist extends Model
 {
@@ -30,6 +31,11 @@ class Specialist extends Model
     public function books(): HasMany
     {
         return $this->hasMany(Book::class);
+    }
+
+    public function schedules(): HasMany
+    {
+        return $this->hasMany(Schedule::class);
     }
 
 //    public function scores(): HasMany
@@ -83,5 +89,22 @@ class Specialist extends Model
         }
         $goodCount = $this->feedbacks()->where('value','>',3)->count();
         return round($goodCount/$allCount*100);
+    }
+
+    public function isTimeFree(JDate $datetime): bool
+    {
+        $count = $this
+            ->books()
+            ->whereDatetime($datetime->format('Y-m-d H:i:s'))
+            ->count();
+        switch ($count) {
+            case 0:
+                return true;
+            case 1:
+                return false;
+            default:
+//                TODO: заготовка для отлова ошибок наслоения приемов
+                return false;
+        }
     }
 }

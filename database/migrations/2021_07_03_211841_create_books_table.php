@@ -30,6 +30,7 @@ class CreateBooksTable extends Migration
             $table->text('description');
             $table->integer('age')->nullable();
             $table->timestamps();
+            $table->unique(['specialist_id','datetime']);
         });
     }
 
