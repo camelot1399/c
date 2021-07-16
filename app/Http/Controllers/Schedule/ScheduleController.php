@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Schedule;
 
 use App\Http\Controllers\Controller;
 use App\Models\Specialist;
-use DateTime;
+use App\Models\Week;
 use Illuminate\Http\Request;
 use Jenssegers\Date\Date as JDate;
 
@@ -12,7 +12,11 @@ class ScheduleController extends Controller
 {
     public function index(Specialist $specialist)
     {
-        return view('schedule.index',compact('specialist'));
+        $date = new JDate();
+        $week = Week::create($specialist,$date);
+        $week = json_encode($week);
+//        dd($weeks);
+        return view('schedule.index',compact(['specialist','week']));
     }
 
     public function personalInfo(Specialist $specialist, Request $request)

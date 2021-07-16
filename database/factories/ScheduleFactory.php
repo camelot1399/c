@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Book;
+use App\Models\Schedule;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class BookFactory extends Factory
+class ScheduleFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Book::class;
+    protected $model = Schedule::class;
 
     /**
      * Define the model's default state.
@@ -23,11 +23,9 @@ class BookFactory extends Factory
     {
         return [
             'specialist_id' => $this->faker->randomNumber(2),
-            'user_id' => $this->faker->randomNumber(2),
-            'schedule_id' => $this->faker->randomNumber(2),
-            'datetime' => $this->faker->dateTimeBetween('-1 week', '+1 week')
-                ->setTime($this->faker->numberBetween(9,11),0),
-            'description' => $this->faker->sentence(10),
+            'start_time' => date('H:i:s',mktime(9,0,0)),
+            'end_time' => date('H:i:s',mktime(12,0,0)),
+            'duration' => date('H:i:s',mktime(1,0,0)),
         ];
     }
 }

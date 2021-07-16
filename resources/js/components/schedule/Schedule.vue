@@ -54,11 +54,10 @@
                                     v-for="(day, dayIdx) in week.times"
                                     :key="'day-' + dayIdx"
                                 >
-                                    <a
+                                    <span
                                         v-if="!day.length"
                                         class="timing bg-danger text-white"
-                                        href="#"
-                                    >Не приёмный день</a>
+                                    >Не приёмный день</span>
                                     <a
                                         v-else
                                         v-for="(time, timeIdx) in day"
@@ -100,7 +99,11 @@ export default {
         action: {
             type: String,
             required: true
-        }
+        },
+        inputWeek: {
+            type: Object,
+            default: {},
+        },
     },
     data: () => ({
         currentMonday: null,
@@ -114,13 +117,15 @@ export default {
     }),
     created() {
         console.log(this.action)
+        console.log(this.inputWeek)
+
         const now = new Date()
         const monday = new Date()
         if ( now.getDay() !== 1 ) {
             monday.setDate( now.getDate() - now.getDay() + 1 )
         }
         this.currentMonday = monday;
-        console.log(monday)
+        // console.log(monday)
         for (let i = 0; i < this.countWeeks; i++) {
             let date = new Date()
             date.setDate(monday.getDate() + i * 7)
@@ -141,7 +146,7 @@ export default {
             })
         }
         this.nowDayIdx = now.getDay();
-        console.log('weeks: ', this.weeks);
+        // console.log('weeks: ', this.weeks);
     },
     methods: {
         formatDate (day, delta) {

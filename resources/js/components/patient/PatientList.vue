@@ -106,7 +106,7 @@ export default {
     },
     props: {
         books: {
-            type: Object,
+            type: Array,
             default: {},
         }
     },

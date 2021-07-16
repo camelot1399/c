@@ -74,4 +74,9 @@ class Book extends Model
         return $this->belongsTo(Specialist::class);
     }
 
+    public function schedule(): BelongsTo
+    {
+        return $this->belongsTo(Schedule::class);
+    }
+
 }
