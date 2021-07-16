@@ -55,6 +55,12 @@
                                     :key="'day-' + dayIdx"
                                 >
                                     <a
+                                        v-if="!day.length"
+                                        class="timing bg-danger text-white"
+                                        href="#"
+                                    >Не приёмный день</a>
+                                    <a
+                                        v-else
                                         v-for="(time, timeIdx) in day"
                                         :key="'time-' + dayIdx + '-' + timeIdx"
                                         class="timing"
@@ -126,7 +132,7 @@ export default {
                 times: [
                     ['9:00', '10:00', '11:00'],
                     ['9:00', '10:00', '11:00'],
-                    ['9:00', '10:00', '11:00'],
+                    [],
                     ['9:00', '10:00', '11:00'],
                     ['9:00', '10:00', '11:00'],
                     ['9:00', '10:00', '11:00'],
@@ -176,12 +182,20 @@ export default {
         week() {
             return this.weeks[this.currentWeekIdx]
         }
-
     }
 }
 </script>
 
 <style scoped>
+
+a.disabled {
+    pointer-events: none;
+    color: gray;
+}
+
+a.disabled:hover {
+    color: gray;
+}
 
 p {
     margin-top: 0;

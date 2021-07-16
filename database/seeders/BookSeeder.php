@@ -16,7 +16,7 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::where('id','>',10)->get();
+        $users = User::where('id','>',20)->get();
         $specialists = Specialist::where('id','<=',10)->get();
         foreach ($specialists as $specialist) {
             foreach ($users as $user) {

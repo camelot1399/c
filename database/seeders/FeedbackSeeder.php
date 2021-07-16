@@ -16,8 +16,8 @@ class FeedbackSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::where('id','>',15)->get();
-        $specialists = Specialist::where('id','<=',5)->get();
+        $users = User::where('id','>',25)->get();
+        $specialists = Specialist::where('id','<=',10)->get();
         foreach ($specialists as $specialist) {
             foreach ($users as $user) {
                 Feedback::factory()

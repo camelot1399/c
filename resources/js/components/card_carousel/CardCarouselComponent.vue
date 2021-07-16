@@ -1,7 +1,7 @@
 <template>
     <div class="slickList" :class="{'overflow' : slider}">
         <div id="slickListSearchBlock" v-if="!slider">
-            <form action="#" class="slickList__form" @click.prevent="getSpecialistsFilter">
+            <form action="#" class="slickList__form" @click.prevent="">
                 <button class="filterBlock__btn">
                     <i class="fas fa-brain" @click="filterBlock.status = !filterBlock.status"></i>
                 </button>
@@ -18,23 +18,30 @@
         </div>
 
         <div class="slickList__body">
-            <div class="slickList__filterBlock" v-if="filterBlock.status">
+            <div class="slickList__filterBlock" v-if="filterBlock.status && !slider">
 
-                <div class="slickList__filterBlock_item">
-                    <div class="slickList__filterBlock_header">Категория</div>
-                    <ul class="slickList__filterBlock_ul">
-                        <li v-for="category in filterBlock.categories" :key="category.id" >
-                            <input
-                                type="checkbox"
-                                :name="'slickList__filterBlock_name_' + category.id"
-                                :id="'slickList__filterBlock_name_' + category.id"
-                                hidden=""
-                                @click="checkedcategories(category)"
-                            >
-                            <label :for="'slickList__filterBlock_name_' + category.id">{{ category.name }}</label>
-                        </li>
-                    </ul>
+                <div class="slickList__filterBlock_body">
+                    <div class="slickList__filterBlock_title">
+                        <h4>Filter search</h4>
+                    </div>
+
+                    <div class="slickList__filterBlock_item">
+                        <div class="slickList__filterBlock_header">Категория</div>
+                        <ul class="slickList__filterBlock_ul">
+                            <li v-for="category in filterBlock.categories" :key="category.id" >
+                                <input
+                                    type="checkbox"
+                                    :name="'slickList__filterBlock_name_' + category.id"
+                                    :id="'slickList__filterBlock_name_' + category.id"
+                                    hidden=""
+                                    @click="checkedcategories(category)"
+                                >
+                                <label :for="'slickList__filterBlock_name_' + category.id">{{ category.name }}</label>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+
 
             </div>
             <div>
@@ -119,8 +126,8 @@ export default {
                 searchInput: null
             },
             filterBlock: {
-                status: false,
-                searchInput: null,
+                status: true,
+                searchInput: "",
                 categories: [],
                 checkedCategories: []
             }
@@ -166,7 +173,7 @@ export default {
                 })
             }
 
-            if (this.filterBlock.searchInput.length && this.filterBlock.searchInput.length >= 3) {
+            if (this.filterBlock.searchInput.length >= 3) {
                 this.filterSortedSpecialistsBySearchInput();
             }
         },
@@ -274,7 +281,6 @@ export default {
             this.filterBlock.categories = list;
         },
         checkedcategories(category) {
-            console.log('start checkedcategories');
             if (!this.filterBlock.checkedCategories.some(el => el.id === category.id)) {
                 this.filterBlock.checkedCategories.push(category);
             } else {
@@ -543,6 +549,19 @@ export default {
     input:disabled + label:before {
     background: #eee;
     color: #aaa;
+    }
+
+    .slickList__filterBlock_body {
+        background: white;
+    }
+
+    .slickList__filterBlock_title {
+        border-bottom: 1px solid #f0f0f0;
+        padding: 10px;
+    }
+
+    .slickList__filterBlock_item {
+        padding: 10px;
     }
 
 
