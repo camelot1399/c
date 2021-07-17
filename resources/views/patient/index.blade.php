@@ -19,6 +19,7 @@
             @push('scripts')
                 <script src="{{ mix('js/patientList.js') }}" defer></script>
             @endpush
+
             <patient-list :books="{{ $books }}"></patient-list>
 {{--            <x-patient.list :books="$books"></x-patient.list>--}}
         </div>

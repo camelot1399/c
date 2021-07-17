@@ -115,4 +115,11 @@ class BookController extends Controller
         return response()->json(['book' => $book]);
      }
 
+    public function isOverUpdate(Book $book)
+    {
+        $book->is_over = 1;
+        $book->save();
+        return redirect()->back();
+     }
+
 }

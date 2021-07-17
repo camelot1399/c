@@ -42,7 +42,6 @@
                                                     class="align-middle"
                                                 >
                                         <!--        @foreach($books as $book)-->
-
                                                 <tr
                                                     v-for="book of filterBooks"
                                                     :key="'book-' + book.id"
@@ -62,6 +61,11 @@
                                                     <td class="text-center">{{ book.specialist.price }} </td>
                                                     <td class="text-right">
                                                         <div class="table-action">
+                                                            <a :href="'/book/update/' + book.id"
+                                                               v-if="!book.is_over"
+                                                               class="btn btn-sm btn-primary">
+                                                                <i class="fas fa-check"></i> Завершить прием
+                                                            </a>
                                                             <a
                                                                 data-book-id="$book->id"
                                                                 href="#"
