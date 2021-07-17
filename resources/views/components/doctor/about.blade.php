@@ -70,9 +70,6 @@
         .pt-0, .py-0 {
             padding-top: 0!important;
         }
-        .fade {
-            transition: opacity .15s linear;
-        }
         .row {
             display: -ms-flexbox;
             display: flex;
@@ -172,26 +169,26 @@
         }
     </style>
 @endpush
-<div class="card p-40px">
-    <div class="card-body pt-0">
-        {{--        <nav class="user-tabs mb-4">
-                    <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#doc_overview" data-toggle="tab">Overview</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#doc_locations" data-toggle="tab">Locations</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#doc_reviews" data-toggle="tab">Reviews</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#doc_business_hours" data-toggle="tab">Business Hours</a>
-                        </li>
-                    </ul>
-                </nav>--}}
+{{--<div class="card p-40px">--}}
+{{--    <div class="card-body pt-0">--}}
+{{--                <nav class="user-tabs mb-4">--}}
+{{--                    <ul class="nav nav-tabs nav-tabs-bottom nav-justified">--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link active" href="#doc_overview" data-toggle="tab">Обзор</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link" href="#doc_locations" data-toggle="tab">Locations</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link" href="#doc_reviews" data-toggle="tab">Отзывы</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link" href="#doc_business_hours" data-toggle="tab">Рабочее время</a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </nav>--}}
         <div class="tab-content pt-0">
-            <div role="tabpanel" id="doc_overview" class="tab-pane fade active show">
+            <div role="tabpanel" id="doctor-overview" class="tab-pane active">
                 <div class="row">
                     <div class="col-md-12 col-lg-9">
                         <div class="widget about-widget">
@@ -743,6 +740,6 @@
                 </div>
             </div>--}}
         </div>
-    </div>
+{{--    </div>--}}
 
-</div>
+{{--</div>--}}

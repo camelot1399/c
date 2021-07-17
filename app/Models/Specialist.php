@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Jenssegers\Date\Date as JDate;
 
 class Specialist extends Model
 {
@@ -32,10 +33,15 @@ class Specialist extends Model
         return $this->hasMany(Book::class);
     }
 
-//    public function scores(): HasMany
-//    {
-//        return $this->hasMany(Score::class);
-//    }
+    public function schedules(): HasMany
+    {
+        return $this->hasMany(Schedule::class);
+    }
+
+    public function days(): HasMany
+    {
+        return $this->hasMany(Day::class,'specialist_id');
+    }
 
     public function feedbacks(): HasMany
     {
@@ -83,5 +89,19 @@ class Specialist extends Model
         }
         $goodCount = $this->feedbacks()->where('value','>',3)->count();
         return round($goodCount/$allCount*100);
+    }
+
+    public function isTimeFree(JDate $datetime): bool
+    {
+        return $this
+            ->books()
+            ->whereDatetime($datetime->format('Y-m-d H:i:s'))
+            ->doesntExist();
+    }
+
+    public function getLastScheduleDate(): JDate
+    {
+        $date = new JDate($this->schedules->last()->day);
+        return $date->clone()->modify('+1 day');
     }
 }

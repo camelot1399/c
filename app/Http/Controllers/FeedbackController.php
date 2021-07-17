@@ -16,7 +16,14 @@ class FeedbackController extends Controller
 
     public function store(StoreFeedbackRequest $request)
     {
-        Feedback::create($request->validated());
+        try {
+            Feedback::create($request->validated());
+        } catch (Exception $e) {
+            // обработка исключения, в данном случае, как-раз, редирект
+            redirect()->back()
+                ->with('error', $e->getMessage());
+        }
+
         return redirect()->route('doctors.show', ['specialist' => $request->specialist_id]);
     }
 }

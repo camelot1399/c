@@ -7,7 +7,7 @@
 </div>
 <a href="{{ route('doctors.show', [
     'specialist' => $book->specialist,
-    'userId' => $book->user->id
+    'bookId' => $book->id
     ]) }}"
    class="button">Оставить свой отзыв
 </a>

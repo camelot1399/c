@@ -49,6 +49,7 @@ class Book extends Model
     protected $attributes = [];
     protected $fillable = [
         'specialist_id',
+        'schedule_id',
         'user_id',
         'datetime',
         'name',
@@ -73,6 +74,11 @@ class Book extends Model
     public function specialist(): BelongsTo
     {
         return $this->belongsTo(Specialist::class);
+    }
+
+    public function schedule(): BelongsTo
+    {
+        return $this->belongsTo(Schedule::class);
     }
 
 }
