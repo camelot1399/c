@@ -4,13 +4,13 @@
  */
 
 use App\Models\Specialist;
-
+//dd($specialist->feedbacks);
 ?>
         <div id="feedback_modal" style="display:none;">
             <h4 class="widget-title mb-4">Отзывы о
                 <span class="text-gray-500">{{ $specialist->getNameAndSurname()}}</span>
             </h4>
-                @if($specialist->feedbacks->count() != 0)
+                @if($specialist->feedbacks->count() !== 0)
                     @foreach($specialist->feedbacks as $oneFeedback)
                         <?php
                         /**
@@ -32,6 +32,6 @@ use App\Models\Specialist;
                         <p class="text-gray-700">{{ $oneFeedback->body_text }}</p>
                     @endforeach
                 @else
-                    <p class="mt-5 text-gray-500 text-xl-center">Здесь пока нет ни одного отзыва, напишите свой :)</p>
+                    <p class="mt-5 text-gray-500 text-xl-center">Здесь пока нет ни одного отзыва :)</p>
                 @endif
         </div>
