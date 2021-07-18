@@ -36,7 +36,9 @@ class Day extends Model
             $datetime = new JDate($this->day);
             $datetime->setTime($time->hour,$time->minute);
             $this->times[$i]['time'] = $time->format('H:i');
-            $is_free = $this->books()->where('datetime','=',$datetime)->doesntExist();
+            $is_free = $this->books()
+                ->whereDatetime($datetime)
+                ->doesntExist();
             $this->times[$i]['is_free'] = $is_free;
         }
         return $this->times;

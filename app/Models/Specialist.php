@@ -65,6 +65,7 @@ class Specialist extends Model
     {
         $doctors = Specialist::with(['user', 'category','feedbacks'])->get();
         foreach ($doctors as $doctor) {
+            /** @var Specialist $doctor */
             $doctor->rating = $doctor->averageScore();
             $doctor->scoresCount = $doctor->feedbacks->count();
         }

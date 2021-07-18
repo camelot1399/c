@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Feedback;
 use App\Models\Specialist;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class FeedbackSeeder extends Seeder
@@ -20,6 +19,7 @@ class FeedbackSeeder extends Seeder
         foreach ($specialists as $specialist) {
             $books = $specialist->books()->take(10);
             foreach ($books as $book) {
+                var_dump($book);
                 Feedback::factory()
                     ->for($specialist)
                     ->for($book)
