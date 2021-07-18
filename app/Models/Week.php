@@ -19,8 +19,12 @@ class Week
             $day = $specialist->days()
                 ->where('day','=',$date)
                 ->first();
-            $day->setSchedule();
-            $week->times[$i] = $day->times;
+            if(isset($day)) {
+                $day->setSchedule();
+                $week->times[$i] = $day->times;
+            } else {
+                $week->times[$i] = [];
+            }
             $date->addDay();
         }
         return $week;
