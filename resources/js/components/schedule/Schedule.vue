@@ -124,11 +124,6 @@ export default {
         actionCurrentTime: ''
     }),
     created() {
-        console.log(this.action)
-        console.log(this.linkNextWeek)
-
-        console.log(this.inputWeek)
-        console.log(new Date(this.inputWeek.date))
 
         const now = new Date()
         const monday = new Date()
@@ -137,38 +132,15 @@ export default {
         }
         this.currentMonday = this.inputWeek.date
         this.weeks.push(this.inputWeek)
-        // console.log(monday)
-        // for (let i = 0; i < this.countWeeks; i++) {
-        //     let date = new Date()
-        //     date.setDate(monday.getDate() + i * 7)
-        //     date.setHours(0)
-        //     date.setMinutes(0)
-        //     date.setSeconds(0)
-        //     this.weeks.push({
-        //         date,
-        //         times: [
-        //             ['9:00', '10:00', '11:00'],
-        //             ['9:00', '10:00', '11:00'],
-        //             [],
-        //             ['9:00', '10:00', '11:00'],
-        //             ['9:00', '10:00', '11:00'],
-        //             ['9:00', '10:00', '11:00'],
-        //             ['9:00', '10:00', '11:00'],
-        //         ]
-        //     })
-        // }
         this.nowDayIdx = now.getDay();
-        // console.log('weeks: ', this.weeks);
     },
     methods: {
         formatDate (day, delta) {
             return new Intl.DateTimeFormat('ru', { day: 'numeric', month: 'short', year: 'numeric' }).format(day)
         },
         weekDay(dayOfWeek) {
-            console.log(this.week)
             const day = new Date(this.week.date)
             day.setDate(day.getDate() + dayOfWeek)
-            console.log(day)
             return new Intl.DateTimeFormat('ru', { weekday: 'short' }).format(day)
         },
         checkTime(datetime) {
@@ -177,14 +149,18 @@ export default {
         nextWeek() {
             this.actionCurrentTime = ''
             this.currentDayIdx = null
-            axios
-                .get(this.linkNextWeek + `?monday=${this.weeks[this.currentWeekIdx].nextMonday}`)
-                .then(({ data }) => {
-                    this.weeks.push(data)
-                    this.currentWeekIdx++
+            if (!this.weeks[this.currentWeekIdx + 1]) {
+                axios
+                    .get(this.linkNextWeek + `?monday=${this.weeks[this.currentWeekIdx].nextMonday}`)
+                    .then(({ data }) => {
+                        this.weeks.push(data)
+                        this.currentWeekIdx++
+                        console.log(data)
+                    })
+            } else {
+                this.currentWeekIdx++
+            }
 
-                    console.log(data)
-                })
             console.log(this.currentWeekIdx)
         },
         backWeek() {
@@ -193,14 +169,6 @@ export default {
             this.currentWeekIdx--
         },
         toCheckIn() {
-            // const time = this.weeks[this.currentWeekIdx].times[this.currentDayIdx][this.currentTimeIdx].split(':')
-            // const currentTime = new Date(this.weeks[this.currentWeekIdx].date)
-            // currentTime.setDate(currentTime.getDate() + this.currentDayIdx)
-            // currentTime.setHours(Number(time[0]) + 3)
-            // currentTime.setMinutes(time[1])
-            // // currentTime.setHours(currentTime.getUTCHours())
-            // console.log(currentTime)
-
             window.location.href = this.action + '?datetime=' + this.actionCurrentTime
         },
         timeIsFree(dayIdx, timeObj) {
@@ -212,7 +180,6 @@ export default {
             console.log(datetime)
 
             return datetime > new Date()
-            // dayIdx < nowDayIdx && currentWeekIdx === 0
         }
     },
     computed:{
