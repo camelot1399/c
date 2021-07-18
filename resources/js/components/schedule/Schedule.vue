@@ -21,15 +21,14 @@
                                     </a>
                                 </li>
                                 <li
-                                    v-for="(item, weekIdx) in [0, 1, 2, 3, 4, 5, 6]"
+                                    v-for="(dayOfWeek, weekIdx) in [0, 1, 2, 3, 4, 5, 6]"
                                     :key="'week-' + weekIdx"
                                 >
-                                    <span>{{ weekDay(new Date(week.date).setDate(week.date.getDate() + item )) }}</span>
-                                    <span class="slot-date">{{ formatDate(new Date(week.date).setDate(week.date.getDate() + item )) }}</span>
+                                    <span>{{ weekDay(dayOfWeek) }}</span>
+                                    <span class="slot-date">{{ formatDate(new Date(week.date).setDate(new Date(week.date).getDate() + dayOfWeek )) }}</span>
                                 </li>
                                 <li class="right-arrow">
                                     <a href="#"
-                                       :class="{ 'disabled': currentWeekIdx + 1 === countWeeks }"
                                        @click.prevent="nextWeek"
                                     >
                                         <i class="fa fa-chevron-right"></i>
@@ -63,11 +62,14 @@
                                         v-for="(time, timeIdx) in day"
                                         :key="'time-' + dayIdx + '-' + timeIdx"
                                         class="timing"
-                                        :class="{'selected': currentTimeIdx === timeIdx && currentDayIdx === dayIdx,'disabled': dayIdx < nowDayIdx && currentWeekIdx === 0}"
+                                        :class="{
+                                            'selected': actionCurrentTime === time.action,
+                                            'disabled': !timeIsFree(dayIdx, time)
+                                        }"
                                         href="#"
-                                        @click.prevent="checkTime(dayIdx, timeIdx)"
+                                        @click.prevent="checkTime(time.action)"
                                     >
-                                        <span>{{ time }}</span>
+                                        <span>{{ time.time }}</span>
                                     </a>
                                 </li>
                             </ul>
@@ -81,6 +83,7 @@
         <input
             type="submit"
             class="btn btn-primary submit-btn booking-btn"
+            :disabled="actionCurrentTime === ''"
             value="Записаться"
             @click="toCheckIn"
         >
@@ -100,6 +103,10 @@ export default {
             type: String,
             required: true
         },
+        linkNextWeek: {
+            type: String,
+            required: true
+        },
         inputWeek: {
             type: Object,
             default: {},
@@ -111,40 +118,45 @@ export default {
         currentWeekIdx: 0,
         currentTimeIdx: null,
         currentDayIdx: null,
-        countWeeks: 10,
+        // countWeeks: 10,
         currentDateTime: null,
         nowDayIdx: 0,
+        actionCurrentTime: ''
     }),
     created() {
         console.log(this.action)
+        console.log(this.linkNextWeek)
+
         console.log(this.inputWeek)
+        console.log(new Date(this.inputWeek.date))
 
         const now = new Date()
         const monday = new Date()
         if ( now.getDay() !== 1 ) {
             monday.setDate( now.getDate() - now.getDay() + 1 )
         }
-        this.currentMonday = monday;
+        this.currentMonday = this.inputWeek.date
+        this.weeks.push(this.inputWeek)
         // console.log(monday)
-        for (let i = 0; i < this.countWeeks; i++) {
-            let date = new Date()
-            date.setDate(monday.getDate() + i * 7)
-            date.setHours(0)
-            date.setMinutes(0)
-            date.setSeconds(0)
-            this.weeks.push({
-                date,
-                times: [
-                    ['9:00', '10:00', '11:00'],
-                    ['9:00', '10:00', '11:00'],
-                    [],
-                    ['9:00', '10:00', '11:00'],
-                    ['9:00', '10:00', '11:00'],
-                    ['9:00', '10:00', '11:00'],
-                    ['9:00', '10:00', '11:00'],
-                ]
-            })
-        }
+        // for (let i = 0; i < this.countWeeks; i++) {
+        //     let date = new Date()
+        //     date.setDate(monday.getDate() + i * 7)
+        //     date.setHours(0)
+        //     date.setMinutes(0)
+        //     date.setSeconds(0)
+        //     this.weeks.push({
+        //         date,
+        //         times: [
+        //             ['9:00', '10:00', '11:00'],
+        //             ['9:00', '10:00', '11:00'],
+        //             [],
+        //             ['9:00', '10:00', '11:00'],
+        //             ['9:00', '10:00', '11:00'],
+        //             ['9:00', '10:00', '11:00'],
+        //             ['9:00', '10:00', '11:00'],
+        //         ]
+        //     })
+        // }
         this.nowDayIdx = now.getDay();
         // console.log('weeks: ', this.weeks);
     },
@@ -152,18 +164,27 @@ export default {
         formatDate (day, delta) {
             return new Intl.DateTimeFormat('ru', { day: 'numeric', month: 'short', year: 'numeric' }).format(day)
         },
-        weekDay(date) {
-            return new Intl.DateTimeFormat('ru', { weekday: 'short' }).format(date)
+        weekDay(dayOfWeek) {
+            console.log(this.week)
+            const day = new Date(this.week.date)
+            day.setDate(day.getDate() + dayOfWeek)
+            console.log(day)
+            return new Intl.DateTimeFormat('ru', { weekday: 'short' }).format(day)
         },
-        checkTime(day, time) {
-            this.currentTimeIdx = time
-            this.currentDayIdx = day
-            console.log(this.weeks[this.currentWeekIdx].date.toISOString())
+        checkTime(datetime) {
+            this.actionCurrentTime = datetime
         },
         nextWeek() {
-            this.currentTimeIdx = null
+            this.actionCurrentTime = ''
             this.currentDayIdx = null
-            this.currentWeekIdx++
+            axios
+                .get(this.linkNextWeek + `?monday=${this.weeks[this.currentWeekIdx].nextMonday}`)
+                .then(({ data }) => {
+                    this.weeks.push(data)
+                    this.currentWeekIdx++
+
+                    console.log(data)
+                })
             console.log(this.currentWeekIdx)
         },
         backWeek() {
@@ -172,15 +193,26 @@ export default {
             this.currentWeekIdx--
         },
         toCheckIn() {
-            const time = this.weeks[this.currentWeekIdx].times[this.currentDayIdx][this.currentTimeIdx].split(':')
-            const currentTime = new Date(this.weeks[this.currentWeekIdx].date)
-            currentTime.setDate(currentTime.getDate() + this.currentDayIdx)
-            currentTime.setHours(Number(time[0]) + 3)
-            currentTime.setMinutes(time[1])
-            // currentTime.setHours(currentTime.getUTCHours())
-            console.log(currentTime)
+            // const time = this.weeks[this.currentWeekIdx].times[this.currentDayIdx][this.currentTimeIdx].split(':')
+            // const currentTime = new Date(this.weeks[this.currentWeekIdx].date)
+            // currentTime.setDate(currentTime.getDate() + this.currentDayIdx)
+            // currentTime.setHours(Number(time[0]) + 3)
+            // currentTime.setMinutes(time[1])
+            // // currentTime.setHours(currentTime.getUTCHours())
+            // console.log(currentTime)
 
-            window.location.href = this.action + '?datetime=' + currentTime.toISOString()
+            window.location.href = this.action + '?datetime=' + this.actionCurrentTime
+        },
+        timeIsFree(dayIdx, timeObj) {
+            console.log(timeObj)
+            if (!timeObj.is_free) return false
+
+            const datetime = new Date(this.week.date)
+            datetime.setDate(datetime.getDate() + dayIdx)
+            console.log(datetime)
+
+            return datetime > new Date()
+            // dayIdx < nowDayIdx && currentWeekIdx === 0
         }
     },
     computed:{
