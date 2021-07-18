@@ -64,7 +64,7 @@
                                             </div>{{--Описание--}}
                                         </div>
                                         <div class="submit-section mt-4">
-                                            <button type="submit" class="btn btn-primary submit-btn">Подтвердить</button>
+                                            <button type="submit" class="btn btn-primary submit-btn apt-btn">Подтвердить</button>
                                         </div>
                                     </div>
 
@@ -261,6 +261,7 @@
                 flex: 1 1 auto;
                 min-height: 1px;
             }
+
             .rating {
                 list-style: none;
                 margin: 0 0 7px;
@@ -322,18 +323,32 @@
                 transition: border-color .3s;
                 width: 100%;
             }
+            .form-control:focus {
+                box-shadow: none;
+                border-color: #3330306b;
+                outline: 0;
+            }
             .exist-customer a {
                 color: #4498dc;
                 font-weight: 500;
                 -webkit-transition: all 0.4s ease;
             }
-            .submit-btn {
-                background-color: #66c323;
-                border: 1px solid #66c323;
-                padding: 12px 30px;
-                font-weight: 600;
-                font-size: 16px;
-                min-width: 120px;
+            .apt-btn {
+                background-color: #4890cb;
+                color: #fff;
+                border-radius: 4px;
+                display: block;
+                font-size: 14px;
+                font-weight: 500;
+                letter-spacing: 1px;
+                padding: 10px 25px;
+                text-align: center;
+                text-transform: uppercase;
+            }
+            .apt-btn:hover, .apt-btn:focus {
+                background-color: #4184bb;
+                border-color: #4184bb;
+                color: #fff;
             }
             .booking-doc-info {
                 display: -webkit-box;
