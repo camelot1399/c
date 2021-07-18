@@ -17,9 +17,8 @@ class FeedbackSeeder extends Seeder
     {
         $specialists = Specialist::all()->take(10);
         foreach ($specialists as $specialist) {
-            $books = $specialist->books()->take(10);
+            $books = $specialist->books->take(10);
             foreach ($books as $book) {
-                var_dump($book);
                 Feedback::factory()
                     ->for($specialist)
                     ->for($book)
