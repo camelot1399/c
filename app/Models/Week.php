@@ -17,7 +17,7 @@ class Week
         for ($i = 0;$i<7;$i++) {
             /** @var Day $day */
             $day = $specialist->days()
-                ->whereDay($date)
+                ->where('day','=',$date)
                 ->first();
             $day->setSchedule();
             $week->times[$i] = $day->times;
