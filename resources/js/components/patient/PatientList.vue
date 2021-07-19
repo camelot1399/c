@@ -32,8 +32,8 @@
                                                 <tr>
                                                     <th>Имя пациента</th>
                                                     <th>Дата приема</th>
-                                        <!--            {{&#45;&#45;                                                <th>Цель</th>&#45;&#45;}}-->
-                                        <!--            {{&#45;&#45;                                                <th>Тип</th>&#45;&#45;}}-->
+                                                    <th>Цель</th>
+                                                    <th>Тип</th>
                                                     <th class="text-center">Стоимость</th>
                                                     <th></th>
                                                 </tr>
@@ -53,11 +53,12 @@
 
                                                         </h2>
                                                     </td>
-                                                    <td> {{ book.datetime }} <span
-                                                        class="d-block text-info">{{ book.datetime }} </span>
+                                                    <td> {{ new Date(book.datetime).toLocaleDateString() }}
+                                                        <span class="d-block text-info">
+                                                            {{ new Date(book.datetime).toLocaleTimeString() }}
+                                                        </span>
                                                     </td>
-                                        <!--            {{&#45;&#45;                                                    <td>General</td>&#45;&#45;}}-->
-                                        <!--            {{&#45;&#45;                                                    <td>New Patient</td>&#45;&#45;}}-->
+                                                    <td>General</td>
                                                     <td class="text-center">{{ book.specialist.price }} </td>
                                                     <td class="text-right">
                                                         <div class="table-action">
