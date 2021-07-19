@@ -23,13 +23,13 @@ class Week
             if(isset($day)) {
                 $day->setSchedule();
                 $week->times[$i] = $day->times;
-                $week->times[$i];
+//                $week->times[$i];
             } else {
                 $week->times[$i] = [];
             }
             $date->addDay();
         }
-        $week->nextMonday = $date->addDays(7)->toDateString();
+        $week->nextMonday = $date->addDay()->toDateString();
         return $week;
     }
 
