@@ -31,7 +31,7 @@
                                     type="checkbox"
                                     :value="category.id"
                                     :id="'category-' + category.id"
-                                    :hidden="true"
+                                    hidden
                                     v-model="filters.categories"
                                 >
                                 <label :for="'category-' + category.id">{{ category.name }}</label>
@@ -85,19 +85,14 @@ export default {
                 }
 
                 //Поиск
-                if (this.searchString && flag){
+                if (this.searchString.length >=3 && flag){
                     const arrSearchWords = this.searchString.trim().split(' ');
 
                     for (let word of arrSearchWords) {
-                        if (
-                            doctor.user.name.search(word) >= 0 ||
-                            doctor.user.second_name.search(word) >= 0 ||
-                            doctor.user.surname.search(word) >= 0
-                        ){
-                            return true
-                        } else {
-                            return false
-                        }
+                        flag = flag &&
+                            (doctor.user.name.toLowerCase().search(word.toLowerCase()) >= 0 ||
+                            doctor.user.second_name.toLowerCase().search(word.toLowerCase()) >= 0 ||
+                            doctor.user.surname.toLowerCase().search(word.toLowerCase()) >= 0);
                     }
                 }
                 return flag;
@@ -180,7 +175,6 @@ export default {
 
     label {
     color: #000;
-    cursor: default;
     font-weight: normal;
     line-height: 20px;
     padding: 10px 0;
