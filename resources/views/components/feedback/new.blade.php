@@ -33,8 +33,10 @@
                 <input type="radio" id="star-2" name="value" value="2" />
                 <label class = "fa fa-star" for="star-2" title="Плохо"></label>
 
-                <input type="radio" id="star-1" name="value" value="1" onclick="clickRadio(this)" />
-                <label class = "fa fa-star" for="star-1" title="Ужасно" ></label>
+                <input type="radio" id="star-1" name="value" value="1" onclick="clickRadio(this)"/>
+                <label class = "fa fa-star" for="star-1" title="Ужасно"></label>
+
+                <input type="radio" name="value" value="0"  checked="" />
 
             </fieldset>
 

@@ -24,7 +24,7 @@ class CreateFeedbacksTable extends Migration
             $table->foreignId('book_id')->unique()
                 ->constrained('books')
                 ->onUpdate('cascade');
-            $table->enum('value',[1,2,3,4,5]);
+            $table->enum('value',[0,1,2,3,4,5]);
             $table->string('name')->nullable();
             $table->string('surname')->nullable();
             $table->text('body_text');
