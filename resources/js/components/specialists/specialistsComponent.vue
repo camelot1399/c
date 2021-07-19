@@ -9,7 +9,7 @@
                     type="text"
                     name="slickList__searchInput"
                     class="slickList__searchInput"
-                    placeholder="Фамилия, имя, отчество"
+                    placeholder="Поиск"
                     data-control="inputText"
                     v-model="searchString"
                 >
@@ -92,7 +92,11 @@ export default {
                         flag = flag &&
                             (doctor.user.name.toLowerCase().search(word.toLowerCase()) >= 0 ||
                             doctor.user.second_name.toLowerCase().search(word.toLowerCase()) >= 0 ||
-                            doctor.user.surname.toLowerCase().search(word.toLowerCase()) >= 0);
+                            doctor.user.surname.toLowerCase().search(word.toLowerCase()) >= 0 ||
+                            doctor.category.name.toLowerCase().search(word.toLowerCase()) >= 0
+                            )
+
+                        ;
                     }
                 }
                 return flag;
@@ -100,6 +104,7 @@ export default {
         }
     },
     mounted() {
+        console.log(this.doctors)
         const categories = this.doctors.map(doctor => ({
             id: doctor.category.id,
             name: doctor.category.name
