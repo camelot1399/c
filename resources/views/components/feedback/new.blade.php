@@ -9,45 +9,62 @@
 @endif
 <div id="feedback_form" class="card p-40px" style="display:none;">
     <div class="card-body pt-0">
-        <h4 class="widget-title mb-4">Оставить отзыв о <span class="text-gray-500">{{ $specialist->user->name . ' ' . $specialist->user->surname}}</span></h4>
+        <h4 class="widget-title mb-4">Оставить отзыв о <span class="text-gray-500">{{ $specialist->user->getNameAndSurname()}}</span></h4>
         <form method="post" action="{{ route('feedback.store') }}">
             @csrf
-            @if(Auth::check())
-{{--                TODO: сделать красивый label как в записи на прием      --}}
-                <input name="user_id" value="{{ Auth::user()->id }}" type="hidden">
-                <p class="text-lg text-gray-700 mb-3">От: {{ Auth::user()->name . ' ' . Auth::user()->surname }}</p>
-            @else
-                <input name="name" placeholder="Ваше имя" type="text" class="mb-4 w-50 rounded-md shadow-sm border-gray-300 focus:border-grey-300 focus:ring focus:ring-grey-200 focus:ring-opacity-50">
-                <input name="surname" placeholder="Ваша фимилия" type="text" class="mb-4 w-50 rounded-md shadow-sm border-gray-300 focus:border-grey-300 focus:ring focus:ring-grey-200 focus:ring-opacity-50">
-            @endif
-            <input name="specialist_id" value="{{ $specialist->id }}" type="hidden">
-{{--            TODO: Заменить на Font Awesome 5, пока блок ниже работает на 4--}}
-            <div class="form-group mb-4 w-50 rounded-md shadow-sm border-gray-300 focus:border-grey-300 focus:ring focus:ring-grey-200 focus:ring-opacity-50">
-{{--                <label>Ваша оценка</label>--}}
-                <div class="star-rating">
-                    <div class="star-rating__wrap">
-                        <input class="star-rating__input" id="star-5" type="radio" name="value" value="5">
-                        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-5" title="Отлично"></label>
-                        <input class="star-rating__input" id="star-4" type="radio" name="value" value="4">
-                        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-4" title="Хорошо"></label>
-                        <input class="star-rating__input" id="star-3" type="radio" name="value" value="3">
-                        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-3" title="Удовлетворительно"></label>
-                        <input class="star-rating__input" id="star-2" type="radio" name="value" value="2">
-                        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-2" title="Плохо"></label>
-                        <input class="star-rating__input" id="star-1" type="radio" name="value" value="1">
-                        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-1" title="Ужасно"></label>
-                    </div>
-                </div>
+
+            <div class="card-label">
+                <input class="form-control" name="user_id" value="{{ $bookFeedback->user->id }}" type="hidden">
+                <input class="form-control" name="book_id" value="{{ $bookFeedback->id }}" type="hidden">
+                <p class="text-lg text-gray-700 mb-3">От: {{ $bookFeedback->user->getNameAndSurname() }}</p>
+                <input class="form-control" name="specialist_id" value="{{ $specialist->id }}" type="hidden">
             </div>
-            <textarea name="body_text" placeholder="Напишите свой отзыв" class="w-50 rounded-md shadow-sm border-gray-300 focus:border-grey-300 focus:ring focus:ring-grey-200 focus:ring-opacity-50"></textarea>
+
+            <fieldset class="star-rating">
+                <input type="radio" id="star-5" name="value" value="5" />
+                <label class = " fa fa-star" for="star-5" title="Отлично"></label>
+
+                <input type="radio" id="star-4" name="value" value="4" />
+                <label class = "fa fa-star" for="star-4" title="Хорошо"></label>
+
+                <input type="radio" id="star-3" name="value" value="3" />
+                <label class = "fa fa-star" for="star-3" title="Удовлетворительно"></label>
+
+                <input type="radio" id="star-2" name="value" value="2" />
+                <label class = "fa fa-star" for="star-2" title="Плохо"></label>
+
+                <input type="radio" id="star-1" name="value" value="1" onclick="clickRadio(this)" />
+                <label class = "fa fa-star" for="star-1" title="Ужасно" ></label>
+
+            </fieldset>
+
+            <div class="card-label">
+                <label>Напишите отзыв</label>
+                <textarea name="body_text" class="form-control" ></textarea>
+            </div>
             <input type="submit" class="apt-btn mt-8" value="Оставить отзыв">
         </form>
     </div>
 </div>
+@push('scripts')
+    <script>
+        function clickRadio(param) {
+            const imputeValue = document.querySelector('#star-1');
+            if (param.BeforeCheck){
+                param.checked = false;
+            }
+            param.BeforeCheck = param.checked;
 
+            if(param.BeforeCheck !== false){
+                imputeValue.addEventListener('click', () => {
+                    imputeValue.value = "0";
+                });
+            }
+        }
+    </script>
+
+@endpush
 @push('style')
-{{--    TODO: Удалить ссылку на FA4--}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .apt-btn {
             background-color: #4890cb;
@@ -66,36 +83,65 @@
             border-color: #4184bb;
             color: #fff;
         }
-
-        .star-rating{
-            font-size: 0;
-        }
-        .star-rating__wrap{
+        .star-rating {
             display: inline-block;
-            font-size: 1rem;
         }
-        .star-rating__wrap:after{
-            content: "";
-            display: table;
-            clear: both;
-        }
-        .star-rating__ico{
-            float: right;
-            padding-left: 2px;
-            cursor: pointer;
-            color: #FFB300;
-        }
-        .star-rating__ico:last-child{
-            padding-left: 0;
-        }
-        .star-rating__input{
+        .star-rating > input {
             display: none;
         }
-        .star-rating__ico:hover:before,
-        .star-rating__ico:hover ~ .star-rating__ico:before,
-        .star-rating__input:checked ~ .star-rating__ico:before
-        {
+        .star-rating > label:before {
+            margin: 5px;
+            font-size: 1.25em;
+            display: inline-block;
             content: "\f005";
+        }
+        .star-rating > label {
+            color: #ddd;
+            float: right;
+        }
+
+        .star-rating > input:checked ~ label,
+        .star-rating:not(:checked) > label:hover,
+        .star-rating:not(:checked) > label:hover ~ label {
+            color: #f4c150;
+        }
+
+        .star-rating > input:checked + label:hover,
+        .star-rating > input:checked ~ label:hover,
+        .star-rating > label:hover ~ input:checked ~ label,
+        .star-rating > input:checked ~ label:hover ~ label {
+            color: #FFED85;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #3330306b;
+            outline: 0;
+        }
+        textarea:focus,
+        input:focus {
+            outline: none;
+        }
+        .card-label > label {
+            background-color: #fff;
+            color: #959595;
+            position: relative;
+            font-size: 13px;
+            font-weight: 500;
+            margin: 6px auto auto 8px;
+            padding: 0 7px;
+        }
+        .card-label > textarea,
+        .card-label > input {
+            background-color: #fff;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            display: block;
+            height: 90px;
+            margin-top: -10px;
+            padding: 5px 15px 0;
+            transition: border-color .3s;
+            max-width: 500px;
+            max-height: 150px;
         }
     </style>
 

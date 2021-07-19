@@ -26,6 +26,7 @@ class StoreFeedbackRequest extends FormRequest
         return [
             'id' => ['integer'],
             'user_id' => ['integer'],
+            'book_id' => ['unique:feedbacks','integer'],
             'name' => ['string','max:100'],
             'surname' => ['string','max:100'],
             'body_text' => ['string'],

@@ -17,12 +17,24 @@
 
 @push('scripts')
     <script>
+
         (function(){
             const feedbackModal = document.querySelector('#feedback_modal');
             const feedbackForm = document.querySelector('#feedback_form');
             const docOverview = document.querySelector('#doctor-overview');
             const businessHours = document.querySelector('#business_hours');
             const navItem = document.querySelectorAll('.nav-doctor-show');
+            const navLinkReview = document.querySelector('#doc_reviews');
+            const navLinkOverview = document.querySelector('#doc_overview');
+
+            if (window.location.search.length !== 0) {
+                docOverview.style.display = 'none';
+                feedbackModal.style.display = 'block';
+                feedbackForm.style.display = 'block';
+                navLinkOverview.classList.remove('active');
+                navLinkReview.classList.add('active');
+            }
+
 
             navItem.forEach(function(item) {
                 item.addEventListener('click', (e) => {

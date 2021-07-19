@@ -17,10 +17,9 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             SpecialistSeeder::class,
+            ScheduleSeeder::class,
             BookSeeder::class,
             FeedbackSeeder::class,
-//            DoctorSeeder::class,
-//            ScoreSeeder::class,
         ]);
     }
 }

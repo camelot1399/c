@@ -24,6 +24,7 @@ class FeedbackFactory extends Factory
         return [
             'specialist_id' => $this->faker->randomNumber(2),
             'user_id' => $this->faker->randomNumber(2),
+            'book_id' => $this->faker->randomNumber(2),
             'value' => $this->faker->randomElement([1,2,3,4,5]),
             'name' => $this->faker->firstName,
             'surname' => $this->faker->lastName,

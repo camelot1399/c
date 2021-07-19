@@ -49,6 +49,7 @@ class Book extends Model
     protected $attributes = [];
     protected $fillable = [
         'specialist_id',
+        'schedule_id',
         'user_id',
         'datetime',
         'name',
@@ -57,7 +58,8 @@ class Book extends Model
         'email',
         'phone',
         'description',
-        'age',];
+        'age',
+        'is_over'];
 
     public function client()
     {
@@ -72,6 +74,26 @@ class Book extends Model
     public function specialist(): BelongsTo
     {
         return $this->belongsTo(Specialist::class);
+    }
+
+    public function schedule(): BelongsTo
+    {
+        return $this->belongsTo(Schedule::class);
+    }
+
+    public function getEmail(): string
+    {
+        return isset($this->user_id) ? $this->user->email : $this->email;
+    }
+
+    public function getNameAndSurname(): string
+    {
+        return isset($this->user_id) ? $this->user->getNameAndSurname() : $this->name . ' ' . $this->surname;
+    }
+
+    public function getFullName(): string
+    {
+        return isset($this->user_id) ? $this->user->getFullName() : $this->surname . ' ' . $this->name . ' ' . $this->second_name;
     }
 
 }

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Feedback;
 use App\Models\Specialist;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class FeedbackSeeder extends Seeder
@@ -16,24 +15,25 @@ class FeedbackSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::where('id','>',25)->get();
-        $specialists = Specialist::where('id','<=',10)->get();
+        $specialists = Specialist::all()->take(10);
         foreach ($specialists as $specialist) {
-            foreach ($users as $user) {
+            $books = $specialist->books->take(10);
+            foreach ($books as $book) {
                 Feedback::factory()
                     ->for($specialist)
-                    ->for($user)
+                    ->for($book)
+                    ->for($book->user)
                     ->state(['name'=>null,'surname'=>null])
                     ->create();
             }
         }
-        foreach ($specialists as $specialist) {
-            Feedback::factory()
-                ->for($specialist)
-                ->state(['user_id'=>null])
-                ->count(3)
-                ->create();
-        }
+//        foreach ($specialists as $specialist) {
+//            Feedback::factory()
+//                ->for($specialist)
+//                ->state(['user_id'=>null])
+//                ->count(3)
+//                ->create();
+//        }
     }
 
 }

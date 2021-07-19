@@ -44,6 +44,7 @@ class BookController extends Controller
                 $book->fill([
                     'user_id' => \Auth::user()->id,
                     'specialist_id' => $request->specialist_id,
+                    'schedule_id' => $request->schedule_id,
                     'description' => $request->description,
                     'datetime' => $request->datetime,
                 ]);
@@ -112,6 +113,13 @@ class BookController extends Controller
             $book->load('specialist');
         }
         return response()->json(['book' => $book]);
+     }
+
+    public function isOverUpdate(Book $book)
+    {
+        $book->is_over = 1;
+        $book->save();
+        return redirect()->back();
      }
 
 }
