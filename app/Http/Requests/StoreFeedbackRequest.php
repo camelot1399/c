@@ -31,7 +31,7 @@ class StoreFeedbackRequest extends FormRequest
             'surname' => ['string','max:100'],
             'body_text' => ['string'],
             'specialist_id' => ['required','max:200'],
-            'value' => ['numeric','min:1','max:5'],
+            'value' => ['numeric','min:0','max:5'],
         ];
     }
 }

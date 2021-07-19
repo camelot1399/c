@@ -22,7 +22,7 @@ use App\Models\Specialist;
     {{--                    <p class="text-gray-700">{{ $oneFeedback->value }}</p>--}}
                         <div class="rating">
                             @for($i = 0; $i < 5; $i++)
-                                @if($i < $oneFeedback->value)
+                                @if(($i < $oneFeedback->value) && ($oneFeedback->value !== 0))
                                     <i class="fas fa-star filled"></i>
                                 @else
                                     <i class="fas fa-star"></i>
