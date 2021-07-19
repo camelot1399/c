@@ -81,4 +81,19 @@ class Book extends Model
         return $this->belongsTo(Schedule::class);
     }
 
+    public function getEmail(): string
+    {
+        return isset($this->user_id) ? $this->user->email : $this->email;
+    }
+
+    public function getNameAndSurname(): string
+    {
+        return isset($this->user_id) ? $this->user->getNameAndSurname() : $this->name . ' ' . $this->surname;
+    }
+
+    public function getFullName(): string
+    {
+        return isset($this->user_id) ? $this->user->getFullName() : $this->surname . ' ' . $this->name . ' ' . $this->second_name;
+    }
+
 }
