@@ -22,7 +22,7 @@ class ScheduleSeeder extends Seeder
         $day2 = $day1->clone()->modify('+3 weeks');
         foreach ($specialists as $specialist) {
             for ($day = $day1->clone();$day<$day2;$day->modify('+1 day')) {
-                if ($day->dayOfWeek != 3 && $day->dayOfWeek != 7) {
+                if ($day->dayOfWeek != 3 && $day->dayOfWeek != 0) {
                     /*Выходные в среду и воскресенье*/
                     Schedule::factory()
                         ->state(['day'=>$day->format('Y-m-d')])

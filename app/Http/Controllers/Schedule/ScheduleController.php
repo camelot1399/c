@@ -5,11 +5,22 @@ namespace App\Http\Controllers\Schedule;
 use App\Http\Controllers\Controller;
 use App\Models\Specialist;
 use App\Models\Week;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Jenssegers\Date\Date as JDate;
 
 class ScheduleController extends Controller
 {
+
+    /**
+     * @param Specialist $specialist
+     * @return Application|Factory|View
+     */
     public function index(Specialist $specialist)
     {
         $date = new JDate();
@@ -19,6 +30,12 @@ class ScheduleController extends Controller
         return view('schedule.index',compact(['specialist','week']));
     }
 
+
+    /**
+     * @param Specialist $specialist
+     * @param Request $request
+     * @return Application|Factory|View|RedirectResponse
+     */
     public function personalInfo(Specialist $specialist, Request $request)
     {
         if (isset($request->datetime)) {
@@ -40,8 +57,17 @@ class ScheduleController extends Controller
         }
     }
 
-    public function getWeek()
+    /**
+     * @param Request $request
+     * @param Specialist $specialist
+     * @return JsonResponse
+     */
+    public function getWeek(Request $request, Specialist $specialist): JsonResponse
     {
-
+        return Response::json(
+            Week::create($specialist,
+                new JDate($request->request->all()['monday'])
+            )
+        );
     }
 }

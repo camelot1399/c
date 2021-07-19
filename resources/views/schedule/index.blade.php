@@ -6,7 +6,8 @@
                 <div class="col-12">
                     <x-schedule.card-mini :specialist="$specialist"></x-schedule.card-mini>
                     <schedule
-                        :action="'{{route('schedule.info',compact('specialist'))}}'"
+                        :action="'{{route('schedule.info', compact('specialist'))}}'"
+                        :link-next-week = "'{{ route('schedule.week.get', compact('specialist')) }}'"
                         :input-week="{{$week}}"
                     ></schedule>
                     @push('scripts')
