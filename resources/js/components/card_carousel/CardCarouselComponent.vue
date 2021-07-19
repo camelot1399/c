@@ -35,10 +35,9 @@ export default {
     data() {
         return {
             offset: 0,
-            currentItem: 1,
-            widthItem: 280,
+            scrollWidth: 0,
+            widthItem: 0,
             sliderWidth: 0,
-            currentOffsetBlock: 0,
             marginBlock: 10,
             specialists: [],
         }
@@ -48,8 +47,13 @@ export default {
     },
     methods: {
         initSlider() {
-            this.sliderWidth = this.specialists.length * this.widthItem;
-            this.currentOffsetBlock = document.querySelector('.slickList').offsetWidth;
+
+            setTimeout(() => {
+                this.widthItem = document.querySelector('.slickSlide').offsetWidth;
+                this.sliderWidth = this.specialists.length * this.widthItem;
+                this.currentOffsetBlock = document.querySelector('.slickList').offsetWidth;
+                this.scrollWidth = document.querySelector('.slickTrack__visible').scrollWidth;
+            }, 1000)
 
             let slickNavigation = document.querySelector('.slickNavigation');
             slickNavigation.addEventListener('click', (e) => {
@@ -68,58 +72,47 @@ export default {
             })
         },
         slideToLeft() {
+            let slickList = document.querySelector('.slickList');
+            let slickListWidth = document.querySelector('.slickList').offsetWidth;
             let slickNavigation__left = document.querySelector('.slickNavigation__left');
             let slickNavigation__right = document.querySelector('.slickNavigation__right');
+            let slickTrack = document.querySelector('.slickTrack');
+            let ostatok = slickListWidth - (Math.abs(this.offset));
 
             slickNavigation__right.classList.remove('slickNavigation__hide');
 
-            if (this.currentItem === 1) {
-                return null;
-            }
-
-            if (this.currentItem === 2) {
-                slickNavigation__left.classList.add('slickNavigation__hide');
-                this.offset = -20;
-            } else {
+            if (Math.abs(this.offset) > Math.abs(this.widthItem)) {
                 this.offset = this.offset + this.widthItem;
+                slickTrack.style.transform = `translateX(${this.offset}px)`;
+            } else {
+                this.offset = 0;
+                slickNavigation__left.classList.add('slickNavigation__hide');
+                slickTrack.style.transform = `translateX(${this.offset}px)`;
             }
-
-            this.currentItem--;
-            if (this.offset === 0) {
-                return null;
-            }
-
-            let slickTrack = document.querySelector('.slickTrack');
-
-            this.currentOffsetBlock = this.currentOffsetBlock - this.widthItem;
-            slickTrack.style.transform = `translateX(${this.offset}px)`;
 
         },
         slideToRight() {
             let slickList = document.querySelector('.slickList');
-            let rightEl = Math.floor(slickList.offsetWidth / (this.specialists.length * this.widthItem) * 10);
+            let slickListWidth = document.querySelector('.slickList').offsetWidth;
             let slickNavigation__left = document.querySelector('.slickNavigation__left');
             let slickNavigation__right = document.querySelector('.slickNavigation__right');
+            let slickTrack = document.querySelector('.slickTrack');
+            let ostatok = this.scrollWidth + (this.offset - this.marginBlock) - slickListWidth;
 
             slickNavigation__left.classList.remove('slickNavigation__hide');
 
-            if ( (this.currentItem + rightEl - 2) > (this.specialists.length)) {
-                return null;
+            if (ostatok === 0) {
+                return
             }
 
-            this.currentItem++;
-
-            if ( (this.currentItem + rightEl - 2) === (this.specialists.length)) {
-                slickNavigation__right.classList.add('slickNavigation__hide');
-                this.offset = slickList.offsetWidth - this.sliderWidth - (this.marginBlock * this.specialists.length);
-            } else {
+            if (ostatok >= this.widthItem) {
                 this.offset = this.offset - this.widthItem;
+                slickTrack.style.transform = `translateX(${this.offset}px)`;
+            } else {
+                this.offset = this.offset - (ostatok + this.marginBlock + this.marginBlock * 2);
+                slickTrack.style.transform = `translateX(${this.offset}px)`;
+                slickNavigation__right.classList.add('slickNavigation__hide');
             }
-
-            let slickTrack = document.querySelector('.slickTrack');
-            let widthViewBox = slickList.offsetWidth;
-            this.currentOffsetBlock = this.currentOffsetBlock + this.widthItem;
-            slickTrack.style.transform = `translateX(${this.offset}px)`;
         },
     },
     mounted() {
@@ -186,6 +179,9 @@ export default {
         border-radius: 50px;
         box-shadow: 1px 6px 14px rgb(0 0 0 / 20%);
         transition: background 0.6s;
+    }
+    .slickNavigation__hide {
+        display: none;
     }
 
     .active_star {
