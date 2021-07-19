@@ -32,7 +32,7 @@ class CreateBooksTable extends Migration
             $table->string('phone')->nullable();
             $table->text('description');
             $table->integer('age')->nullable();
-            $table->boolean('is_over');
+            $table->boolean('is_over')->default(false);
             $table->timestamps();
             $table->unique(['specialist_id','datetime']);
         });
