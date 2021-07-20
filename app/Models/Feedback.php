@@ -39,7 +39,7 @@ class Feedback extends Model
 
     public function getNameAndSurname(): string
     {
-        return isset($this->user_id) ? $this->user->getNameAndSurname() : $this->name . ' ' . $this->surname;
+        return isset($this->user_id) ? $this->user->getNameAndSurname() : $this->book->name . ' ' . $this->book->surname;
     }
 
     public function getFullName(): string

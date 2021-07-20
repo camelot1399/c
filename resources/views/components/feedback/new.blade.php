@@ -14,9 +14,9 @@
             @csrf
 
             <div class="card-label">
-                <input class="form-control" name="user_id" value="{{ $bookFeedback->user->id }}" type="hidden">
+{{--                <input class="form-control" name="user_id" value="{{ $bookFeedback->user->id }}" type="hidden">--}}
                 <input class="form-control" name="book_id" value="{{ $bookFeedback->id }}" type="hidden">
-                <p class="text-lg text-gray-700 mb-3">От: {{ $bookFeedback->user->getNameAndSurname() }}</p>
+                <p class="text-lg text-gray-700 mb-3">От: {{ $bookFeedback->getNameAndSurname() }}</p>
                 <input class="form-control" name="specialist_id" value="{{ $specialist->id }}" type="hidden">
             </div>
 

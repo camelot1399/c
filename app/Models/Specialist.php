@@ -67,7 +67,7 @@ class Specialist extends Model
         foreach ($doctors as $doctor) {
             /** @var Specialist $doctor */
             $doctor->rating = $doctor->averageScore();
-            $doctor->scoresCount = $doctor->feedbacks->count();
+            $doctor->scoresCount = $doctor->feedbacks()->count();
         }
         return $doctors;
     }
