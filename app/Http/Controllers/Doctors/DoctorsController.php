@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Jenssegers\Date\Date as JDate;
-use function PHPUnit\Framework\isNull;
 
 class DoctorsController extends Controller
 {
@@ -39,7 +38,6 @@ class DoctorsController extends Controller
                 })->get();
                 $specialists = $specialists->merge($temp);
             }
-            dd($specialists);
             return $specialists;
         }
         return new Collection();
