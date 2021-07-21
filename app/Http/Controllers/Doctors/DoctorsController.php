@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Doctors;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
-use App\Models\Feedback;
 use App\Models\Specialist;
-use App\Models\User;
 use Illuminate\Http\Request;
+use function PHPUnit\Framework\isNull;
 
 class DoctorsController extends Controller
 {
@@ -23,5 +22,14 @@ class DoctorsController extends Controller
 
         $specialist->load('user', 'category','feedbacks');
         return view('doctors.show', compact('specialist', 'bookFeedback'));
+    }
+
+    public function getVacantSpecialists(Request $request)
+    {
+        if (isNull($request->date2)) {
+            //на один день
+        } else {
+            //на диапазон дат
+        }
     }
 }

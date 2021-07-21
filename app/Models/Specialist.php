@@ -92,12 +92,21 @@ class Specialist extends Model
         return round($goodCount/$allCount*100);
     }
 
-    public function isTimeFree(JDate $datetime): bool
+    public function isDateFree(JDate $datetime): bool
     {
-        return $this
-            ->books()
-            ->whereDatetime($datetime->format('Y-m-d H:i:s'))
-            ->doesntExist();
+        /** @var Day $day */
+        $day = $this
+            ->days()
+            ->whereDay($datetime->format('Y-m-d'))
+            ->first();
+        if (isset($day)) {
+            $times = $day->setSchedule();
+            foreach ($times as $time) {
+                if ($time['is_free'])
+                    return true;
+            }
+        }
+        return false;
     }
 
     public function getLastScheduleDate(): JDate

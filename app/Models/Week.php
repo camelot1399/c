@@ -15,19 +15,16 @@ class Week
         $date->startOfWeek();
         $week = new Week();
         $week->date = $date->toDateString();
-        for ($i = 0; $i < 7; $i++) {
+        for ($i = 0; $i < 7; $i++, $date->addDay()) {
             /** @var Day $day */
             $day = $specialist->days()
                 ->where('day','=',$date)
                 ->first();
+            $week->times[$i] = [];
             if(isset($day)) {
                 $day->setSchedule();
                 $week->times[$i] = $day->times;
-//                $week->times[$i];
-            } else {
-                $week->times[$i] = [];
             }
-            $date->addDay();
         }
         $week->nextMonday = $date->addDay()->toDateString();
         return $week;
