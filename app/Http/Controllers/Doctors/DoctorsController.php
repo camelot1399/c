@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Doctors;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\Specialist;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Jenssegers\Date\Date as JDate;
 use function PHPUnit\Framework\isNull;
 
 class DoctorsController extends Controller
@@ -24,12 +27,21 @@ class DoctorsController extends Controller
         return view('doctors.show', compact('specialist', 'bookFeedback'));
     }
 
-    public function getVacantSpecialists(Request $request)
+    public function vacant(Request $request): Collection
     {
-        if (isNull($request->date2)) {
-            //на один день
-        } else {
-            //на диапазон дат
+        if (isset($request->date1) && isset($request->date2)) {
+            $date1 = new JDate($request->date1);
+            $date2 = new JDate($request->date2);
+            $specialists = new Collection();
+            for ($date = $date1->clone(); $date < $date2; $date->addDay()) {
+                $temp = Specialist::whereHas('schedules', function (Builder $query) use ($date) {
+                    $query->where('day', '=', $date);
+                })->get();
+                $specialists = $specialists->merge($temp);
+            }
+            dd($specialists);
+            return $specialists;
         }
+        return new Collection();
     }
 }
