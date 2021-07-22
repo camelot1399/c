@@ -37,8 +37,14 @@ class DoctorsController extends Controller
                 $temp = Specialist::whereHas('schedules', function (Builder $query) use ($date) {
                     $query->where('day', '=', $date);
                 })->get();
-                $temp->load('user', 'category');
+                $temp->load(['user', 'category','feedbacks']);
                 $specialists = $specialists->merge($temp);
+            }
+//            TODO: fix костыль, повторение кода
+            foreach ($specialists as $doctor) {
+                /** @var Specialist $doctor */
+                $doctor->rating = $doctor->averageScore();
+                $doctor->scoresCount = $doctor->feedbacks()->count();
             }
             return $specialists;
         }
