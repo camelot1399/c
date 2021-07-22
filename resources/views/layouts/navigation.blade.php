@@ -75,7 +75,7 @@
                             <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
                         @else
                             <a href="{{ route('login') }}" class="">
-                                <x-button class="py-3 px-1 d-block w-full bg-66c323 text-18px font-medium text-center" >Войти</x-button>
+                                <x-button class="py-3 px-1 d-block w-full bg-ffffff text-18px font-medium text-center" >Войти</x-button>
                             </a>
 {{--                            @if (Route::has('register'))--}}
 {{--                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>--}}

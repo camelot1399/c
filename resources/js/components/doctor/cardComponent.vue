@@ -46,11 +46,11 @@ export default {
         flex-direction: column;
         justify-content: space-between;
         padding: 10px;
-        width: 280px;
+        width: 250px;
         box-sizing: border-box;
         box-shadow: 2px 2px 13px rgb(0 0 0 / 10%);
         background: white;
-        margin: 0 5px 10px 5px;
+        margin: 0 5px 20px 5px;
     }
     .slickSlide__header {
         display: flex;
