@@ -82,7 +82,7 @@
         </div>
         <input
             type="submit"
-            class="btn btn-primary submit-btn booking-btn"
+            class="btn submit-btn btn-outline-primary"
             :disabled="actionCurrentTime === ''"
             value="Записаться"
             @click="toCheckIn"
