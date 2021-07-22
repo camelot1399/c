@@ -6,6 +6,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailClientController;
 use App\Http\Controllers\Patient\PatientController;
+use App\Http\Controllers\ProfileUserController;
 use App\Http\Controllers\Schedule\ScheduleController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\SendController;
