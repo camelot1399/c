@@ -31,11 +31,13 @@ class DoctorsController extends Controller
         if (isset($request->date1) && isset($request->date2)) {
             $date1 = new JDate($request->date1);
             $date2 = new JDate($request->date2);
+
             $specialists = new Collection();
             for ($date = $date1->clone(); $date < $date2; $date->addDay()) {
                 $temp = Specialist::whereHas('schedules', function (Builder $query) use ($date) {
                     $query->where('day', '=', $date);
                 })->get();
+                $temp->load('user', 'category');
                 $specialists = $specialists->merge($temp);
             }
             return $specialists;
