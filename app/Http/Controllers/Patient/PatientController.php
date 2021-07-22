@@ -22,6 +22,9 @@ class PatientController extends Controller
             }
 
             return view('patient.index', compact('books'));
-        } else abort(404);
+        } else {
+            return redirect('/profile');
+        }
+
     }
 }

@@ -1,3 +1,4 @@
+@props(['user'])
 <div class="page-wrapper">
     <div class="content container-fluid book-content">
         <div class="row">
@@ -10,10 +11,10 @@
                             </a>
                         </div>
                         <div class="col ml-md-n2 profile-user-info">
-                            <h4 class="user-name mb-0">Имя</h4>
-                            <h6 class="text-muted" >тест</h6>
+                            <h4 class="user-name mb-0">{{ $user->name }}</h4>
+                            <h6 class="text-muted" >{{ $user->email }}</h6>
                             <div class="user-Location"><i class="fas fa-map-marker-alt" ></i></div>
-                            <div class="about-text">тест</div>
+                            <div class="about-text">Москва</div>
                         </div>
                     </div>
                 </div>
@@ -32,19 +33,19 @@
                                         </h5>
                                         <div class="row">
                                             <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">ФИО</p>
-                                            <p class="col-sm-10">тест</p>
+                                            <p class="col-sm-10">{{ $user->getFullName()  }}</p>
                                         </div>
                                         <div class="row">
                                             <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Возраст</p>
-                                            <p class="col-sm-10">тест</p>
+                                            <p class="col-sm-10">01.01.2001</p>
                                         </div>
                                         <div class="row">
                                             <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Email</p>
-                                            <p class="col-sm-10">тест</p>
+                                            <p class="col-sm-10">{{ $user->email }}</p>
                                         </div>
                                         <div class="row">
                                             <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Мобильный</p>
-                                            <p class="col-sm-10">тест</p>
+                                            <p class="col-sm-10">+7 (999) 123-75-86</p>
                                         </div>
                                         <div class="row">
                                             <p class="col-sm-2 text-muted text-sm-right mb-0">Адрес</p>

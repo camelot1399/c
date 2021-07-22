@@ -43,7 +43,7 @@ Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.s
 
 Route::get('/send/{book}',[SendController::class, 'send'])->name('send');
 Route::get('/mailclient', [MailClientController::class, 'index'])->name('mail.index');
-Route::get('/profile/{id}', [ProfileUserController::class, 'index'])->middleware(['auth'])->name('profile.index');
+Route::get('/profile', [ProfileUserController::class, 'index'])->middleware(['auth'])->name('profile.index');
 require __DIR__.'/auth.php';
 
 Auth::routes();
