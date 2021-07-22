@@ -50,7 +50,7 @@
 {{--                                        <div class="text-right">--}}
 {{--                                            <a class="forgot-link" href="forgot-password.html">Forgot Password ?</a>--}}
 {{--                                        </div>--}}
-                                    <x-button class="py-3 px-1 d-block w-full bg-66c323 text-18px font-medium text-center" type="submit">Войти</x-button>
+                                    <x-button class="py-3 px-1 d-block w-full text-18px font-medium text-center" type="submit">Войти</x-button>
 {{--                                        <div class="login-or">--}}
 {{--                                            <span class="or-line"></span>--}}
 {{--                                            <span class="span-or">or</span>--}}

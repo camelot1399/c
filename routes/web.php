@@ -6,6 +6,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailClientController;
 use App\Http\Controllers\Patient\PatientController;
+use App\Http\Controllers\ProfileUserController;
 use App\Http\Controllers\Schedule\ScheduleController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\SendController;
@@ -43,6 +44,7 @@ Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.s
 
 Route::get('/send/{book}',[SendController::class, 'send'])->name('send');
 Route::get('/mailclient', [MailClientController::class, 'index'])->name('mail.index');
+Route::get('/profile', [ProfileUserController::class, 'index'])->middleware(['auth'])->name('profile.index');
 require __DIR__.'/auth.php';
 
 Auth::routes();

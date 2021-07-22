@@ -186,7 +186,10 @@ export default {
 }
 </script>
 <style>
-.slickList {
+.p-80px{
+        padding: 50px 80px 80px 80px;
+    }
+    .slickList {
     position: relative;
     padding: 10px;
 }
@@ -197,12 +200,12 @@ export default {
 }
 
 #slickListSearchBlock {
-    margin-bottom: 10px;
+    margin-bottom: 70px;
 }
 
 .slickList__form {
     display: flex;
-    align-items: center;
+    justify-content: center;
 }
 
 button[name="slickList__searchBtn"] {
@@ -211,21 +214,30 @@ button[name="slickList__searchBtn"] {
 
 input[name="slickList__searchInput"] {
     display: flex;
-    flex: 1;
-    border-radius: 10px 0 0 10px;
+
+    border-radius: 50px 50px;
+        width: 890px;
+        padding-left: 50px;
 }
 
 .slickList__searchInput:active {
     outline: 0;
     outline-offset: 0;
 }
+    .slickList__searchInput:focus {
+        box-shadow: none;
+        border-color: #3330306b;
+    }
 
 .filterBlock__btn {
     font-size: 30px;
     color: #4890cb;
     transition: opacity 0.8s;
 }
-
+.filterBlock__btn i{
+        position: relative;
+        left: 40px;
+    }
 .filterBlock__btn:hover {
     font-size: 30px;
     color: #4890cb;
@@ -234,7 +246,8 @@ input[name="slickList__searchInput"] {
 
 .slickList__filterBlock {
     min-width: 200px;
-}
+margin-right: 20px;
+    }
 
 .slickList__filterBlock_body {
     background: white;
@@ -307,5 +320,6 @@ input:disabled + label:before {
 .slickTrack {
     display: flex;
     flex-wrap: wrap;
-}
+    justify-content: space-around;
+    }
 </style>
