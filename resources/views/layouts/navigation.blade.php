@@ -27,6 +27,14 @@
                     >
                         {{ __('Доктора') }}
                     </x-nav-link>
+                    @if (Auth::user())
+                        <x-nav-link
+                            :href="route('profile.index')"
+                            :active="request()->routeIs('profile.*')"
+                        >
+                            {{ __('Профиль') }}
+                        </x-nav-link>
+                    @endif
                     @if (Auth::user() && Auth::user()->is_doctor)
                         <x-nav-link
                             :href="route('patient.index')"
