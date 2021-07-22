@@ -34,13 +34,19 @@ class DoctorsController extends Controller
 
             $specialists = new Collection();
             for ($date = $date1->clone(); $date < $date2; $date->addDay()) {
-                $temp = Specialist::whereHas('schedules', function (Builder $query) use ($date) {
-                    $query->where('day', '=', $date);
-                })->get();
+                $temp = Specialist
+                    ::whereHas('schedules', function (Builder $query) use ($date) {
+                        $query->where('day', '=', $date);
+                    })
+                    ->get()->filter(function ($doctor, $key) use ($date) {
+                        /** @var Specialist $doctor */
+                        return $doctor->isDateFree($date);
+                    })
+                ;
                 $temp->load(['user', 'category','feedbacks']);
                 $specialists = $specialists->merge($temp);
             }
-//            TODO: fix костыль, повторение кода
+//            TODO: fix костыль, повторение кода с отзывами
             foreach ($specialists as $doctor) {
                 /** @var Specialist $doctor */
                 $doctor->rating = $doctor->averageScore();

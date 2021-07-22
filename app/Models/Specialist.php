@@ -97,7 +97,7 @@ class Specialist extends Model
         /** @var Day $day */
         $day = $this
             ->days()
-            ->whereDay($datetime->format('Y-m-d'))
+            ->where('day',$datetime->format('Y-m-d'))
             ->first();
         if (isset($day)) {
             $times = $day->setSchedule();
